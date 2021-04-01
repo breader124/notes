@@ -1,0 +1,21 @@
+value object -- object which value is in importance
+entity object -- object which identity is in importance
+
+aggregates: aggregate is a group of entities and value objects that have certain characteristics:
+	- aggregate is created, retrieved and stored as a whole
+	- aggregate is always in a consistent state
+	- aggregate is owned by an entity called the aggregate root, whose ID is used to identify the aggregate itself
+	- aggregate can be referenced from the outside through its root only
+	- aggregate root is responsible for enforcing business invariants inside the aggregate, keeping consistent state all the time
+
+aggregate design guidelines:
+	- keep your aggregates small
+	- refer to other aggregates by ID
+	- change one aggregate per transaction
+	- use optimistic locking
+
+domain events characteristics:
+	- they are immutable
+	- they have timestamps when the event in question occurred
+	- they may have a unique Id that helps to distinguish one event from another
+	- they are published by aggregate roots or domain services

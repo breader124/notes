@@ -1,0 +1,11 @@
+Kubernetes architecture:
+	Master nodes architecture: there are 4 components which master nodes are composed of:
+		- API server: expose API to the tools that I can use from console, like kubectl
+		- Distributed database: stores data about the desired state of the cluster
+		- Schedules: schedules pods across the nodes, decides where to launch the new pod
+		- Controller manager: ensures that actual cluster state is as desired
+	Worker nodes architecture: there are also 4 components which worker nodes are composed of:
+		- Node Agent: monitores what is happening on a node and communicates it to master node
+		- Networking component: takes care of networking, e.g. exposing services
+		- Container runtime: self-eplanatory, in most cases it is docker 
+		- PODS: separated component acting as runtime environment for image, applications work here

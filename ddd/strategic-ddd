@@ -1,0 +1,15 @@
+--- Strategic Domain Driven Design ---
+
+domain - specified sphere of activity or knowledge
+
+identifying subdomains can be tricky, most common they can be dividied into three categories:
+	- core domains -> what makes the organization special and different from other organizations, most important one and it is most probable that all the development must be started from scratch
+	- supporting domain -> subdomain necessary for the organization to succeed, perhaps some solution fitting the conditions actually exists and can be applied after the development of some tweaks
+	- generic subdomain -> it doesn't contain anything special for the organization, but is still needed for the entire solution to work, typically some existing software already exists and can be taken straight from the shelf, example: user identity management 
+
+problem space: **what** business problems we are trying to solve
+solution space: **how** do we want to solve the problems defined in the problem space
+
+ubiquitous language can be documented in many ways, for example by creating glossary of terms at the beginning and then during the process by creating swimlane diagrams to show business processes and UML diagrams to show how classes/modules interact with each other
+
+every subdomain can have several bounded contexts, in a Java world one bounded context can be one deployable JAR or WAR
