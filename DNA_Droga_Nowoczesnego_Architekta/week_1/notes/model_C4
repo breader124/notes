@@ -1,0 +1,58 @@
+Model C4 jest sposobem wizualizacji, spojrzenia na architekturę
+
+Po co nam wizualizacja architektury?
+  - aby posiadać mapę nawigacyjną
+  - aby zapewnić wspóle zrozumienie/cel, które jest różny dla osoby technicznej i dla biznesu
+  - aby przedstawić strukturę systemu
+
+Istnieje przeskok pomiędzy architekturą jako strukturą systemu, a nawet najlepszym, najczytelniejszym, najlepiej 
+samodokumentującym się kodem
+
+Jaka powinna być wizualizacja?
+  - łatwa do zrozumienia 
+  - łatwa do uaktualnienia
+
+Narzędzia wizualizacji architektury:
+  - Unified Modeling Language (UML):
+    - obecnie nie jest powszechnie rozumianą notacją
+    - jest to dobry sposób wizualizacji, jeśli wiedza a propos jego użycia jest już posiadana w organizacji
+    - wysoki próg wejścia, co skutkuje trudnością użycia
+  - ArchiMate (język modelowania architektury korporacyjnej z perspektywy czterech domen: technicznej, danych, biznesowej, 
+    aplikacji):
+    - obecnie nie jest powszechnie rozumianym językiem, co skutkuje trudnością użycia
+    - pozwala na zwizualizowanie wyżej wspomnianych domen na jednym obrazku, co może powodować nieczytelność diagramu,
+    - jeśli już wszyscy go rozumieją, to jest to dobry sposób wizualizacji
+
+  Jeśli zawrzemy wszystko na jednym diagramie to będą one bardzo rozległe i niezrozumiałe, ciężko będzie uwspólnić punkt
+  widzenia. Odpowiedzią na ten problem jest zbiór diagramów operujących na tym samych poziomie abstrakcji oraz relacje 
+  pomiędzy tymi diagramami.
+
+Model C4:
+  - Składowe:
+    - Kod: w Javie na przykład klasa
+    - Komponent: zestaw współpracujących ze sobą klas, które ostatecznie tworzą kontrakt, package w Javie???
+    - Kontener: środowisko uruchomieniowe dla komponentów, komponentami mogą być też bazy danych czy serwery aplikacyjne
+    - System: zestaw współpracujących komponentów, które razem tworzą wartość biznesową, kontener serwera aplikacyjnego,
+      kontener mainframe'a oraz kontener mobilek tworzą razem MobilBank, który wnosi wartość dla systemu
+  - Rodzaje diagramów:
+    - Diagram kontekstu (C1): pokazuje główne systemy oraz aktorów, pokazuje integracje, użytkowników, dlaczego wszystko
+      powstało; jest to diagram bardzo wysokiego poziomu
+    - Diagram kontenerów (C2): dekomponujemy jeden system i rzutujemy go na poziom kontenerów, są one opisane przez nazwę,
+      odpowiedzialność, rodzaj wykorzystanej technologii oraz interakcje; jest to poziom niżej na mapia, z państwa do 
+      województwa
+    - Diagram komponentów (C3): dekomponujemy jeden kontener pokazując komponenty, obrazujemy rozkład odpowiedzialności, 
+      strukturyzuje wiedzę oraz promuje reużywalność; wymieniamy nazwę, odpowiedzialność, wybraną technologię oraz 
+      interakcje, jest to diagram przeznaczony ściśle dla osoby technicznej pracującej z systemem
+    - Diagram klas (C4): dekomponujemy jeden komponent do klas, możemy tutaj zastosować UML dla pokazania zależności
+      pomiędzy klasami, bardzo często ten diagram jest niezwykle ulotny i z tego też powodu opcjonalny
+  - model C4 nie zakłada wykorzystania żadnej konkretnej notacji, można go utworzyć korzystając przykładowo z UML
+
+Ogólne uwagi na temat na temat wizualizacji:
+  - należy zadbać o maksymalny stopień integralności pomiędzy diagramami, a kodem, modele muszą być AKTUALNE
+  - zaprezentowany powyżej podział jest podziałem logicznym, na poziomie wdrożeniowym stosujemy inny poziom abstrakcji
+    i nadal na tej podstawie możemy kontynuować tworzenie diagramów trzymając się modelu C4
+  - korzystając z tego modelu można definiować kolejne poziomy abstrakcji, na przykład C5 dla całego przedsiębiorstwa
+
+Ograniczenia modelu C4:
+  - jest to jedynie statyczny model, nie pokazuje on sposobu interakcji pomiędzy składnikami pod kątem upływu czasu
+  - nie sprawdzi się w przypadku wizualizacji modelu domenowego (opisującego dane oraz zachowania) czy maszyn stanu

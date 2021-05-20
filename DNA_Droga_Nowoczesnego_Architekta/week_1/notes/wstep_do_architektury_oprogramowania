@@ -1,0 +1,50 @@
+rodzaje architektur:
+  architektura z wieży:
+    - nie programuje
+    - kontroluje wszystko
+    - wydawać się może, że niepotrzebnie komplikuje, z resztą nie tylko wydawać
+    - efektem jest bardzo droga i ciężko architektura, wydaje się dobre dla wojska/wielkiego korpo
+  brak architektury:
+    - architektura sama wyłoni się z naszego projektu, zrobi się sama taka, jak powinna być
+    - efektem tego podejścia jest przypadkowa architektura
+  przypadkowa architektura:
+    - system bardziej opisuje okoliczności w jakich powstał niż cel w jakim powstał, podejmowane są decyzje, które mają
+      pozwolić dowieźć cele do końca sprintu, a nie takie, które są postrzegane w pespektywie miesięcy czy lata
+  zrównoważona architektura:
+    - balans pomiędzy ustawioną odgórnie strukturą, a architekturą tworzoną oddolnie przez członków zespołu, którzy również
+      posiadają siłę sprawczą nad systemem, przy którym pracują 
+
+architekt a programista:
+  Kto projektuje w IT? Podział podobny do podziału występującego w budownictwie
+      - architekt rozwiązania: tworzenie projektu koncepcyjnego
+      - architekt aplikacji: stworzenie diagramu UML (klas, flow) na podstawie projektu koncepcyjnego
+      - programista: na podstawie diagramu tworzy oprogramowanie
+  
+  Należy zwrócić uwagę, że w IT narzędziem faktycznie budującym to, za co płaci biznes (gotowe rozwiązanie, nie KOD) jest
+  kompilator. Programista w swojej pracy jest dużo bliżej architekta aplikacji, niż kompilatora, podejmuje on ostateczne,
+  bardzo szczegółowe decyzje, trzymając się ram narzuconych przez tych wyżej od niego
+
+czym jest architektura?
+  różne sposoby patrzenia na nią:
+    - zestaw decyzji, które kształtują system, są one podejmowane na różnych stopniach:
+      - na poziomie przedsiębiorstwa (enterprise architect) są to przykładowo dyrektywy takie jak zgodność z RODO
+      - na poziomie rozwiązanie (solution architect) decyduje jak rozwiązywać problemy biznesowe mają dane narzędzia
+      - na poziomie aplikacji podejmujemy decyzje a propos styli architektonicznych, struktury aplikacji, technologii
+      - na poziomie komponentów podejmujemy decyzje dotyczące bibliotek, wzorców projektowych, konwencji projektowych
+    - opis struktury (zbiór elementów, relacji między nimi i ich cech), należy pamiętać, że podejmowane decyzje mają
+      wpływ na cały cykl życia systemu, tj. nie tylko na implementację, ale też przykładowo na wdrażanie czy utrzymanie
+    - proces, a konkretniej, proces podejmowania decyzji, opisuje go pętla OODA (obserwacja, orientacja, decyzja, działanie)
+      - obserwacja: zbieranie informacji z otoczenia, może to być robione za pomocą event stormingu
+      - orientacja: aplikowanie dotychczasowej wiedzy do zebranych informacji (wzorców, technik, narzędzi itp), jest ona
+        kluczowa dla architektury i architekta, powinien on umieć w pełni uzasadnić każdą podjętą decyzję
+
+~~~~
+Co jest najważniejsze dla architektury? LUDZIE! Architekt jest liderem technicznym, mostem pomiędzy biznesem, a technologią
+~~~~
+
+Po co nam architektura?
+  - zmniejsza ryzyko kosztownych pomyłek
+  - umożliwia sprawną współpracę
+  - tworzy słownicto
+  - umożliwia całościowe spojrzenie na system
+
