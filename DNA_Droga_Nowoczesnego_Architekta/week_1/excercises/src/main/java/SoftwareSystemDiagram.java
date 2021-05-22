@@ -1,9 +1,9 @@
 import com.structurizr.Workspace;
 import com.structurizr.api.StructurizrClient;
 import com.structurizr.api.StructurizrClientException;
-import com.structurizr.model.Model;
-import com.structurizr.model.Person;
-import com.structurizr.model.SoftwareSystem;
+import com.structurizr.model.*;
+import com.structurizr.view.ComponentView;
+import com.structurizr.view.ContainerView;
 import com.structurizr.view.SystemContextView;
 import com.structurizr.view.ViewSet;
 
@@ -35,16 +35,79 @@ public class SoftwareSystemDiagram {
         iosAppSystem.uses(apiSystem, "Uses", "REST");
         apiSystem.uses(mainframeSystem, "Uses", "Internal communication method / Messaging");
 
+        Container servletContainer = apiSystem.addContainer(
+                "Servlets",
+                "Contains servlets exposing API over web using REST",
+                "JEE Servlet");
+        Container ejbContainer = apiSystem.addContainer(
+                "EJBs",
+                "Contains EJBs acting as facade to MF programs",
+                "JEE EJB"
+        );
+        Container sharedEjbsContainer = apiSystem.addContainer(
+                "EJBs shared with other systems",
+                "Contains EJBs shared with other systems, they act as a facade to MF programs",
+                "JEE EJB"
+        );
+        androidAppSystem.uses(servletContainer, "Calls", "REST");
+        iosAppSystem.uses(servletContainer, "Calls", "REST");
+        servletContainer.uses(ejbContainer, "Calls", "Function invocation");
+        servletContainer.uses(sharedEjbsContainer, "Calls", "Function invocation");
+        ejbContainer.uses(mainframeSystem, "Calls", "Internal communication strategy");
+        sharedEjbsContainer.uses(mainframeSystem, "Calls", "Internal communication strategy");
+
+        Component touchIdComponent = servletContainer.addComponent(
+                "TouchID enrollment",
+                "Component giving the end user possibility to enroll for login with TouchID in iOS mobile application");
+        Component openBankingComponent = servletContainer.addComponent(
+                "PSD2 TPP",
+                "Component providing integration with PSD2 TPP"
+        );
+        touchIdComponent.uses(ejbContainer, "Calls", "Function invocation");
+        openBankingComponent.uses(sharedEjbsContainer, "Calls", "Function invocation");
+        iosAppSystem.uses(touchIdComponent, "Calls", "REST");
+        iosAppSystem.uses(openBankingComponent, "Calls", "REST");
+        androidAppSystem.uses(openBankingComponent, "Calls", "REST");
+        model.addImplicitRelationships();
+
         SystemContextView systemContextView = viewSet.createSystemContextView(
                 apiSystem,
                 "Mobile banking solution diagram",
                 "Systems forming mobile banking solution and their relations between each other"
         );
         systemContextView.addNearestNeighbours(apiSystem);
+        systemContextView.add(customer);
         systemContextView.addAnimation(apiSystem);
         systemContextView.addAnimation(mainframeSystem);
         systemContextView.addAnimation(iosAppSystem);
         systemContextView.addAnimation(androidAppSystem);
+
+        ContainerView apiSystemContainerView = viewSet.createContainerView(
+                apiSystem,
+                "API system content",
+                "Containers forming API system"
+        );
+        apiSystemContainerView.add(iosAppSystem);
+        apiSystemContainerView.add(androidAppSystem);
+        apiSystemContainerView.add(mainframeSystem);
+        apiSystemContainerView.addAllContainers();
+
+        apiSystemContainerView.addAnimation(servletContainer);
+        apiSystemContainerView.addAnimation(iosAppSystem, androidAppSystem);
+        apiSystemContainerView.addAnimation(ejbContainer, sharedEjbsContainer);
+        apiSystemContainerView.addAnimation(mainframeSystem);
+
+        ComponentView servletContainerComponentView = viewSet.createComponentView(
+                servletContainer,
+                "Servlet container context",
+                "Components forming servlet container");
+        servletContainerComponentView.add(touchIdComponent);
+        servletContainerComponentView.add(openBankingComponent);
+        servletContainerComponentView.add(ejbContainer);
+        servletContainerComponentView.add(sharedEjbsContainer);
+        servletContainerComponentView.add(mainframeSystem);
+        servletContainerComponentView.add(iosAppSystem);
+        servletContainerComponentView.add(androidAppSystem);
 
         StructurizrClient client = new StructurizrClient(api, secret);
         client.putWorkspace(workspaceId, w);
