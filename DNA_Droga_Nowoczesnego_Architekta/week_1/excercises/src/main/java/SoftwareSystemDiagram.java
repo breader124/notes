@@ -105,7 +105,6 @@ public class SoftwareSystemDiagram {
         servletContainerComponentView.add(openBankingComponent);
         servletContainerComponentView.add(ejbContainer);
         servletContainerComponentView.add(sharedEjbsContainer);
-        servletContainerComponentView.add(mainframeSystem);
         servletContainerComponentView.add(iosAppSystem);
         servletContainerComponentView.add(androidAppSystem);
 
