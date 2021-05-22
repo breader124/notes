@@ -1,0 +1,24 @@
+Drivery architektoniczne w systemie, nad którym pracuję pod kątem:
+  - wymagań funkcjonalnych:
+    - istnienie wielu niezależnych funkcjonalności -> podział każdej implementowanej funkcjonalności na 
+      osobne serwlety oraz moduły EJB (zapewnia nam to niezależność kodu oraz niezależność wdrożeń, 
+      zmniejsza również konieczność przeprowadzania bardzo częstych, a co za tym idzie 
+      drogich, testów regresyjnych)
+    - obsługa kilku języków -> stworzenie plików properties dla każdej wersji językowej, piszemy kod
+      zależny od etykiet, a nie zduplikowany, zawierający zahardkodowane Stringi
+  - atrybutów jakościowych:
+    - bardzo wysoka dostępność -> wykorzystanie starej, sprawdzonej technologii (zapewnia nam obserwowaną
+      od lat niemalże 100% dostępność, która jest bardzo ważna dla naszych klientów)
+    - konieczność przeprowadzenia audytu -> używany customowego sposobu logowanie opracowanego wewnątrz firmy
+      (pozwala ona na przeprowadzenie audytów ze stron instytucji zajmujących się środkami finansowymi)
+  - ograniczeń projektowych:
+    - zbyt mały budżet -> pozostanie przy starej technologii (z uwagi na ograniczony budżet nie możemy
+      przetestować innej i zmigrować)
+    - konieczność komunikacji z MF, aby wywołać logikę biznesową -> podziele projektu na dwie wspomniane
+      wcześniej warstwy: serwlety i EJB (uzyskujemy wtedy jasno podzielone rozwiązanie, gdzie moduły 
+      odpowiedzialne za komunikację z MF nie są zależne od naszych serwletów)
+  - konwencje:
+    - używamy naszego własnego, customowego frameworka -> pozostanie przy nim i podążanie za narzucanymi
+      przez niego zasadami, ma to wpływ na inne drivery architektoniczne 
+    - sposób wdrożenia wykorzystywany przez inne podobne projekty -> budujemy monolityczną aplikację, która
+      współdzieli część kodu z innymi monolitycznymi aplikacjami
