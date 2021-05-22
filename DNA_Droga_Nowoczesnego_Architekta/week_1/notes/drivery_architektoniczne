@@ -1,0 +1,70 @@
+Co kształtuje architekturę?
+  - architektura jest zestawem decyzji
+  - istnieje szereg DRIVERÓW ARCHITEKTONICZNYCH, które na wspomniane decyzje wpływaja
+
+Klasy driverów architektonicznych:
+  - wymagania funckjonalne - obecność poszczególnych wymagań może wysterować nas w kierunku danych rozwiązań, 
+    np. konieczność wysyłania pushy na Androida wysterowała nas w kierunku wykorzystania FCM Admin SDK
+  - atrubuty jakościowe - obserwowalność, możliwość przeprowadzenie audytu, dostępność; są one kluczowe
+    dla sukcesu aplikacji, a ich dodanie w późniejszym terminie może kosztować bardzo dużo czasu i pieniędzy
+  - ograniczenia projektowe - ograniczony budżet, czas oraz wiedza
+  - konwencje - zasady, które stosujemy w ramach organizacji, aby osiągnąć jak najwyższą spójność powstających
+    rozwiązań
+  - cele projektowe - inne narzędzia wybierzemy dla prototypu, a inne dla rozwiązania, które zostanie wdrożone
+
+Odkrywanie driverów architektonicznych jest ważne, ponieważ w ten sposób rozwiązujemy faktyczne problemy, a
+nie takie, które pochłoną czas oraz pieniądze, nie będąc przy tym istotnymi wymaganiemi, które stawia się
+naszej aplikacji. Ponadto znalezienie odpowiednich driverów pozwala na zawężenie niezwykle szerokiego
+spektrum technologicznego i odkrycie realnych potrzeb końcowych użytkowników.
+
+Źródłem wiedzy o driverach architektonicznych są stakeholderzy, mogą oni mieć różne poglądy na wymagania.
+Powinno się rozmawiać z dużym oraz zróżnicowanym ich gronem. Podzielić ich można na grupy znajdujące się w 
+różnych, skrajnych ekstremach: ważni i bardzo decyzyjni vs. nieważni o małej sile głosu.
+
+Jak formułować pytania?
+  - czy driver X jest ważny? - NIE; dla nich wszystko jest ważne
+  - czy X jest ważniejsze od Y? - TAK; w ten sposób możemy utworzyć listę priorytetów 
+  - gdybyś miał wybrać 3 najważniejsze wymagania funkcjonalne, które by to były? - TAK 
+
+Niektóre drivery architektoniczne mogą być od siebie zależne i się nawzajem znosić (wysoka dostępność vs.
+ściśle ograniczony budżet). Należy wówczas jasno ustalić i uzgodnić to, czy chcemy przekroczyć budżet, ale 
+spełnić wymagania jakościowe, czy też zrezygnować z bardzo drogiej do uzyskania dostępności rozwiązania.
+
+Drivery nie są takie same dla całego projektu:
+  - wymagana dostępność systemu transakcji kartami jest różna od wymaganej dostępności systemu dostarczającego
+    notyfikacje push
+
+Drivery nie są stałe w czasie: 
+  - na początku może nam bardziej zależeć na rozwijalności i testowalności, aby szybko dowozić nowe, niezadowne
+    rozwiązania, tj. podbić rynek i zgarnąć część klientów
+  - wraz z czasem ważniejsza może być skalowalność oraz utrzymywalność, ponieważ wraz ze wzrostem liczby
+    klientów chcemy zapewnić naszemu kawałkowi tortu niezawodny system, dzięki czemu przy nas zostanie,
+    tutaj nie chodzi nam już o tak dynamiczny wzrost jak na początku 
+  - typowe drivery dla poszczególnych faz życia projektu:
+    - implementacja: rozwijalność, testowalność, czytelność, reużywalność
+    - wdrożenie: konfigurowalność
+    - funkjonowanie: bezpieczeństwo, skalowalność, dostępność, wydajność
+    - serwis: wysoka niezawodność, obserwowalność
+
+Architecture Decision Record:
+  - zawartość pojedynczego rekordu:
+    - tytuł - czego dotyczy decyzja?
+    - kontekst - jakie są znane drivery na ten moment?
+    - decyzja - wybór oraz uzasadnienie
+    - konsekwencje - znane skutki decyzji
+    - inne możliwe rozwiązania - dlaczego nie zostały wybrane
+
+   - niech rekord opisuje dokładnie jedną decyzję
+   - niech rekord zawiera czas podjęcia decyzji
+   - niech rekord nakreśla obecną sytuację organizacyjną oraz priorytety
+   
+   - dobre praktyki:
+     - niech rekord określa wpływ driverów na decyzję
+     - niech rekord będzie niemutowalny
+     - niech używają go wszyscy członkowie zespołu
+     - niech kod źródłowy zawiera odniesienia do związanych z nim ADRów
+
+Architecture Decision Log:
+  - zbiór dokumentów z decyzjami architektonicznymi
+  - zespół powinien posiadać wiedzę, gdzie taki ADL może znaleźć
+  - powinien się znajdować w systemi, który pozwala na audyt zmian
