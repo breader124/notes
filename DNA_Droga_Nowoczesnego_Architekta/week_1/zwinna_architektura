@@ -1,0 +1,20 @@
+Podsumowanie całego działu:
+  - architektura jest procesem podejmowania decyzji:
+    - zaczynamy od znalezienia driverów i skwantyfikowania ich, dzięki czemu otrzymamy metryki
+    - w ten sposób budujemy spójną wizję systemu pośród członków systemu oraz interesariuszy
+    - na podstawie tych informacji oraz naszej wiedzy podejmujemy decyzje dotyczące struktury
+
+Struktura systemu to nie tylko klasy czy komponenty, ale TEŻ rozwiązania oraz procesy!
+
+Podejmowanie decyzji i nakładanie ograniczeń nie zawsze prowadzi do zmiejszenia zwinności. Istnieją też decyzje,
+które pozwalają na jej zwiększenie, są to:
+  - podział na autonomiczne podsystemy
+  - automatyzacja CI/CD
+  - spójny stos technologiczny
+  - protokół komunikacji pomiędzy systemami/podsystemami
+
+Architektura, które umożliwia zwinność cechuje się:
+  - decyzjami, które zostały podjęte tak, aby otwierały możliwości, bierzemy pod uwagę wszystkich stakeholderów
+    oraz troszczymy się o to, żeby nie zablokować sobie drogi na przyszłość
+  - podejmujemy decyzje najpóźniej jak to możliwe, dajemy sobie wtedy czas na zebranie odpowiedniej wiedzy,
+    dzięki której nasza decyzja ma większe szansę być dobrą decyzją
