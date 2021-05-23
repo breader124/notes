@@ -1,0 +1,57 @@
+Drivery a metryki:
+  - metryka jest kwantyfikacją drivera
+  - metryka zapewnia jednoznaczne zrozumienie drivera, samo zapisanie go w formie słownej tego nie gwarantuej
+  - proces wyrażenie drivera w postaci liczb (jego kwantyfikacji) nie jest prosty i przynosi dużo zagwozdek
+  - dzięki wyrażeniu drivera w postaci liczb możemy śledzić sposób w jakim stopniu jest on wdrożony oraz
+    jego dalsze losy
+
+Przykłady pojęć, które mogą być różnie rozumiane na polu IT:
+  - skalowalność:
+    - pozioma czy pionowa?
+    - a może chodzi o maksymalną utylizację infrastruktury
+    - a może chcemy automatyczne reagować na obciążenie i w ten sposób skalowac nasz system?
+  - testowalność:
+    - czy chodzi o liczbę testów?
+    - a może jednak chcemy poprawić pokrycie ścieżek
+    - a może powinniśmy poprawić szybkość uruchamiania
+    - a może najważniejsza jest dla nas łatwość implementacji
+
+Przykłady metryk testowalności:
+  - procent krytycznych procesów biznesowych możliwych do przetestowania z pominięciem UI
+  - czas w minutach potrzebny do wykonania testów integracyjnych w środowisku ciągłej integracji 
+
+Aby znać nasze obecne położenie powinniśmy określić wartości metryk stanowiące puntky odniesienia i warunkujące
+przyszłe działania, takimi wartościami są:
+  - aktualna (current level) - musimy stwierdzić, gdzie jesteśmy
+  - limit (limit) - próg, poniżej którego dalsza praca nad projektem nie ma sensu, ponieważ on się nie uda
+  - cel (goal) - do czego zmierzamy, taki poziom nas satysfakcjonuje
+  - ideał (wish) - poziom absolutnej satysfakcji, bardzo ciężki do osiągnięcia, natomiast ostatecznie najbardziej
+    pożądany
+
+Na przykładzie metryki utylizacji pamięci na maszyne wirtualnej (jest to przykład klasycznej, prostej metryki):
+  - aktualna: 50%
+  - limit: 70%
+  - cel: 80%
+  - ideał: 95%
+
+Na przykładzie metryki czasu wykonania kopii zapasowej:
+  - aktualnie: 10 minut
+  - cel: 20 minut (warto zwrócić uwagę, że cel jest gorszy niż wartośc aktualna, w tym przypadku cel odgrywa
+    bardziej rolę progu bólu, powyżej tego czas, obojętnie ile danych byśmy nie mieli, to będzie nieakceptowalne)
+
+Na podstawie powyższych przykładów można wyróżnić dwa rodzaje metryk (jakościowe oraz dłużne -- quality and 
+debt metrics):
+  - debt metrics - np. czas backupu uciekamy od założonego progu, nie możemy pozwolić na jego osiągnięcie
+  - quality metrics - np. szybkość kopiowania danych, im więcej, tym lepiej
+
+Cechy dobrej metryki:
+  - jednoznaczna - proces kwantyfikacji powinien to zapewnić
+  - mierzalna - powinien istnieć, najlepiej prosty, sposób na określenie wartości, które chcemy obserwować
+  - łatwo dostępna - najlepiej, gdybyśmy w każdym momencie byli w stanie sprawdzić jej wartość
+
+Od jakich metryk zacząć?
+  - czas kompilacji aplikacji - eTicket z pewnością mógłby kompilować się szybciej
+  - czas potrzebny na wdrożenie - minimalizujmy czas wdrożenia, przy krytycznej luce nie możemy potrzebować
+    2 dni na wdrożenie
+  - procesy biznesowe pokryte testami - powinniśmy mieć jak najdokładniej pokrytą aplikację testami procesów,
+    (czy to są smoke testy? raczej nie do końca), jest to metryka stojąca w opozycji do czasu kompilacji aplikacji
