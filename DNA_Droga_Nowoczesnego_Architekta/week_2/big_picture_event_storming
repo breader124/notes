@@ -1,0 +1,14 @@
+Cechy idealnego procesu eksploracji problemu:
+  - szybki - nie chcemy gadać z ludźmi przez 3 miesiące zanim zaczniemy projektować
+  - stopniowy - chcemy, aby wiedza przychodziła szybko, ale jednak stopniowo (nie pijemy z hydrantu XD)
+  - uwidacznia braki - chcemy, aby nawet w ogromnej ilości danych, proces uwidocznił jak największą liczbę braków
+  - synchronizuje wiedzę - istotne jest, aby zarówno programiści, jak i stakeholderzy mieli podobne zrozumienie problemu
+  - prosty - ma być proste szczególnie dla stakeholderów biznesowych, chcemy ich wciągnąć i zachęcić do przekazania wiedzy, a nie obarczyć
+    ogromną ilością wiedzy i wysokim progiem wejścia
+
+Big Picture Event Storming spełnia wyżej wymienione kryteria!
+  - szybki - cały warsztat trwa od 2 do 4 godzin
+  - prostota - przyklejamy karteczki na ścianie
+  - stopniowy - warsztat podzielony na fazy, nie pijemy z hydrantu, ale dokładamy warstwy wiedzy
+  - uwidacznia braki - pracujemy na poziomie zdarzeń (co się stało), które szeregujemy na osi czasu 
+  - synchronizacja wiedzy - warsztat wizualny, przeprowadzony na stojąco przy ścianie -> dynamiczny, skłaniający do dyskusji, wspólne notatki

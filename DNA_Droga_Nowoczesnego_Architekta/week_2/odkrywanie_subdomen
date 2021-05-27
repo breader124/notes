@@ -1,0 +1,25 @@
+Nie istnieje matematyczna reguła, która mapuje problem na zbiór subdomen! Możemy używać co najwyżej heurystyk.
+
+Heurystyki:
+  - struktura organizacji:
+    - granice działów organizacji (departamentów) tworzą granice subdomen
+    - może być tak, że pracownicy danych departamentów działają razem w innej dziedzinie, która może być osobną subdomeną, dlatego
+      nie można naiwnie przyjmować tej heurystyki
+    - heurystyka startowa
+  - różni eksperci domenowi:
+    - patrzymy co robią i jak działają różni eksperci domenowi, być może ich zakres obowiązków jest właśnie poszukiwaną subdomeną
+  - język ekspertów domenowych:
+    - jedno pojęcie może mieć bardzo różne znaczenie dla różnych grup pracowników, podkreślane są różne cechy pojęcia
+    - w obrębie jednej subdomeny bardzo podobne czasowniki pasują do danego pojęcia:
+      - zamek (forteca): ochrania, jest domem króla
+      - zamek (błyskawiczny w kurtce): zapina się, zacina się
+      na podstawie podanych wyżej przykładów można stwierdzić, że dwa zamki tworzą osobne subdomeny
+  - patrzenie na wartość biznesową:
+    - jeśli coś wnosi dużą wartość biznesową, to powinno być wydzielony jako osobna subdomena 
+    - należy pamiętać, że jako programiści mamy tendencję do szukania abstrakcji tam, gdzie ich nie ma
+  - patrzenie na kroki procesu biznesowego:
+    - może być tak, że krok procesu biznesowego urasta do bardzo dużej rangi i może odgrywać de facto kluczową rolę, wtedy
+      warto rozważyć go jako osobną subdomenę
+
+Odkrywanie modelu jest procesem iteracyjnym, z uwagi na zmiany zachodzące w organizacji subdomeny mogą migrować. Oznacza to, że z uwagi
+na żywotność modelu, trzeba nieustannie dbać o jego aktualność i w razie potrzeby aktualizować.

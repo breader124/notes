@@ -1,0 +1,32 @@
+Domena - zakres zainteresowań lub działalności jakiejś osoby, instytucji lub dziedziny wiedzy
+
+Subdomeny:
+  - core domain (strategia naszego przedsiębiorstwa):
+    - jest wyróżnikiem biznesowym związanym ze strategią
+    - nie jest zawsze oczywista, często zespoły nie wiedzą, co jest naszym core domain
+    - odpowiada na pytania, dlaczego ten system w ogóle powstał i dlaczego go nie kupiliśmy,
+      dlaczego strategia "buy before build" nie miała tutaj zastosowania
+    - może wyjść po rozmowie z ekspertem domenowym, lokujemy tutaj najlepsze zasoby i najlepszych ekspertów biznesowych
+  - supportive subdomain (nie posiadają wielkiej wartości, ale są bardzo specyficzne):
+    - zapewnia funkcje wspierające core domain
+    - bez obecności core domain nie wnosi dużej wartości
+    - nie można kupić gotowego systemu, zapewniającego te funkcjonalności, są one mimo wszystko specyficzne
+    - kładziony jest nieco mniejszy nacisk na jakość tworzonego rozwiązania w stosunku do core domain
+  - generic subdomain (ważna funkcja, ale nie jest unikalna dla naszego biznesu):
+    - zazwyczaj istnieje już gotowe rozwiązanie, więc można je kupić, zamiast czasochłonnie budować od nowa
+
+Dzięki odkryciu subdomen lepiej rozumiemy nasz biznes, dlatego jest to takie ważne, do każdej odkrytej subdomny możemy natomiast potem 
+zastosować różne taktyki postępowania. Może być też tak, że core domain będzie się zmieniać lub nie będzie go wcale.
+
+Kiedy nie szukać subdomen:
+  - kiedy zakres jest bardzo mały o małej złożoności (klasyczny CRUD)
+  - zakres jest duży, ale jest on bardzo powtarzalny (np. transformacja wielkiej liczby formatów do jednego określonego)
+
+Być może złożoność może się pojawić później i należy się przygotować na rozszerzalność.
+
+Cynefin - sposób kategoryzowania problemów tak, aby ostatecznie przydzielić go do którejś z kategorii:
+  - złożony - problem rozległy, który można rozbić na subdomeny i zastosować strategiczne domain-driven design
+  - skomplikowany - problem dobrze zdefiniowany, ale mimo wszystko wymagający
+  - prosty - klasyczny CRUD, nic wielkiego, powtarzalne czynności
+  - chaos - natychmiastowa reakcja, potem analiza
+  - nieporządek - brak danych
