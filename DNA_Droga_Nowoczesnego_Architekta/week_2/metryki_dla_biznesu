@@ -1,0 +1,34 @@
+"Sukces da się zmierzyć liczbami. A wszyscy, którzy twierdzą inaczej, po prostu boją się prawdy" ~ Jo Nesbo
+
+Biznes myśli językiem rozwiązań, oni widzą ficzerki, błędy, liczby. Myślą też raczej krótkoterminowo, zależy im na dowiezieniu obecnego projektu,
+nie jest z ich perspektywy kluczowe, co się stanie za 5 lat. Raczej rozważają krótsze perspektywy liczone w miesiącach.
+
+Programiści/architekci myślą długofalowo, dla nich ważne jest, co trzeba zrobić, aby obecny system oprócz dowożenia ficzerów i nowych 
+funkcjonalności za kilka lat był nadal aktualny, przyjemny do pracy i rozszerzalny.
+
+Metryki SMART(ER):
+  - Specific (Skonkretyzowany)
+  - Measurable (Mierzalny)
+  - Achievable (Osiągalny)
+  - Relevant (Istotny)
+  - Time-bound (Określony w czasie)
+  - Evaluated (Oceniony)
+  - Readjusted (Dostrojony)
+
+Rodzaje metryk:
+  - techniczne - zdrowie systemu w ujęciu technicznym, najlepiej gdyby te metryki były wyrażone w konkretnej walucie i były ewaluowane co jakiś
+    czas, to buduje zaufanie i przekonuje biznes, że nie tylko siedzimy w piwnicy coś tam dłubiąc przy kompie:
+    - czas potrzebny na załadowanie strony
+    - czas potrzebny na całkowity redeployment
+    - czas potrzebny na wdrożenie nowego pracownika
+  - biznesowe - zdrowie systemu w ujęciu biznesowym:
+    - średnia wartość koszyka w danym oknie czasowym
+    - liczba zakupionych subskrybcji w danym oknie czasowym
+
+Metryki biznesowe są niezwykle ważne, ponieważ dają poczucie, że wiemy co się dzieje dokładnie teraz, nie za 3 dni czy tydzień, ale właśnie
+teraz. W ten sposób nie potrzebujemy już czegoś takiego jak hurtownia danych, która jest wielka, potężna, droga i powolna. Chcemy być agile!
+
+Jak znaleźć metryki biznesowe?
+  - podczas Event Stormingu (ważne etapy procesu)
+  - kryteria sukcesu projektu
+  - po jakimkolwiek problemie/awarii musimy poszukać wczesnych symptomów, a następnie je sparametryzować
