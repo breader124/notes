@@ -1,0 +1,48 @@
+W jaki sposób przygotować się do warsztatu Big Picture Event Storming?
+  - przestrzeń - jak najwięcej miejsca do stania, mało krzeseł, żeby nikt nie chciał sobie przesiedzieć całego warsztatu
+  - ściany - duża przestrzeń do przyklejania karteczek, najlepiej jakby się dało jeszcze po tej ścianie pisać to by było w pytkę
+  - karteczki i flamastry - kluczowe narzędzia, każdy ma swój komplet, różne kolory, wszystko musi być dostępne i pod ręką
+  - flipchart - tablica z blokiem kartek, do zapisywania informacji na temat organizacji
+  - minutnik - jeśli ktoś lubi timeboxing, przyda się minutnik
+
+Fazy:
+  - rozpoczęcie:
+    - cel spotkania - rozpoznanie procesu biznesowego, to nie jest spotkanie dla samego spotkania, rozwiązuje ICH problem
+  - chaotyczna ekslopracja: 
+    - napiszcie w czasie przeszłym na pomarańczowej karteczce istotne zdarzenie z procesu biznesowego, np. wygrano 
+      wygrano aukcję, wystawiono fakturę
+    - niech na początk wszyscy pracują sami, unikniemy w ten sposób zakłócających zjawisk psychologicznych
+    - heurystyką, która mówi nam kiedy skończyć to moment, w którym pierwsza osoba skończyła przyklejać karteczki
+  - wprowadzenie linii czasu:
+    - wprowadzamy strukturę, dzięki której usuwamy duplikaty
+    - kiedy dochodzi do dyskusji, której ludzie biznesu nie mogą rozstrzygnąć, używamy czerwonej karteczki zapisując to (hotspot)
+    - może się zdarzyć, że nie wiemy co się dzieje w danym momencie procesu, wtedy też tworzymy hotspota z zapisanym pytaniem na nim
+    - aby uporządkować różne procesy (dodać nadrzędne narzędzie porządkujące), możemy użyć swimlane'ów
+  - opowieść od końca:
+    - zdarzenia są już uporządkowane w linii czasu, ale on nadal jest niekompletny
+    - trzeba wprowadzić ludzi biznesu w stan skupienia -> cognitive workload
+    - aby wprowadzić ludzi w stan zwiększonej koncentracji, chcemy teraz przeanalizować procesy biznesowe od tyłu 
+    - efektem jest pojawienie się nowych zdarzeń oraz rozgałęzień
+    - jako facilitator jesteśmy tutaj znacznie bardziej aktywni i zadajemy pytania:
+      - wcześniej: co jeszcze musiało się stać, żeby X?
+      - pomiędzy: czy między X a Y dzieje się coś jeszcze?
+      - alternatywa: co jeśli X by się nie powiodło?
+  - ludzie i systemy:
+    - prosimy, aby zdarzenia zostały uaktualnione o to, kto się nimi zajmuje (ludzie) i z czym ma wtedy styczność (systemy)
+    - oba pojęcia są raczej rozmyte, nie chcemy dawać konkretnego znaczenia, ponieważ wtedy możemy odfiltrować część istotnych informacji,
+      które bez filtra by się pojawiła i miałyby jakieś konkretne znaczenie
+    - nie każde zdarzenie musi mieć swojego aktora i system, najważniejsze jest wspólne zrozumienie
+  - problemy i okazje:
+    - mamy już dobry obraz procesu biznesowego, teraz możemy zidentyfikować okazje i problemy
+    - mają zidentyfikowane okazje i problemy, czas na głosowanie, aby ustalić priorytety, każdy niech narysujemy n strzałek wskazujących
+      najważniejsze według niego okazje/problemy
+
+Istnieją też alternatywy, ale event storming, bazując na praktycznej wiedzy, pokrywa znaczną większość przypadków użycia i zwczyajnie bardzo
+dobrze się sprawdza.
+
+Dokumentacja:
+  - z wyników event stormingu możemy stworzyć oficjalną dokumentację za pomocą:
+    - UML Activity Diagram
+    - BPMN
+  - jeśli niepotrzebna nam oficjalna dokumentacja to można po prost zrobić zdjęcie lub zwinąć kartkę ze ściany i przykleić w biurze,
+    gdzie pracujemy na co dzień
