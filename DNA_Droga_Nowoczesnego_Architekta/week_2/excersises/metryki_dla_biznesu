@@ -1,0 +1,13 @@
+Metryki biznesowe:
+  - liczba logowań do aplikacji - zależy nam na tym, żeby śledzić liczbę logować do aplikacji mobilnej, w ten sposób 
+    możemy przewidywać największe obciążenie oraz w momencie kiedy logowania powinny być, a ich nie ma, reagować
+  - liczba poprawnie zleconych przelewów - przelewy są podstawowym produktem bankowym, podstawą ich działania, dlatego
+    chcemy obserwować jak wiele ich jest o jakich godzinach 
+  - średnia z dłuższego okresu z (liczba logowań danego dnia / liczba unikalnych użytkowników) - daje nam to informację o tym,
+    ile razy przeciętny użytkownik loguje się do aplikacji w zależności od danego dnia, jeśli zaobserwujemy spadek, to może
+    to znaczyć, że coś jest nie tak i powinniśmy w jakiś sposób zareagować, szczególnie jeśli user zaczął korzystać w tym
+    czasie z aplikacji webowej
+
+Metryka oznaczająca sukces naszej aplikacji:
+  - stosunek czasu, który użytkownik spędza w aplikacji mobilnej do czas, który spędza w aplikacji webowej zwiększa się wraz
+    z upływem czasu

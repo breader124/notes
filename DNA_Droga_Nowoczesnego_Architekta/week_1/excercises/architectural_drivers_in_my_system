@@ -18,7 +18,5 @@ Drivery architektoniczne w systemie, nad którym pracuję pod kątem:
       wcześniej warstwy: serwlety i EJB (uzyskujemy wtedy jasno podzielone rozwiązanie, gdzie moduły 
       odpowiedzialne za komunikację z MF nie są zależne od naszych serwletów)
   - konwencje:
-    - używamy naszego własnego, customowego frameworka -> pozostanie przy nim i podążanie za narzucanymi
-      przez niego zasadami, ma to wpływ na inne drivery architektoniczne 
     - sposób wdrożenia wykorzystywany przez inne podobne projekty -> budujemy monolityczną aplikację, która
       współdzieli część kodu z innymi monolitycznymi aplikacjami
