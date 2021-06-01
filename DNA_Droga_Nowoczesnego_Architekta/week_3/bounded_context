@@ -1,0 +1,39 @@
+Bounded context przynależy do dziedziny rozwiązania, w przeciwieństwie do pojęcia subdomeny, które przynależy do dziedziny problemu.
+
+Przy kodzeniu widać, kiedy pojawiaja się dodatkowa złożoność wnoszona przez źle dobrane granice, przykład:
+  
+  class BookService {
+    void sell() {
+      // operates on its own data
+    }
+    
+    void changePrice(Title title, Money newPrice) {
+      // operates on its own data, but there will be additional complexity, which is not present in the catalogue
+      // for example we will need to check if the book is not sold to change the price
+    }
+    
+    void relocateTo(int shelfNo) {
+      // operates on its own data, but there will be additional complexity, which is not present in the warehouse
+      // for example we will need to check if the book is not sold to relocate it 
+    }
+    
+Powyższy przykład prezentuje, kiedy wnosimy dodatkową złożoność, która nie istnieje w oryginalnym procesie biznesowym. Pojawia się ona tylko przez
+źle dobrane granice.
+
+Aby uniknąć powyżej zaprezentowanego problemu, projektujemy modele domenowe, nie zawsze będą one miały taką samą zawartość, ponieważ z perspektywy
+różnych subdomen, nie zawsze wszystko jest tak samo ważne i powinno być wyrażone w kodzie.
+
+Bounded Context - podsystem, który posiada swoje jasno wytyczone granice i ponadto:
+  - zawiera swój model domenowy
+  - nie współdzieli modelu danych z innymi kontekstami
+  - komunikuje się za pomocą API
+    
+Ubiquitous Language:
+  - wszechobecny język (w danym podsystemie!)
+  - jest platformą komunikacji, od eksperta domenowego do programisty
+  - ewoluuje razem z biznesem i projektem programistycznym
+  
+Bounded Context razem z Ubiquitous Language - podsystem z modelem, który ma jasno wytyczone granice i ponadto:
+  - model opisany wybranymi pojęciami (Ubiquitous Language)
+  - granice podsystemu są granicami lingwistycznymi
+  - pojęcia te są jasne i klarowne w kontekście określonych granic
