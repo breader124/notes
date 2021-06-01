@@ -1,0 +1,10 @@
+Różnica pomiędzy subdomeną a bounded contextem:
+  - teoretycznie:
+    - subdomena należy do przestrzeni problemu, natomiast bounded context do przestrzeni rozwiązania
+    - subdomenę odkrywamy, tak samo jak odkrywamy otaczający nas świat, bounded context definiujemy adresując konkretne 
+      problemy świata rzeczywistego i starając się je rozwiązać
+    - wchodzimy do pomieszczenia, w którym podłoga jest otoczona z każdej strony przez ściany, widzimy jaki podłoga ma kształt, fakturę itd.,
+      jest to nasza przestrzeń problemu (subdomena), widząc to idziemy do sklepu i kupujemy idealną wykładzinę chcąc pokryć podłogę, to jest
+      nasza przestrzeń rozwiązania, bounded context idealnie skrojony na miarę subdomeny
+  - praktycznie:
+    - w zastanym już systemie raczej zobaczymy sytuację, w której kilka bounded contextów próbuje pokryć jedną subdomenę
