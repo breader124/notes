@@ -1,0 +1,11 @@
+Klasy driverów architektonicznych (just one more time as a reminder):
+  - wymagania funkcjonalne - najbardziej oczywiste, że funkcjonalność naszego systemu będzie miała wpływ na jego architekturę
+  - atrybuty jakościowe - skalowalność, dostępność itd.
+  - ograniczenia projektowe - np. ograniczony budżet, ograniczona wiedza, technologia itd
+  - konwencje - zasady panujące w przedsiębiorstwie, które promują spójność tworzonych rozwiązań
+  - cele projektowe - czy jest to prototyp czy czy jest rozwiązanie właściwe
+
+Drivery architektoniczne nie są stałe dla całego systemu, scopem dla drivera może być jak najbardziej jeden bounded context.
+Przykładowym driverem jest dostępność, różne komponenty mogą mieć różne wymagania a propos dostępności. Co więcej, różne
+drivery architektoniczne wpływające na różne bounded contexty, promują powstawanie lokalnych architektur. Nie jest tak, 
+że jeden model architektury aplikacyjnej będzie idealny dla wszystkich bounded contextów.

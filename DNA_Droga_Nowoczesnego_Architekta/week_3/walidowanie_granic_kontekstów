@@ -1,0 +1,36 @@
+Istnieją heurystyki, które pozwalają nam na sprawdzenie i do pewnego stopnia zwalidowanie granic stworzonych bounded
+contextów. Są to:
+  - autonomia kontekstu:
+    - czy nasz bounded context może sam podejmować decyzje? nie chcielibyśmy mieć bounded contextów, które tylko 
+      koordynują działania odpytując o wszystkie dane innych bounded contextów umieszczonych dookoła
+    - czy musi pytać o zgodę kilku innych bounded contextów?
+  - liczba kontekstów w procesie biznesowym:
+    - zależy nam, żeby w procesie biznesowym uczestniczyło jak najmniej różnych bounded contextów, jeśli widzimy, że 
+      istnieje inne rozwiązanie, które pozwala na zmniejszenie ich liczby przy zachowaniu tego samego dobrego podziału
+      i funkcjonalności, to zróbmy to
+    - należy spojrzeć, czy dane bounded contexty nie komunikują się ze sobą kilkukrotnie w ramach jednego procesu, jeśli tak,
+      to znaczy, że mamy źle dobrane granice i nie powinniśmy tego tuszować cache'owaniem ani innymi cukierkami, tylko
+      rozwiązać problem ze źle dobraną granicą
+  - szukaj informacji zmieniających się razem:
+    - jeśli jakakolwiek dana musi zmienić się atomowo w dwóch bounded contextach, to mamy do czynienia ze źle postawioną
+      granicą i tak naprawdę jednym bounded contextem
+  - szukaj informacji używanych razem:
+    - należy spojrzeć, czy nie jest tak, że pewne dane są konieczne do odpowiedniego działania więcej niż jednego kontekstu,
+      jeśli tak, to pewnie oznacza źle postawioną granicę i należy poszukać czynnika wspólnego, a następnie może połączyć
+      lub zupełnie przedefiniować sposób w jaki wytyczyliśmy nasze bounded contexty
+  - zadaj sobie pytania:
+    - jaka jest odpowiedzialność kontekstu?
+    - ile integracji ma kontekst?
+      - wewnętrznych/zewnętrznych
+      - jakie są ich przyczyny?
+    - czy jest jedno źródło prawdy każdej informacji?
+    - czy istnieje schizofreniczny kontekst? schizofreniczny kontekst jest takim kontekstem, który nie wiem dokładnie z 
+      jakim aktorem pracuje, cechą charakterystyczną jest wiele ifów polegających na rozpoznaniu aktora, a potem 
+      uruchomieniu dla niego specjalnej ścieżki biznesowej, jeśli istnieje wiele kontekstów, które są schizofreniczne w ten
+      sam sposób, to pewnie znaczy, że są one tak naprawdę jednym bounded contextem i trzeba je połączyć
+  - szukaj antywymagań:
+    - antywymagania to biznesowe reguły, które nie mają sensu 
+    - chodzi o znajdowanie takich wymagań, które mogłyby łamać wytyczone przez nas granice, jeśli zadamy pozornie bezsensowne
+      pytanie i usłyszmy odpowiedź, że ono faktycznie jest bezsensowne, to wtedy wiemy, że dobrze postawiliśmy granicę, może
+      jednak zdarzyć się tak, że to pytanie jednak nie było bez sensu i nasza granica właśnie została złamana
+    - pomagają przy walidacji granic 

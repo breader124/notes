@@ -1,0 +1,15 @@
+Prawo Conwaya - struktura organizacji będzie odzwierciedlała strukturę organizacji, w której ten kod powstał
+
+Przykłady:
+  - jeśli mamy kilkoro programistów pracujących bardzo blisko siebie fizycznie bez żadnych barier komunikacyjnych to jest
+    bardzo duże prawdopodobieństwo, że powstanie monolityczna, modularna aplikacja, którą określić będzie można jako
+    tightly coupled
+  - jeśli mamy kilkoro programistów pracujących zupełnie zdalnie nad projektem, istnieje spore prawdopodobieństwo, że 
+    powstanie system, który składa się z niezależnych modułów komunikujących się nie poprzez wywołania funkcji, a poprzez
+    RESTa na przykład
+  - jeśli mamy firmę, która zatrudnia głównie architektów, a samo kodzenie powierza firmom podwykonawcom, to istnieje 
+    bardzo duża szansa, że stworzona zostanie architektura w stylu ESB
+
+Wiedząc, w jaki sposób działa prawo Conwaya, chcemy, żeby grało ono na naszą korzyść. Aby to osiągnąć, dobrze byłoby
+podzielić nasze zespoły zgodnie ze zidentyfikowanymi bounded contextami. Wtedy będą one mogłby pracować w dużej mierze
+niezależnie osiągając największą możliwą prędkość.
