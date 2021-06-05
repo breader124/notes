@@ -1,1 +1,49 @@
-<mxfile host="app.diagrams.net" modified="2021-06-05T17:40:14.922Z" agent="5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36" version="14.6.1" etag="ZKFikIsNHBq0hW-sJHY4" type="github"><diagram id="lIrLc-vmmLeRR0RzNTGw">UzV2zq1wL0osyPDNT0nNUTV2VTV2LsrPL4GwciucU3NyVI0MMlNUjV1UjYwMgFjVyA2HrCFY1qAgsSg1rwSLBiADYTaQg2Y1AA==</diagram></mxfile>
+<mxfile host="app.diagrams.net" modified="2021-06-05T18:11:33.138Z" agent="5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36" etag="cBj1M1qGfaF2NKiSUBcD" version="14.6.1" type="github">
+  <diagram id="lIrLc-vmmLeRR0RzNTGw" name="Page-1">
+    <mxGraphModel dx="1586" dy="1121" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="ow53cqYtzi66Jlngq-D9-1" value="&amp;lt;&amp;lt; supporting &amp;gt;&amp;gt;&lt;br&gt;Transfers" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="180" y="130" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ow53cqYtzi66Jlngq-D9-2" value="&amp;lt;&amp;lt; core &amp;gt;&amp;gt;&lt;br&gt;Postings overview" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="370" y="130" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ow53cqYtzi66Jlngq-D9-3" value="&amp;lt;&amp;lt; generic &amp;gt;&amp;gt;&lt;br&gt;3rd party&lt;br&gt;integrations" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="180" y="250" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ow53cqYtzi66Jlngq-D9-4" value="&amp;lt;&amp;lt; supporting &amp;gt;&amp;gt;&lt;br&gt;Insurance" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="370" y="250" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ow53cqYtzi66Jlngq-D9-5" value="&amp;lt;&amp;lt; supporting &amp;gt;&amp;gt;&lt;br&gt;Investment" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="560" y="130" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ow53cqYtzi66Jlngq-D9-6" value="&amp;lt;&amp;lt; supporting &amp;gt;&amp;gt;&lt;br&gt;Loan" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="560" y="250" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ow53cqYtzi66Jlngq-D9-7" value="&amp;lt;&amp;lt; supporting &amp;gt;&amp;gt;&lt;br&gt;Mortgage" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="180" y="370" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ow53cqYtzi66Jlngq-D9-8" value="&amp;lt;&amp;lt; supporting &amp;gt;&amp;gt;&lt;br&gt;Expenditure &lt;br&gt;overview" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="370" y="370" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ow53cqYtzi66Jlngq-D9-9" value="&amp;lt;&amp;lt; generic &amp;gt;&amp;gt;&lt;br&gt;PSD2 integration" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="560" y="370" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ow53cqYtzi66Jlngq-D9-10" value="&amp;lt;&amp;lt; supporting &amp;gt;&amp;gt;&lt;br&gt;Message center" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="180" y="490" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ow53cqYtzi66Jlngq-D9-12" value="&amp;lt;&amp;lt; generic &amp;gt;&amp;gt;&lt;br&gt;User identity and security&amp;nbsp; management" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="370" y="490" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ow53cqYtzi66Jlngq-D9-13" value="Except for the user identity and security management subdomain, there are 1:1 mappings between subdomains and bounded contexts, except for the security, which overlaps with all other bounded contexts being kind of an embedded solution. There is also signing subdomain, which doesn&#39;t have its own bounded context. All the actions which are needed to sign anything are taken in other bounded contexts, which resembles the situation with having the context suffering from schizofrenia. It would be nice to have separate bounded context and solution for signing handling the flow and being more like drop-in/use when necessary sort of a solution rather than copy pasted code." style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="40" y="600" width="750" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="ow53cqYtzi66Jlngq-D9-14" value="&amp;lt;&amp;lt; generic &amp;gt;&amp;gt;&lt;br&gt;Signing" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="560" y="490" width="120" height="60" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
