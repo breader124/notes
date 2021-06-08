@@ -1,0 +1,23 @@
+Mikroserwisy wyewoluowały z ESB (Enterprise Service Bus), przechodzimy z podejścia Vendor-driven standards na Communicy-driven 
+solutions. Przechodzimy z ciężkiego, bardzo ustrukturyzowego podejścia do lekkiej, zwinnej komunikacji.
+
+Charakterystyka mikroserwisów:
+  - jest to implementacja wzorca SOA
+  - nacisk na choreografię, a nie na orkiestrację - nie ma centralnego dyrygenta, który mówi nam jak żyć, ale poszczególne usługi
+    wybierają jak należy się z nimi komunikować 
+  - eliminacja punktów centralnych - wpływa to pozytywnie na skalowalność i zjawisko eliminacji pojedynczego punktu awarii
+  - luźne powiązania komponentów - należy o to dbać, ponieważ nie możemy za pojedynczą zmianą pociągnąć ogromnych zmian w reszcie
+    krajobrazu
+  - cloud native
+
+Wady:
+  - duża dowolność technologiczna może prowadzić do chaosu - ludzie biorą nowe technologie bo mogą
+  - bardzo wysoka złożoność technologiczna - bardzo wiele komponentów koniecznych do wdrożenia
+  - skomplikowana infrastruktura - rośnie lawinowo, devops stonks
+  - utrudniona analiza komunikacji - należy mieć, znowu, osobne narzędzia i komponenty potrafiące to robić i udostępniać
+
+Kryteria stosowalności:
+  - potrzeba autonomii - nie ma czegoś takiego jak generalne release'y, każdy może się wdrożyć kiedy chce
+  - kompetencje pozwalające opanować technologiie i zestaw narzędzi - bardzo trudna architektura i wymaga bardzo dobrych ludzi
+  - potrzeba szybkiej/wysokiej skalowalności - jeśli potrzebujemy obsługiwać różny, dynamicznie zmieniający się ruch, to
+    korzystając z naturalnej cechy, jaką jest skalowalność mikroserwisów, staje się one dobrym podejściem

@@ -1,0 +1,37 @@
+System rozproszony - system zaimplementowany jako zbiór niezależnych usług, komunikujących się za pośrednictwem sieci
+
+Powody rozpraszania systemu:
+  - skalowalność - nie ma problemu z przydzielaniem różnych porcji zasobów do różnych komponentów
+  - odporność (resilience) - problemy z jednym komponentem nie mają wpływu na inne partie systemu
+  - heterogeniczność technologii - każdy komponent może być stworzony przy wykorzystaniu innej technologii
+  - regulacje i bezpieczeństwo - łatwiej jest wyodrębnić komponenty, które mają być objęte szczególnymi restrykcjami
+  - produktywność - możliwa jest równoległa praca nad systemem
+
+Koszty rozpraszania systemu:
+  - wzrost złożoności infrastruktury - jest to wzrost lawinowy, skaczemy z jednego serwera do całej ich siatki spiętej przeróżnymi
+    pipeline'ami, wykonanie takiego skoku jest zadaniem nietrywialnym
+  - brak transakcyjności - naturalnie w systemach monolitycznych występuje transakcyjność w rozumieniu transakcji bazodanowej,
+    w systemach rozproszonych naturalnym jest z kolei jej brak, nawet jeśli teoretycznie istnieją pewne rozwiązania, to nie 
+    sprawdzają się one w rzeczywistym świecie
+  - utrudnienia:
+    - lokalny development - dużo trudniejsze jest uruchomienie takiego systemu lokalnie
+    - zmiany przecinające komponenty w systemie - szczególnie trudnym zadaniem jest tutaj koordynacja pomiędzy zespołami
+    - zapewnienie bezpieczeństwa - bardzo dużo komunikacji sieciowej, każdy skok ma być zabezpieczone, jest to kolejne 
+      nietrywialne zadanie
+    - analiza i debugowanie - wnioskowanie oraz poszukiwanie błędów posiada wyższy próg wejścia, wymaga oprócz tego
+      dodatkowych narzędzi oraz odpowiedniego doświadczenia
+
+Błędne założenia w projektowaniu:
+  - sieć jest niezawodna (reliable) - ma bardzo poważne implikacje w kontekście stabilności systemu
+  - brak opóźnień (latency)
+  - sieć jest bezpieczna
+  - topologia jest niezmienna - zmieniają się adresy IP, zmieniają się porty, wszystko się zmienia
+  - brak kosztów transportu
+
+Service-oriented architecture:
+  - jest to styl architektoniczny
+  - cechy usług:
+    - są niezależne od technologii i dostawców
+    - są autonomiczne i zorientowanie biznesowo
+    - mają wyraźne granice
+    - współdzielą kontrakt, nie implementację

@@ -1,0 +1,47 @@
+Architektura może występować na różnych poziomach (patrz: diagramy C4).
+
+Monolit:
+  - system zaimplementowany całościowo jako jedna aplikacja
+  - samowystarczalny w zdefiniowanym zakresie
+  - bardzo często pozbawiony modularności
+
+Zalety monolitu:
+  - szybka i niezawodna komunikacja - wywołania metod są dużo szybsze niż komunikacja po sieci
+  - transakcyjność (w rozumienie transakcji bazodanowych) - zaleta praktycznie nieosiągalna w przypadku innych architektur
+  - bezpieczna komunikacja - dużo trudniejsze jest zaatakowanie systemu wpinając się pomiędzy wywołania metod
+  - prosta infrastruktura - jeden serwer aplikacyjny, na którym działa jedna aplikacja, bardzo proste rozwiązanie
+  - łatwy development na starcie 
+
+Wady monolitu:
+  - kruchy i nieodporny (fragile) - pojedyncze błędy mają wpływ na cały system, tyczy się to w szczególności wykorzystanie pamięci
+    (np. jej wycieki), lub też nadużywania procesora, nawet jeśli ma to miejsce w jakimś mało ważnym module, to będzie to i tak
+    bardzo odczuwalne w reszcie modułów, w szczególności tych biznesowo krytycznych
+  - ograniczona skalowalność:
+    - wydajności i infrastruktury - skalowanie na zasadzie "wszystko albo nic"
+    - produktywności - ciężko wrzucić kilkanaście/kilkaset osób do pracy nad jednym monolitem
+  - trudny w utrzymaniu - to nie jest wada monolitu samego w sobie, ale naszych ułomności podczas pracy nad nim
+  - trudność zachowania struktury - jest to przyczyna trudności w utrzymaniu, mając kilkanaście osób pracujących nad jedną 
+    aplikacją zachowanie struktury jest wręcz niemożliwe i ma to swoje poważne implikacje na dalsze życie aplikacji
+
+Strategie pracy z monolitem:
+  - cover and modify - zabezpiecz i zmodyfikuj
+  - modify and pray - zmodyfikuj i módl się
+
+Modularny monolit:
+  - wciąż pojedyncza jednostka wdrożeniowa
+  - modularna struktura wewnętrzna - system złożony z modułów niezależnych biznesowo
+
+Zalety modularnego monolitu:
+  - lepsza testowalność
+  - łatwa migraja do architektury rozproszonej
+  - prostsze utrzymanie 
+
+Wady modularnego monolitu:
+  - duplikacja danych
+  - trudniejsze zachowanie spójności
+  - ograniczone stosowanie kluczy obcych 
+
+Monolith first:
+  - nawet planując system rozproszony zaczynami od monolitu
+  - monolit wybacza błędne wyznaczenie granic 
+  - dużo mniej czasu na pierwsze wdrożenie i mniej kosztowne rozwijanie na początku 

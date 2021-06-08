@@ -1,0 +1,31 @@
+Czym jest ESB?
+  - implementacja wzorca SOA
+  - istnieje szyna integracyjna
+  - bogaty zestaw wtyczek (connectors) takich jak: SOAP, REST, DB, FTP
+
+Charakterystyka ESB:
+  - doskonała skalowalność (ale nie samej szyny) - uruchamiamy tyle instancji usługi, ile chcemy, nie ma żadnych ograniczeń
+  - kompleksowość (governance):
+    - bezpieczeństwo (szyna sama w sobie zapewnia bezpieczeństwo na poziomie state of the art, została tak zaprojektowana)
+    - audytowalność (cała komunikacja przechodzi przez szynę, więc jest idealnym miejscem do przejrzenie w trakcie audytu)
+    - logowanie i śledzenie (ten sam powód co wcześniej, cała komunikacja tędy przechodzi, więc jest to perfekcyjne źródło logów)
+    - konfigurowalność (bardzo wiele jesteśmy w stanie obsłużyć za pomocą samej szyny i jej wbudowanych mechanizów)
+
+Komunikacja:
+  - nacisk na orkiestrację - ja zlecam tyle pewne działanie biznesowe, to szyna wie, gdzie się zgłosić, korzystając z jakiego
+    protokołu, itd.
+  - kanoniczny model danych - szyna zazwyczaj wymusza wykorzystanie pewnego ustalonego modelu danych, zazwyczaj jest on bardzo
+    bogaty, ale też położony jest nacisk na sprawdzanie jego poprawności 
+  - współdzielenie bibliotek klienckich - to nie usługa wybiera sposób komunikacji z szyną, a szyna udostępnia pewne biblioteki,
+    za pomocą których można się z nią komunikować, bardzo często kanoniczny model danych jest już zagnieżdżony w takiej
+    bibliotece, nie pozostawiając miejsca na żadne wybory
+
+Wady ESB:
+  - wysoka cena - jest ona tak wysoka, że nie da się jej pominąć podczas planowania projektu
+  - szyna jest wąskim gardłem i pojedynczym punktem awarii - jej awaria lub awaria powodująca, że nie może ona działać poprawnie
+    może spowodować blackout całego systemu lub też całej korporacji, jeśli istnieje tylko jedna szyna w firmie, jej ponowne
+    podniesienie też jest działaniem nietrywialnym, które wymaga znacznych zasobów na start
+  - ograniczona produktywność rozwoju szyny - szyna staje się monolitem, kiedy zostało wprowadzone już bardzo dużo zmian,
+    bardzo dużo mapowań i obsługuje ona bardzo wiele aspektów życia korporacji, to tak jak każdy monolit traci na rozwijalności,
+    w takich wypadkach, kiedy nie jesteśmy w stanie skonfigurować jedynie szyny dla uruchomienia jakiegoś nowego rozwiązania,
+    to kończy się to przyzwoleniem na komunikację bezpośrednią i wykonaniem pierwszego kroku w kierunku mikroserwisów
