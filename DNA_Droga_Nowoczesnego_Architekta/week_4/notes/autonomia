@@ -1,0 +1,30 @@
+Rodzaje autonomii:
+  - biznesowa (jest to podstawa podczas projektowania mikroserwisów):
+    - pozwala rozwijać produkty niezależnie od siebie - biznes jest zgodny, poszczególne działy biznesu nie
+      mają sprzecznych żądań odnośnie naszego produktu, co znacznie spowalnia naszą pracę i stawia nas w roli
+      rozjemcy
+    - różny cykl życia i kalendarz wydań poszczególnych produktów
+    - większa specjalizacja przekłada się na mniejszą złożoność kodu - im bardziej się wyspecjalizujemy w 
+      danej dziedzinie biznesowej, tym mniejsza będzie złożoność w naszym kodzie; mniejszy zakres wiedzy
+      biznesowej przekłada się na zwyczajnie mnie ifów w kodzie
+  - techniczna:
+    - należy wydzielać komponenty z uwagi na:
+      - różną skalowalność
+      - wymagania bezpieczeństwa
+      - regulacje prawne
+  - technologiczna:
+    - dobieramy narzędzie do problemu
+    - różne języki programowania - istnieją klasy problemów, które najlepiej rozwiązywane są poprzez konkretną
+      rodzinę języków programowania, wybór języka spoza tej rodziny może skutkować dużą ilością czasu
+      spędzonego na "wymyślaniu koła na nowo"
+    - różne systemy operacyjne
+
+Autonomia a standardy:
+  - możliwość stosowania różnych technologii wcale nas do tego nie zmuszna - w sytuacji, kiedy w danej firmie
+    jest jasno powiedziane, że do danego typu problemu stosujemy dane rozwiązanie, to jakakolwiek zmiana 
+    powinna być dozwolona jedynie w kontekście podparcia tego driverami, albo jeszcze lepiej METRYKAMI
+  - możemy dopasować siebie do technologii albo technologię do siebie - szczególnie drugie podejście może się
+    dużo lepiej sprawdzić przy okazji projektów typu open source, kiedy stosunkowo małym kosztem możemy
+    rozszerzyć narzędzie open source do standardów wykorzystywanych w naszej organizacji, zamiast próbować
+    zmieniać naszą organizację, warto zwrócić tutaj uwagę na fakt, że cały maintenance oddajemy potem 
+    w ręce community, to nie nasza firma za to płaci, co jest ostatecznie bardzo efektywne finansowo

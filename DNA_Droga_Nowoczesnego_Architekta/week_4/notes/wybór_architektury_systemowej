@@ -1,0 +1,29 @@
+Dobór architektury na podstawie projektu KURSIK
+
+Drivery - ograniczenia:
+  - projekt od zera - z jednej strony fajnie bo dowolność technologiczna, a z drugiej jeszcze nie ma 
+    takiego produktu, co oznacza, że musi być gotowi na potencjalnie duże zmiany, kiedy otrzymamy pierwszy
+    feedback ze strony biznesu
+  - zespół składa się z 5 osób - raczej skupiamy się na istotnych rzeczach, a nie nad zrównoleglaniem pracy,
+    żeby pokryć jak największą część naszego procesu biznesowego
+  - za 4 miesiące MVP - oznacza to, że mamy stosunkowo mało czasu na stworzenie czegoś, co można już
+    sprzedawać i będzie to przynosić realne zyski
+
+Drivery - atrybuty jakościowe:
+  - obciążenie 50-150 req/sec - to nie jest dużo, łatwe do ogarnięcia
+  - SLA, dostępność 99.99% - oznacza to 1m 0.5s na dzień i 4m 23s na miesiąc
+
+Decyzja: idziemy w modularny monolit
+
+Konsekwencje:
+  - pozytywne:
+    - wybaczanie błędów w wyznaczaniu granic - projekt typu greenfield, więc oczekujemy wielu zmian
+    - szybka i niezawodna komunikacja - poprzez zwykłe wywołania funkcji
+    - prosta infrastruktura - potencjalnie może istnieć wiele instancji, ale to nie jest złożoność na poziomie
+      mikroserwisów
+    - łatwa implementacja i wdrażanie
+    - możliwość wydzielenia osobnych serwisów w przyszłości - ponieważ jest to modularny monolit
+  - negatywne:
+    - skalowanie całej aplikacji
+    - walidacja wideo może konsumować sporo zasobów - widzimy ryzyko i je akceptujemy
+    - zadbanie o granice modułów - widzimy ryzyko i je akceptujemy

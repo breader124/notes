@@ -1,0 +1,37 @@
+Styl architektoniczny dominujacy w moim projekcie: modularny monolit 
+
+Czy poprawnie odnosimy się do jego wad?
+  - wady:
+    - brak możliwości skalowania pojedynczych części - częściowo monitorujemy, które części są wykorzystywane
+      bardziej, ale nikt nie wyszedł z propozycją skalowania tych części, w przypadku, kiedy mieliśmy za mało
+      mocy to dostaliśmy nowe serwery, żeby uruchomić nowe instancje, zamiast pomyśleć na przekształceniem
+      architektury
+    - trudności w utrzymaniu prawidłowych granic:
+      - nie zachowujemy poprawnych granic, moduły często zależą od innych modułów, szczególnie często pod
+        kątem korzystania z finalnych, statycznych stałych zdefiniowanych w jakiejś jednej klasie, nie
+	wiadomo wtedy jak zachowa się cały system jeśli zmienimy taką stałą
+      - niepoprwanie i bez żadnej kontroli korzystamy z obiektów typu FlowCache, powoduje to, że wprowadzamy
+        de facto zmienne globalne jednocześnie naruszając scope'y Javy, jeszcze gorzej, kiedy FlowCache jest
+	mechanizmem komuniacji pomiędzy modułami, tworzymy wtedy mapę, która omija mechanizm typowania i
+	stanowi niejawnie przekazywany argument (ponieważ FlowCache jest wyciągany o zgrozo z sesji), a nie
+	przekazywany w jawnej formie podczas wywołania funkcji, co też swoją drogą by śmierdziało
+      - zespół jest świadomy tego, że są to złe praktyki, ale wykazuje chęci zmiany tego, szczególnie Mette,
+        która nie ma zielonego pojęcia o clean code
+
+Czy poprawnie odnosimy się do autonomii?
+  - autonomia biznesowa:
+    - jeśli chodzi o to, jakie feature'y robimy, to przechodzą one refinement po stronie biznesowej i 
+      zazwyczaj to biznes rozstrzyga wszystkie takie konflikty, zanim sięgną one teamu deweloperskiego
+    - z uwagi na ściśle ustalony kalendarz deployów, niektóre feature'y, a co za tym idzie kliencie, muszą 
+      czekać na nowe funkjonalności, aż skończymy coś innego i wydamy wszystko na raz 
+  - autonomia techniczna:
+    - powiedziałbym, że w 80% tak, w większości każdy oddzielny feature ma swój serwlet, istnieją jednak takie
+      moduły, które zrzeszają funkcje niepasujące nigdzie indziej, albo są po prostu komponentami, do którego
+      wrzuca się wszystko i nic, takie komponenty są szczególnie uciążliwe podczas przeszukiwania bazy kodu,
+      ponieważ ciężko jest wykryć, że akurat tam znajdować się mogą funkcjonalności, których poszukujemy
+  - autonomia technologiczna:
+    - wcale jej nie mamy, utrzymujemy legacy codebase, który został napisany w Javie 5 i w niej został,
+      framework własnościowo należy do firmy i korzysta z niego też wieeeeele innych projektów, co oznacza,
+      że z wersją Javy totalnie nie możemy nic zrobić
+    - jeśli chodzi o nowy push engine to też nie mieliśmy żadnej autonomii, standardy i dostępne frameworki
+      są ustalone bardzo ciasno i nie możemy swobodnie poruszać się po drzewku dostępnych technologii

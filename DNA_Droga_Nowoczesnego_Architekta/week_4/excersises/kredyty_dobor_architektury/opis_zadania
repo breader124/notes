@@ -1,0 +1,24 @@
+Zadanie:
+  - zapoznanie się z załączonym stormingiem
+  - zaproponowanie odpowiedniego stylu architektury systemowej
+  - zaproponowanie podziału na moduły/kontenery (diagram C2)
+
+Projekt:
+  - startujemy zupełnie nowy projekt B2B dla doradców kredytowych
+  - MVP ma być na produkcji za 6 miesięcy
+  - obciążenie początkowo niskie, później wolno rosnące
+
+Biznes:
+  - ma doświadczenie w tym sektorze, jednak nie są pewnie jaki będzie finalny kształt produktu
+  - jest konserwatywny i wychowany na projektach typu waterfall
+
+Zespół:
+  - 20 osób - wszyscy nowo zatrudnieni
+  - frontend - 1 junior + 1 senior
+  - backend .NET - 10 junior + 5 mid + 2 senior
+  - ops - 1 mid
+
+Zakres obowiązków zespołu:
+  - odpowiedzialny za wszystko łącznie z wdrożeniem i utrzymaniem
+  - seniorze mają doświadczenie w dużych systemach rozproszonych i wszyscy przyszli z jednego projektu
+  - wdrożenie w dowolnej chmurze publicznej
