@@ -6,8 +6,6 @@ import com.structurizr.view.ContainerView;
 import com.structurizr.view.SystemContextView;
 import com.structurizr.view.ViewSet;
 
-// TODO add relations between components
-
 public class LoanSystemContainerDiagram {
     public static void main(String[] args) throws StructurizrClientException {
         String api = args[0];
@@ -24,6 +22,7 @@ public class LoanSystemContainerDiagram {
         Person borrower = model.addPerson("Borrower");
         Person advisor = model.addPerson("Advisor");
 
+        // C1 -- system context level diagram model
         SoftwareSystem apiServer = model.addSoftwareSystem("API server", "System serving API, built as a modular monolith");
         SoftwareSystem spa = model.addSoftwareSystem("SPA", "Web app serving the functionalities to the useres");
         SoftwareSystem backoffice = model.addSoftwareSystem("Backoffice system", "App serving the functionalities for administrators");
@@ -39,12 +38,14 @@ public class LoanSystemContainerDiagram {
         spa.uses(apiServer, "Uses");
         backoffice.uses(apiServer, "Uses");
 
+        // C2 -- container level diagram model
         Container monolith = apiServer.addContainer("Modular monolith");
         spa.uses(monolith, "Uses");
         backoffice.uses(monolith, "Uses");
         monolith.uses(bankSystem, "Uses");
         monolith.uses(bik, "Uses");
 
+        // C3 -- component level diagram model
         Component templateCatalogue = monolith.addComponent("Template catalogue");
         Component ratings = monolith.addComponent("Ratings");
         Component draftsGenerator = monolith.addComponent("Drafts generator");
@@ -59,23 +60,27 @@ public class LoanSystemContainerDiagram {
         administrator.uses(advisorsDb, "Manages");
         borrower.uses(ratings, "Uses");
         borrower.uses(draftsFiller, "Fills is");
-        borrower.uses(requestGenerator, "Generates");
         advisor.uses(draftsGenerator, "Generates");
-        advisor.uses(requestSubmitter, "Submits");
 
-        ratings.uses(bik, "Asks for data");
+        draftsGenerator.uses(draftsFiller, "Adds draft");
+        draftsFiller.uses(requestGenerator, "Moves draft");
+        requestGenerator.uses(requestSubmitter, "Submits");
+        requestSubmitter.uses(bankSystem, "Sends");
         allowances.uses(bankSystem, "Asks for allowance");
-        commissions.uses(bankSystem, "Gets calculated commission");
+        allowances.uses(commissions, "Notifies");
+        ratings.uses(bik, "Asks for data");
 
+        // C1 -- system context diagram view
         SystemContextView systemContextView = view.createSystemContextView(apiServer, "API server", "System serving the business logic");
         systemContextView.addAllSoftwareSystems();
         systemContextView.addAllPeople();
 
+        // C2 -- container level diagram view
         ContainerView modularMonolithView = view.createContainerView(apiServer, "Modular monolith being the API server", "Modular monolith serving the business logic");
         modularMonolithView.add(monolith);
         modularMonolithView.addAllSoftwareSystems();
-        modularMonolithView.addAllPeople();
 
+        // C3 -- component level diagram view
         ComponentView componentView = view.createComponentView(monolith, "Components diagram for monolith", "Components diagrams creating the modular monolith");
         componentView.add(bik);
         componentView.add(bankSystem);
