@@ -7,18 +7,16 @@ import com.structurizr.view.ContainerView;
 import com.structurizr.view.SystemContextView;
 import com.structurizr.view.ViewSet;
 
-public class SoftwareSystemDiagram {
+public class SoftwareSystemDesign {
 
     public static void main(String[] args) throws StructurizrClientException {
-        if (args.length < 2) {
-            return;
-        }
-
         String api = args[0];
         String secret = args[1];
         long workspaceId = Long.parseLong(args[2]);
 
-        Workspace w = new Workspace("Banking system workspace", "Workspace containing diagrams of banking platform");
+        ClientWrapper strClient = new ClientWrapper(api, secret, workspaceId);
+
+        Workspace w = new Workspace(Constants.WORKSPACE_NAME, Constants.WORKSPACE_DESCR);
         Model model = w.getModel();
         ViewSet viewSet = w.getViews();
 
@@ -108,7 +106,6 @@ public class SoftwareSystemDiagram {
         servletContainerComponentView.add(iosAppSystem);
         servletContainerComponentView.add(androidAppSystem);
 
-        StructurizrClient client = new StructurizrClient(api, secret);
-        client.putWorkspace(workspaceId, w);
+        strClient.putWorkspace(w);
     }
 }
