@@ -1,0 +1,35 @@
+Problem: Decyzja w sprawie architektury systemowej systemu do udzielana kredytów
+
+Kontekst: dostępny w pliku 'opis_zadania' w bieżącym katalogu
+
+Decyzja: system będzie rozwijany jako modularny monolit
+Data: 13/06/2021
+
+Konsekwencje:
+  - pozytywne:
+    - jest to zupełnie nowy projekt typu greenfield, zakładamy, że zmieniać mogą się granice architektoniczne,
+      modularny monolit jest skłonny do wybaczania takich błędów bardziej niż architektury systemów rozproszonych
+    - mamy mało czasu do pierwszego deploymentu, modularny monolit pozwala na szybszy początkowy development
+    - biznes ma doświadczenie z projektami typu waterfall, jeśli zaczniemy z kompromisem pomiędzy monolitem,
+      a systemem rozproszonym, to potem będzie łatwiej ich przekonać do zmiany mając już początek drogi za sobą
+    - istnieje już wiedza i wzajemne zrozumienie w zespole pomiędzy seniorami, którzy będą pilnować, aby tworzone
+      rozwiązanie było ostatecznie zdatne do zupełnego zmigrowania w stronę systemu rozproszonego
+    - modularny monolit cechuje się prostą infrastrukturą, a my mamy tylko jednego opsa, do ustawienia 
+      całego stacku potrzebnego do rozpoczęcia pracy z mikroserwisami potrzebowalibyśmy co najmniej zespołu opsów
+    - wdrożenie w chumurze publicznej zakłada, że po pierwszym etapie będziemy mieli doświadczenie w korzystaniu
+      z niej, co potem przełoży się na ewentualną łatwiejszą migrację do w pełni rozproszonego systemu
+    - spodziewamy się, że po n-tej iteracji, kiedy pokażemy gotowy produkt biznesowi, dostaniemy spory feedback,
+      za którym może iść wiele zmian, ponieważ oni sami nie są pewni finalnego kształtu produktu, modularny monolit
+      posiada dużo mniej sztywne, niefizyczne granice, które łatwiej jest zmieniać niż w przypadku systemów
+      rozproszonych
+    - zespół jest świeżo zatrudniony i jeszcze nie rozumie się wzajemnie na idealnym poziomie, jest to koleny
+      argument za tym, żeby architektonicznie ułatwić wprowadzanie zmian, które będą się pojawiać
+  - negatywne:
+    - niemożliwe jest skalowanie części systemu - zauważone i zaakceptowane, zredukowane poprzez fakt, że 
+      początkowo system ma być mało obciążony, a samo obciążenie ma rosnąć wolno, to daje nam szansę na reakcję
+      i ewentualne wydzielanie pewnych modułów naszego monolitu do osobnych aplikacji i osobne ich skalowanie,
+      zachęca do tego również deployment w chmurze publicznej 
+    - ciężko jest zachować odpowiednie granice - zauważone i zaakceptowane, zredukowane poprzez fakt, że posiadamy 
+      w zespole już 2 seniorów posiadających doświadczenie w pracy z systemami rozproszonymi, gdzie odpowiednie
+      wyznaczenie granic jest kwestią absolutnie kluczową, a co za tym idzie, będą oni nad takowymi podziałami
+      czuwać i w razie problemów edukować resztę zespołu, wyznaczając odpowiedni kierunek
