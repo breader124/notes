@@ -1,0 +1,56 @@
+Zadanie:
+  - zapoznaj się z załączonym event stormingiem
+  - znajdź wszystkie informacje których brakuje do podjęcia decyzji:
+    - biznesowe i domenowe
+    - jakościowe i techniczne
+    - projektowe (zespołowe)
+  - zapisz założenia, jakie przyjąłeś dla brakujących informacji
+  - zaproponuj odpowiedni styl architektury systemowej
+  - zaproponuj podział na moduły/kontenery
+
+Projekt:
+  - firma JUŻ robi system na zlecenie administracji skarbowej do pośredniczenia w wysyłce dokumentów finansowych do organów finansowych, np. 
+    ministerstwa finansów 
+  - weszły nowe przepisy i przy okazji robimy teraz wersję 2.0
+  - 12 miesięcy na wdrożenie stabilnej wersji produktu i później 3 miesiące na przepięcie wszystkich klientów
+
+Biznes:
+  - firma działa w modelu (niby) agile, biznes nie przychodzi na dema, bo szkoda im czasu na oglądanie "kadłubków", chcą od razu zobaczyć całość
+
+Zespół:
+  - 3 seniorów: 2 Java + 1 full stack
+  - możliwość zatrudnienia reszty zespołu, max 60 osób
+  - odpowiedzialny za wszystko łącznie z wdrożeniem i utrzymaniem
+  - wdrożenie na infrastrukturze firmy, jest to wymaganie prawne
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Rozwiązanie ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Brakujące informacje:
+  - brak podziału na BC na Process Level ES
+  - biznesowe i domenowe:
+    - czy może wystąpić rozszerzenie integracji z innymi systemami? nie, to są jedynie obsługiwane, nie ma możliwości dynamicznego rozszerzenia
+    - co jeśli odebrany dokument nie jest poprawnego formatu? czy w ogóle jakikolwiek format bloczku jest niepoprawny? nie, bloczki są 
+      standaryzowane i zatwierdzone przez ministerstwo finansów, każde inne są nielegalne ze strony prawnej
+    - co jeśli dokument jest poprawnego typu, ale nie udała się jego digitalizacja? urzędnik wprowadza wtedy dane do systemu ręcznie
+    - w jakim terminie urzędnik musi wprowadzić dane do systemu w przypadku błędu systemu? ma na to 3 dni robocze
+    - w jaki sposób liczone są prognozy pit i vat? integracja z zewnętrznymi systemami, otrzymujemy te informacje gotowe
+    - kiedy liczymy prognozę pit, a kiedy vat? a może się zdarzyć, że mamy liczyć obie na raz? liczymy albo pit, albo vat, na podstawie dokumentu
+    - co jeśli nie uda nam się wysłać czegoś do ministerstwa finansów? płacimy karę, system ma być niezawodny, biznes nie dopuszcza zaginionych
+      dokumentów, maksymalnie 3 dni od otrzymania dokumentu musi być on przekazany w cyfrowej formie do ministerstwa finansów
+    - czy dokument musi być ostatecznie zatwierdzany przez urzędnika po ostatecznym zaakceptowaniu przez system? tak, nie możemy sobie pozwolić
+      na wysyłanie bubli do ministerstwa, taki stan musi się utrzymywać przez co najmniej 3 miesiące od uruchomienia systemu i dogrania 
+      wszystkiego na ostatni guzik
+  - jakościowe i techniczne:
+    - dostępność systemu? SLA 99.999% dostępności modułu odpowiedzialnego za komunikację z ministerstwem finansów, punkt wejściowy może być 
+      niedostępny w nocy pomiędzy 2 a 4 rano, kiedy nie pracuje administracja mogąca zlecić nam przetwarzanie dokumentu 
+    - bezpieczeństwo? maksymalne bezpieczeństwo przetwarzania danych, kompletna izolacja od świata zewnętrznego, endpoint wejściowy otwarty
+      jedynie na podmioty, z którymi mamy podpisane umowy i zostały zaakceptowane, wszystkie inne źródła informacji odrzucane jeszcze przed
+      dotarciem do systemu
+    - lokalizacja danych? wszystkie dane i integracje wyłącznie z polskimi systemami, żaden bajt nie może opuścić Polski w ramach działania tego
+      systemu, ani żadnego innego, z którym się integrujemy 
+    - skuteczność systemu OCR? 99%, pożądanym stanem jest jak najmniej interakcji z żywym urzędnikiem
+  - projektowe (zespołowe):
+    - jaki mamy maksymalny budżet na cały zespół? stać nas na zatrudnienie 10 dodatkowych seniorów, 8 midów, 30 juniorów i 10 opsów
+    - czy zespół ma dowolność pod kątem metodyki pracy? tak, może wybrać taką metodykę, która najbardziej mu odpowiada i zapewni najlepszą
+      wydajność
