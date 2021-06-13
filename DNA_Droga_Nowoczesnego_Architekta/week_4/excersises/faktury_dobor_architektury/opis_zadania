@@ -41,6 +41,8 @@ Brakujące informacje:
     - czy dokument musi być ostatecznie zatwierdzany przez urzędnika po ostatecznym zaakceptowaniu przez system? tak, nie możemy sobie pozwolić
       na wysyłanie bubli do ministerstwa, taki stan musi się utrzymywać przez co najmniej 3 miesiące od uruchomienia systemu i dogrania 
       wszystkiego na ostatni guzik
+    - czy będą potrzebne raporty z działania systemu? zakładamy, że tak, trzeba w związku z tym gdzieś odkładać wszystkie eventy, aby móc
+      swobodnie odtwarzać stan systemu, jego dane wejściowe i wyjściowe
   - jakościowe i techniczne:
     - dostępność systemu? SLA 99.999% dostępności modułu odpowiedzialnego za komunikację z ministerstwem finansów, punkt wejściowy może być 
       niedostępny w nocy pomiędzy 2 a 4 rano, kiedy nie pracuje administracja mogąca zlecić nam przetwarzanie dokumentu 
@@ -50,7 +52,10 @@ Brakujące informacje:
     - lokalizacja danych? wszystkie dane i integracje wyłącznie z polskimi systemami, żaden bajt nie może opuścić Polski w ramach działania tego
       systemu, ani żadnego innego, z którym się integrujemy 
     - skuteczność systemu OCR? 99%, pożądanym stanem jest jak najmniej interakcji z żywym urzędnikiem
+    - jaki będzie rozkład obciążenia? zakladamy, że system będzie skalował się dynamicznie
+    - jak duże będą dokumenty? zakładamy, że do kilkuset kB, więcej nie ma sensu 
   - projektowe (zespołowe):
     - jaki mamy maksymalny budżet na cały zespół? stać nas na zatrudnienie 10 dodatkowych seniorów, 8 midów, 30 juniorów i 10 opsów
     - czy zespół ma dowolność pod kątem metodyki pracy? tak, może wybrać taką metodykę, która najbardziej mu odpowiada i zapewni najlepszą
       wydajność
+    - co dokładnie wie zespół? zatrudniamy z określonymi z góry kryteriami po wcześniejszym doborze architektury systemowej

@@ -1,0 +1,40 @@
+Problem: dobór odpowiedniej architektury dla systemu fakturowania
+
+Kontekst: dostępny w pliku 'opis_zadania' w katalogu bieżącym
+Data: 14/06/2021
+
+Decyzja: system będzie posiadać architekturę mikroserwisową
+
+Konsekwencje:
+  - pozytywne:
+    - duża autonomia, którą prawdopodobnie biznes będzie potrafił wykorzystać z uwagi na dotychczasowe
+      doświadczenie w pracy w metodykach zwinnych
+    - bardzo duże możliwości skalowania, niezwykle istotne z uwagi na nieznane odgórnie piki oraz konieczność
+      komunikacji z ministerstwem dokładnie od 01:00 do 01:15
+    - możliwość niezależnego rozwoju wszystkich komponentów, istotne z uwagi na nieznany ostateczny kształt
+      systemu, być może niektóre komponenty ewoluują do postaci, która obecnie nie została jeszcze zauważona
+    - możliwość zaaplikowania specjalnych wymagań bezpieczeństwa do niektórych części systemu, istotne z uwagi
+      na powód wymieniony powyżej, nie znamy kształtu ostatecznej wersji systemu ani dokładnego kierunku jego
+      rozwoju
+    - stosunkowo dużo czasu na stworzenie systemu, szczególnie, że pod ręką jest jego poprzednia wersja i 
+      codebase, który może 'służyć pomocą'
+    - eliminacja punktów centralnych, system nie może sobie paść lub stracić responsywności przez powiedzmy moduł
+      OCR, zależy nam na tym, żeby był on luźno powiązany i żeby niezbyt ważne moduły wymagające wielu zasobów 
+      nie wpływa na krytyczne biznesowo moduły, które tak wielkich ilości zasobów nie potrzebują
+  - negatywne:
+    - zespół musi być odpowiednio doświadczony z uwagi na trudności wnoszone przez tę architekturę, zaakceptowane
+      i zredukowane poprzez zatrudnianie tylko osób posiadających wspomniane doświadczenie oraz umiejętności
+    - ciężkie do skorygowania błędy w wytyczaniu granic, zaakceptowane i zredukowane poprzez dosyć jasno określony
+      zarys systemu
+    - skomplikowana instrastruktura, zaakceptowane i zredukowane poprzez zatrudnienie odpowiedniej dużej liczby
+      doświadczonych opsów 
+
+Inne rozważane, ostatecznie odrzucone możliwości:
+  - modularny monolit:
+    - zależy nam na skalowalności pewnych szczególnych komponentów systemu, nie całości
+    - tylko jedna jednostka wdrożeniowa, nie jesteśmy w stanie osiągnąć ostatniej
+      wymienionej zalety mikroserwisów
+    - brak możliwości objęcia szczególnych części systemu szczególnymi wymaganiami 
+      bezpieczeństwa
+    - ograniczona autonomia w kontekście rozwoju systemu, z której biznes pewnie 
+      chciałby i umiałby skorzystać
