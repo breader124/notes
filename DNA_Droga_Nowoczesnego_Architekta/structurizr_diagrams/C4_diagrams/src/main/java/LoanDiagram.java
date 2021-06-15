@@ -6,7 +6,7 @@ import com.structurizr.view.ContainerView;
 import com.structurizr.view.SystemContextView;
 import com.structurizr.view.ViewSet;
 
-public class LoanSystemContainerDiagram {
+public class LoanDiagram {
     public static void main(String[] args) throws StructurizrClientException {
         String api = args[0];
         String secret = args[1];
