@@ -1,0 +1,29 @@
+Istnieją dwa konteksty, w których występuje architektura Pipes and Filters:
+  - architektura systemowa - wzorzec integracji systemów ze sobą, szczególnie systemów rozproszonych
+  - architektura aplikacyjna - architektura celująca w rozwiązanie problemu przetwarzania strumieni danych, wymyślona na potrzeby 
+    systemu Linux w 1972 roku
+
+Rodzaje filtrów:
+  - source - źródło danych
+  - transformer - transformuje dane do innej postaci
+  - tester - sprawdza określony warunek i na jego podstawie odrzuca bądź przepuszcza dane do dalszego przetwarzania
+  - sink - miejsce, gdzie trafiają finalnie przetworzone dane
+
+Zastosowanie:
+  - przetwarzanie danych:
+    - filtrowanie req/res
+    - kompilator
+    - przetwarzanie tekstu
+
+Zalety aplikacyjnej architektury Pipes & Filters:
+  - elastyczność:
+    - konfigurowalność - jeśli klient wymaga różnych funkcjonalności na danym etapie przetwarzania, to jesteśmy w stanie to osiągnąć
+    - rozszerzalność - bardzo łatwo dokładać nowe funkcjonalności
+    - możliwość zrógnoleglania - bez problemu możemy przetwarzać wiele danych jednocześnie
+    - możliwość rozpraszania - z większym problemem, ale jednak wykonalnie, jesteśmy w stanie rozproszyć filtry łącząc je inną
+      technologią, taką jak broker wiadomości
+  - testowalność - każdy z fitrów jest osobnym modułem, możemy go w związku z tym testować w izolacji
+
+Wady aplikacyjnej architektury Pipes & Filters:
+  - obsługa błędów - jest to skutek dużej niezależności każdego modułu, pojawiające się błędy możemy propagować i obsługiwać dalej,
+    ewentualnie możemy też przechwytywać je w jakimś interceptorze, który będzie wiedział, co ma z danym błędem zrobić

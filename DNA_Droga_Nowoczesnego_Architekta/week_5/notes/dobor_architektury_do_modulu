@@ -1,0 +1,41 @@
+Płytki (shallow/flat) vs Głęboki (deep):
+  - płytki:
+    - crud - np. moduł obsługujący webowe API, które nie wykracza poza 4 najczęściej spotykane operacje
+    - facade - np. wrapper na bazę danych wyświetlający dane z niej
+  - głęboki:
+    - systemy, które posiadają stosunkowo prosty interfejs użytkownika, ale wiadomo, że pod spodem dzieje się mnóstwo złożonych 
+      operacji, będzie to na przykład przeglądarka internetowa czy system dostawcy płatności internetowych
+
+Część modułów w naszym systemie będzie modułami płytkimi, a część modułami głębokimi.
+
+Z perspektywy użytkownika bardzo ciężko jest odróżnić system płytki od systemu głębokiego, nie jest to jednak problemem dla eksperta
+domenowego.
+
+Elementy, które wpływają na wybór stylu architektonicznego:
+  - charakter złożoności:
+    - konfiguracja
+    - reguły biznesowe
+    - przetwarzanie
+    - algorytmika
+    - koordynacja (moduł koordynujący pracę innych modułów)
+  - perspektywa czasu:
+    - co będzie się zmieniać
+    - jakie zmiany są prawdopodobne
+    - jakie zmiany są nieprawdopodobne
+
+Mieszanie stylów:
+  - heksagonalna + warstwy: istnieją porty oraz adaptery charakterystyczne dla architektury heksagonalnej, ale warstwa logiki 
+    biznesowej może być w swoim obrębie podzielona na kolejne warstwy w celu jej uproszczenia, nie jest to jednak widoczne dla
+    innych warstw, ponieważ jest ukryte za portami
+  - heksagonalna + P&F: jeśli nasze filtry mają dużo integracji zewnętrznych, to jest to sensowne, aby każdy z filtrów był małym
+    heksagonem, uprości to jego strukturę i ułatwi testowanie
+  - P&F + mikrojądro: sam system jest zestawem filtrów, ale każdy filtr jest osobną implementacją wzorca mikrojądra rozszerzalną na
+    bazie oddzielnie dostępnych pluginów
+
+PODSUMOWANIE (patrzymy po kolei na):
+  - moduł płytki vs głęboki
+  - złożoność
+  - perspektywa czasu - musimy być ostrożni, nie chcemy robić przedwczesnych optymalizacji
+  - separacja odpowiedzialności
+  - ADR - na zakończenie dokumentujemy nasz wybór w Architecture Decision Record, ponieważ wybór stylu architektury aplikacyjnej jest
+    oczywiście decyzją architektoniczną!

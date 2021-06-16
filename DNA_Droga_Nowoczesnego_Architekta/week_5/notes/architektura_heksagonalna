@@ -1,0 +1,37 @@
+Duży problemem architektury warstwowej jest szczególnie widoczny, jeśli dany moduł posiada dużo logiki biznesowej. Może się dodatkowo
+zdarzyć, że ten moduł będzie jeszcze implementacją naszej core domain. Powinniśmy być wtedy w stanie szybko testować nowe potencjalne
+rozwiązania, nowe funkcjonalności itd. Nie jest to jednak możliwe z uwagi na bezpośrednie, rozległe powiązania z warstwą
+persystencji. Można niby to rozwiązać stubowaniem albo stawianiem bazy w kontenerze dockerowym, ale to już zdecydowanie nie jest
+test jednostkowy, tylko bardziej zubożony integracyjny, czego zdecydowanie nie chcemy. Ponadto podczas takiego rodzaju testowania
+może się zdarzyć, że test zwróci negatywny wynik, co oznacza, że
+  - logika biznesowa jest niepoprawna ALBO
+  - logika zapisu danych jest zła
+
+TEST POWINIEN BYĆ NEGATYWNY Z JEDNEGO, JASNEGO POWODU
+
+Aby znacząco ułatwić testowanie, możemy wprowadzić interfejs na wyższym poziomie, który jest implementowany przez warstwy niższego
+poziomu. Interfejs ten posługuje się wtedy zupełnie innym językiem pod kątem biznesowym. 
+
+Architektura heksagonalna, inaczej zwana architekturą portów i adapterów, wykorzystuje koncepty wspomnianych portów i adapterów. Port
+jest interfejsem definiowanym przez warstwy bliżej środka heksagonu, natomiast adaptery implementują te interfejsy. Architektura ta
+jest wariacją architektury warstwowej. Różnicą jest, że zależności nie idę od góry do dołu, ale od zewnątrz do środka.
+
+Zalety:
+  - testowalność
+  - rozwijalność i utrzymanie
+  - wymiana technologii
+  - I/O na końcach technologii
+
+Wady:
+  - wiele adapterów = wiele testów, ponadto atrybuty jakościowe są po stronie adapterów, co znaczy, że możliwie poza naszą kontrolą
+  - trudniejsza nawigacja po kodzie źródłowym, co może być zwykłym efektem większej ilości kodu i konieczności jego konfiguracji,
+    ponieważ inny będzie setup testowy, a inny będzie setup produkcyjny
+
+Kiedy stosować?
+  - dla projektów o zmiennej i złożonej logice biznesowej
+  - w Bounced Contexcie implementującym core domain
+  - nie w CRUDach
+
+Podobne architektury:
+  - Onion architecture
+  - Screaming architecture

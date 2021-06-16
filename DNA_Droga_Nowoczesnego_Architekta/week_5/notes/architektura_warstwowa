@@ -1,0 +1,38 @@
+Architektura warstwowa jest, jak sama nazwa wskazuje, architekturą składającą się z warstw. Nie jest powiedziane z ilu konkretnie,
+najczęściej jednak spotykany jest podział na dokładnie 3 warstwy:
+  - prezentacji
+  - logiki
+  - persystencji
+
+ARCHITEKTURA WARSTOWOWA JEST APLIKOWANA DO MODUŁU, NIE SYSTEMU -- dla jednego bounded contextu występować powinien dokładnie jeden
+przekrój przez warstwy, unikamy sytuacji, kiedy stworzone zostało mnóstwo powiązań pomiędzy różnymi BC, co znacząco utrudni pracę nad
+rozwijaniem systemu i zniweczy nasz trud poprawnego doboru BC.
+
+Istnieją dwa rodzaje warstw:
+  - rozluźnione (open) - te warstwy są przechodnie, warstwy nad nimi mogą komunikować się bezpośrednio z warstwami pod nimi
+  - sztywne (closed) - te warstwy są nieprzechodnie, komunikacja musi przez nie przejść
+Należy unikać rozluźnionych warstw, prowadzą one do problemów. Ich występowanie oznacza, że prawdopodobnie odkryliśmy kolejny BC, który
+z uwagi na wymagania biznesowe nie wymaga jednej z warstw powszechnie występującej w reszcie systemu.
+
+Uwaga na temat spójności - nie powinniśmy pozwolić na to, żeby każdy moduł miał inną architekturę aplikacyjną, przyjętym jednak 
+założeniem jest to, że wybieramy spośród czterech najczęściej używanych:
+  - architektura warstwowa
+  - architektura heksagonalna
+  - pipelines and filters
+  - mikrojądro
+
+Moduły współdzielone - są jak najbardziej okej, można je sobie wyobrazić jako narzędza, z których korzysta właściwy kod uwarunkowany 
+biznesowo. 
+
+Rodzaje warstw:
+  - fizyczne (tier) - warstwa wdrożeniowa, poziom C2
+  - logiczne (layer) - warstwy, o których traktują wszystkie notatki powyżej, warstwy na poziomie prezentacji, logiki czy persystencji
+
+Zalety architektury warstwowej:
+  - powszechnie znana
+  - zmniejsza złożoność - poprzez wprowadzenie kolejnych warstw abstrakcji
+  - separacja odpowiedzialności - każda warstwa jest odpowiedzialna za coś innego, podążając za zasadą SRP
+
+Wady architektury systemowej:
+  - zmiany w wielu warstwach na raz 
+  - utrudniona testowalność

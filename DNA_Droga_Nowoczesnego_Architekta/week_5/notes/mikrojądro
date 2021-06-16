@@ -1,0 +1,19 @@
+Mikrojądro inaczej nazywane jest architekturą pluginową. Używamy, kiedy chcemy mieć bardzo rozszerzalny system.
+
+Rejestr:
+  - część moduły odpowiedzialna za zarejestrowanie wszystkich pluginów, które są odpowiedzialne za faktyczne przetwarzanie
+  - musi mieć dostęp do wszystkich pluginów, które mają być wykorzystane
+  - musi być konfigurowalny, albo zahardkodowany gdzieś w kodzie aplikacji, albo konfigurowalny zewnętrznie
+
+Kontrakt:
+  - zestaw interfejsów, które programiści pluginów muszą zaimplementować, aby ich pluginy weszły do systemu i w nim działały
+
+Zalety:
+  - testowalność
+  - elastyczność:
+    - konfigurowalność - ten sam proces skonfigurowany na różne sposoby
+    - rozszerzalność - nieograniczony potencjał rozszerzania kroków procesu
+
+Wady:
+  - skalowalność - nie da się rozproszyć aplikacji zbudowanej w oparciu o ten wzorzec architektury aplikacyjnej
+  - złożoność - jest to skomplikowany styl architektoniczny 
