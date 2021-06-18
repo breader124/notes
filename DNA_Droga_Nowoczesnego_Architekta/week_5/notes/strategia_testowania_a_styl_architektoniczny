@@ -1,0 +1,22 @@
+Piramida testów (testy pojedynczego modułu):
+  - e2e - testowanie modułu poprzez testy interfejsu użytkownika oraz testy integracji z zewnętrznymi systemami lub ich mockami
+  - integracyjne - testy sprawdzające, czy dwie jednostki poprawnie się ze sobą integrują
+  - jednostkowe - jednostką jest spójny kawałek kodu, gdzie spójność rozumiemy tak samo jak rozumie je SRP
+
+Czy zawsze aplikujemy piramidę testów oraz jaka jest jej postać w różnych przypadkach?
+  - moduły płytkie - w tym przypadku będzie podobna ilość testów każdego rodzaju
+  - moduły głębokie - tylko do tych modułów zupełnie aplikuje się wspomniana piramida testów, wychodząc coraz bardziej na zewnątrz
+    modułu coraz bardziej redukujemy złożoność interfejsu, z którym styka się użytkownik, co oznacza, że naturalnie wraz z 
+    wychodzeniem do góry będzie coraz mniej testów 
+  - moduły integrujące - są to modułu, które integrują n modułów zewnętrznych, naturalnym dla niego będzie ogromna liczba testów
+    integracyjnych, natomiast testów jednostkowym oraz e2e nie będzie za duża, wizualizacja będzie miał kształt rombu/diamentu
+  - moduł fasadowy - moduł, który oferując stosunkowo wiele możliwości dla użytkownika, tak naprawdę spłaszcza je do niewielu 
+    sposobów interakcji z modułami lężącymi u podstawy, naturalnym dla tego rodzaju modułów jest to, że piramida testów jest odwrócona
+    do góry nogami
+
+Podsumowanie:
+  - nie zawsze musimy dążyć do najczęściej spotykanej piramidy testów
+  - złożoność modułu definiuje strukturę testów, można ją po raz pierwszy określić po przyjęciu stylu architektonicznego dla modułu,
+    jeśli moduł ma np. architekturę heksagonalną (idealną dla oprogramowania wysokiej złożoności biznesowej), to od razu widać, że
+    zastosujemy typową piramidę testów; w przypadku architektury warstwowej (dla prostego CRUDa), od razu widać, że liczba testów
+    każdego rodzaju będzie podobna
