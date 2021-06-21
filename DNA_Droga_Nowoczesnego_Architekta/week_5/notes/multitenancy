@@ -1,0 +1,66 @@
+Co to jest multitenancy?
+  - tenant:
+    - organizacja 
+    - konto klienta/użytkownik
+  - systemu multitenancy pozwalają na jednoczesną obsługę wielu tenantów w ramach jednego wdrożenia
+
+Zalety multitenancy:
+  - obniża koszty, przez lepsze wykorzystanie zasobów
+  - przyspiesza wdrażania kolejnych klientów
+  - upraszcza utrzymanie
+  - daje lepsze możliwości monitoringu
+
+Wyzwania multitenancy:
+  - bezpieczeństwo - nie możemy wymieszać danych różnych użytkowników
+  - rozmiar źródeł danych
+  - stabilność / utrzymywalność
+
+Model single tenant - każdy z użytkowników ma własny system, własną bazę danych, wszystko mają własne
+
+Wzorce multitenancy:
+  - przy wyborze wzorca poruszamy przeciwstanymi suwakami:
+    - skala systemu (ilu tenantów) - im więcej użytkowników tym ciężej izolować dane
+    - izolacja danych - im większa oczekiwana izolacja danych, tym ciężej będzie utrzymać bardzo wielu użytkowników
+  - shared schema
+  - schema per tenant
+  - database per tenant
+
+Shared schema:
+  - dane wszystkich tenantów trzymamy w jednym schemacie
+  - izolacja na poziomie wiersza (RLS - Row Level Security) poprzez tenant id, każdy wiersz posiada wspomniane tenant id
+  - zalety:
+    - proste dodawanie tenantów
+    - mała złożoność operacyjna
+    - łatwa analiza danych
+  - wady:
+    - baza rośnie bardzo szybko
+    - ciężko odtworzyć backup jedynie wybranego tenanta
+    - trzeba "pilnować się" w kwestii bezpieczeństwa (kod + RLS)
+    - utrudniona izolacja kryptograficzna
+
+Schema per tenant:
+  - dane każdego tenanta trzymamy w osobnym schemacie
+  - zalety:
+    - nie trzeba pilnować RLS
+    - mała złożoność operacyjna
+    - lepsza skalowalność bazy
+  - wady:
+    - utrudnione dodawanie nowych tenantów
+    - trudniejsza analiza danych
+    - nadal występuje problem hałaśliwego sąsiedztwa - jeśli jeden tenant bardzo mocno użytkowuje swoją bazę, będzie to dotykać każdego
+
+Database per tenant:
+  - dane każdego tenanta trzymane są w osobnej bazie danych
+  - zalety:
+    - bardzo dobra izolacja danych
+    - dobra skalowalność bazy
+    - możliwość wyeliminowania sąsiedztwa
+    - niezależne zarządzanie kopiami zapasowymi
+  - wady:
+    - kosztowne dodawanie nowych tenantów
+    - duża złożoność operacyjna
+    - ciężko zarządzać pulami połączeń
+
+Model hybrydowy:
+  - różne moduły i różni klienci zazwyczaj mają różne charakterystyki
+  - warto rozważyć silniejszą izolacją jako opcję premium

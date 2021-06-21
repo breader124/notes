@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="config-server" />
+        <module name="pipesandfilters" />
+        <module name="hexagonal" />
+        <module name="microkernel-app" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="app-arch-ref-project" target="1.8" />
+      <module name="config-server" target="11" />
+      <module name="hexagonal" target="11" />
+      <module name="microkernel" target="11" />
+      <module name="microkernel-app" target="11" />
+      <module name="pipesandfilters" target="11" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="config-server" options="-parameters" />
+      <module name="hexagonal" options="-parameters" />
+      <module name="microkernel" options="-parameters" />
+      <module name="microkernel-app" options="-parameters" />
+      <module name="pipesandfilters" options="-parameters" />
+    </option>
+  </component>
+</project>

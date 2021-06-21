@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/app-arch-ref-project.iml" filepath="$PROJECT_DIR$/app-arch-ref-project.iml" />
+      <module fileurl="file://$PROJECT_DIR$/microkernel/config-server/config-server.iml" filepath="$PROJECT_DIR$/microkernel/config-server/config-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hexagonal/hexagonal.iml" filepath="$PROJECT_DIR$/hexagonal/hexagonal.iml" />
+      <module fileurl="file://$PROJECT_DIR$/microkernel/microkernel.iml" filepath="$PROJECT_DIR$/microkernel/microkernel.iml" />
+      <module fileurl="file://$PROJECT_DIR$/microkernel/microkernel-app/microkernel-app.iml" filepath="$PROJECT_DIR$/microkernel/microkernel-app/microkernel-app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pipesandfilters/pipesandfilters.iml" filepath="$PROJECT_DIR$/pipesandfilters/pipesandfilters.iml" />
+    </modules>
+  </component>
+</project>

@@ -1,0 +1,31 @@
+Wprowadzanie architektury:
+  - bariery:
+    - brak wiedzy
+    - wiele opcji implementacyjnych
+    - brak czasu
+
+Projekt referencyjny:
+  - zrobionu zawczasu umożliwia:
+    - bezpieczne eksperymentowanie
+    - prowadzenie dyskusji
+    - gromadzenie wiedzy
+
+Zadanie:
+  - przygotowanie projektu referencyjnego
+    - dowolna domena
+    - łatwo dostępny
+    - dobrze opisany
+    - techniczne jak najbliższy produkcji
+  - implementacja szkieletów
+  - konsultacje zespołowe
+
+Referencyjne implementacje architektur:
+  - porty i adaptery
+  - mikrojądro
+  - pipes and filters
+
+Konsultacje zespołowe:
+  - przedstaw idee projektu referencyjnego
+  - pokaż przygotowany projekt 
+  - daj czas na zapoznanie się
+  - zbierz feedback
