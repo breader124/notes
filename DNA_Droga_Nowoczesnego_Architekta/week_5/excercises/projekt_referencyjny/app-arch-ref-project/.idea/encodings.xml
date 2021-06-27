@@ -6,11 +6,6 @@
     <file url="file://$PROJECT_DIR$/microkernel/config-server/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/microkernel/microkernel-app/src/main/kotlin" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/microkernel/microkernel-app/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/microkernel/src/main/kotlin" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/microkernel/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/pipesandfilters/src/main/kotlin" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/pipesandfilters/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/kotlin" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
   </component>
 </project>

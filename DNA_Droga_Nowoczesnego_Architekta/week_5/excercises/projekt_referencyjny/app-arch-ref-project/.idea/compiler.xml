@@ -8,16 +8,16 @@
         <outputRelativeToContentRoot value="true" />
         <module name="config-server" />
         <module name="pipesandfilters" />
-        <module name="hexagonal" />
         <module name="microkernel-app" />
+        <module name="hexagonal" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="app-arch-ref-project" target="1.8" />
-      <module name="config-server" target="11" />
-      <module name="hexagonal" target="11" />
-      <module name="microkernel" target="11" />
-      <module name="microkernel-app" target="11" />
+      <module name="config-server" target="1.8" />
+      <module name="hexagonal" target="1.8" />
+      <module name="microkernel" target="1.8" />
+      <module name="microkernel-app" target="1.8" />
       <module name="pipesandfilters" target="11" />
     </bytecodeTargetLevel>
   </component>
