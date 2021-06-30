@@ -1,0 +1,7 @@
+ADR dla architektury aplikacyjnej, zwrócić uwagę na:
+  - rodzaj domeny
+  - moduł płytki czy głęboki
+  - rodzaj złożoności
+  - potencjalne wektory zmian
+
+Wybrany projekt: centralna faktura z tygodnia czwartego

@@ -8,6 +8,9 @@
         <option value="$PROJECT_DIR$/microkernel/pom.xml" />
         <option value="$PROJECT_DIR$/microkernel/config-server/pom.xml" />
         <option value="$PROJECT_DIR$/microkernel/microkernel-app/pom.xml" />
+        <option value="$PROJECT_DIR$/pipesandfilters/pom.xml" />
+        <option value="$PROJECT_DIR$/pipesandfilters/MortgageInfoSource/pom.xml" />
+        <option value="$PROJECT_DIR$/pipesandfilters/mortgageinfosource/pom.xml" />
       </list>
     </option>
   </component>

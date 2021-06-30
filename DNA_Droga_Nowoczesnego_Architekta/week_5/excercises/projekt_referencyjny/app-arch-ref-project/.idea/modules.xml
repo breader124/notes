@@ -7,6 +7,7 @@
       <module fileurl="file://$PROJECT_DIR$/hexagonal/hexagonal.iml" filepath="$PROJECT_DIR$/hexagonal/hexagonal.iml" />
       <module fileurl="file://$PROJECT_DIR$/microkernel/microkernel.iml" filepath="$PROJECT_DIR$/microkernel/microkernel.iml" />
       <module fileurl="file://$PROJECT_DIR$/microkernel/microkernel-app/microkernel-app.iml" filepath="$PROJECT_DIR$/microkernel/microkernel-app/microkernel-app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pipesandfilters/mortgageinfosource/mortgageinfosource.iml" filepath="$PROJECT_DIR$/pipesandfilters/mortgageinfosource/mortgageinfosource.iml" />
       <module fileurl="file://$PROJECT_DIR$/pipesandfilters/pipesandfilters.iml" filepath="$PROJECT_DIR$/pipesandfilters/pipesandfilters.iml" />
     </modules>
   </component>

@@ -5,16 +5,14 @@
 
     <parent>
         <groupId>com.breader</groupId>
-        <artifactId>app-arch-ref-project</artifactId>
-        <version>1.0-SNAPSHOT</version>
+        <artifactId>pipesandfilters</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>pipesandfilters</artifactId>
+    <artifactId>mortgageinfosource</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>pipesandfilters</name>
+    <name>mortgageinfosource</name>
     <description>Demo project for Spring Boot</description>
-
-    <packaging>pom</packaging>
 
     <properties>
         <java.version>11</java.version>
@@ -23,7 +21,11 @@
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter</artifactId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.module</groupId>
+            <artifactId>jackson-module-kotlin</artifactId>
         </dependency>
         <dependency>
             <groupId>org.jetbrains.kotlin</groupId>
@@ -33,19 +35,10 @@
             <groupId>org.jetbrains.kotlin</groupId>
             <artifactId>kotlin-stdlib-jdk8</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.kafka</groupId>
-            <artifactId>spring-kafka</artifactId>
-        </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.kafka</groupId>
-            <artifactId>spring-kafka-test</artifactId>
             <scope>test</scope>
         </dependency>
     </dependencies>

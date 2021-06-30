@@ -1,0 +1,26 @@
+Decyzja: Wybór architektury aplikacynej dla systemu zbierającego, opracowującego i przekazującego faktury do Ministerstwa
+
+Kontekst:
+  - rodzaj domeny: oprogramowanie na potrzeby sektora publicznego, nie zmieniające się bardzo szybko, ponieważ wektorem zmian
+    jest ustawa, która potrzebuje czasu na wejście w życie
+  - rodzaj modułu: płytki, system nie będzie zawierał skomplikowanej logiki biznesowej w kontekście każdego zadania 
+    przetwarzania, istnieć będzie za to wiele integracji z zewnętrznymi systemami
+  - rodzaj złożoności:
+    - niezawodność
+    - przetwarzanie
+    - bezpieczeństwo
+    - mnogość integracji
+  - potencjalne wektory zmian:
+    - ustawa - powolny
+    - biznes wymagający nowej funkcjonalności - możliwie szybki, należy położyć nacisk na rozszerzalność
+
+Decyzja: architektura pipes and filters, gdzie poszczególne jednostki wymagające dużej ilości integracji mogą dodatkowo
+         przyjąć wewnętrzną architekturę heksagonalną
+Data: 30.06.2021
+
+Motywacja:
+  - zależy nam na dużej skalowalności i konfigurowalności
+  - pewne elementy systemu opłaca się uruchamiać tylko na 15 minut w ciągu dobry
+  - chcemy zminimalizować potencjalny wektor ataku, wobec czego publicznie wystawimy tylko jedną jednostkę 
+  - z uwagi na połączenie jednostek za pomocą kolejek wiadomości możemy zminimalizować temporal coupling, co podkreśla
+    możliwość uruchomienia tylko pewnych części systemu w określonym czasie
