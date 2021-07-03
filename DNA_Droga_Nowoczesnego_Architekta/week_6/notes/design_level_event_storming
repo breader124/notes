@@ -1,0 +1,42 @@
+Notacja Design Level Event Storming nie jest sztywna, można ją modyfikować na potrzeby danej organizacji.
+
+Zakres esploracji:
+  - po Big Picture Event Storming mamy propozycję Bounded Contextów
+  - Design Level bada Bounded Contexty
+
+DLES bada problem wertykalnie, a nie horyzontalnie, tak jak jego poprzednik. Z uwagi na to nie potrzebujemy tak wielu osób
+podczas samej sesji, w zupełności wystarczający będą tutaj eksperci domenowi i zespół deweloperski.
+
+Elementy DLES:
+  - Events - reprezentują zmiany stanu, wyrażenie ich w czasie przeszłym skutkuje tym, że myślimy o zmianach stanu w systemie,
+    a nie o jego strukturze. (pomarańczowe karteczki, przylepiamy jako pierwsze w chronologicznej kolejności)
+  - Commands - żądanie wysłane przez np. użytkownika albo inny system. Nie wszystkie Eventy są wywoływane przez Commandsy,
+    natomiast pewna ich część na pewno tak właśnie się rozpoczyna (niebieskie karteczki, przylepiamy przed eventami, które
+    wywołują)
+  - Actors - ludzie bądź zewnętrzne systemu (żółte karteczki, przyklejamy przed komendami, żeby wiedzieć, jacy aktorzy 
+    są odpowiedzialni za jakie interakcje)
+  - Business rules - warunki sprawdzające, czy reguły mają sens biznesowy (ciemnożółte karteczki mające postać warunku,
+    przylepiane za komendą, ale przed eventem, aby sprawdzić czy dana komenda na pewno takowy event spowoduje)
+  - Policies - polityki mówią nam, które eventy mogą być zainteresowane danym zdarzeniem (fioletowe karteczki, przyklejane po
+    evencie, który jest interesujący dla wspomnianego wcześniej innego systemu)
+  - Read models - pytania, na które odpowiada nasz system, jest to reprezentacja stanu systemu, powodem jego obecnego wyglądu
+    są wszystkie wysłane wcześniej komendy (zielone karteczki)
+
+Jak to wygląda razem?
+
+                                 zewnętrzny system -
+                                                   |
+                                                   \/
+  aktor -> komenda -> zasady biznesowe -> zdarzenie domenowe -> polityka -> komenda (wołana dla innego systemu)
+    |                                                        |
+    /\                                                       |
+    |                                                        |
+    - widok <-------------------------------------------------
+
+Za pomocą powyższego schematu możemy opisywać większość przepływów naszego systemu, jest on zrozumiały przez biznes,
+programistów oraz architektów.
+
+Czemu DSEL jest przydatny?
+  - szybkie odkrywanie języka
+  - wizualizacja
+  - eksploracja

@@ -1,0 +1,10 @@
+BDD jest komplementarne do DLES
+
+BDD:
+  - technika zwiększając zrozumienie problemu biznesowego
+  - zautomatyzowane przyłady - służą jako żywa dokumentacja
+  - Cucumber, Spock, JBehave...
+
+Co mi daje BDD w zastanym systemie?
+  - zwiększenie zrozumienia
+  - możliwość refaktoringu

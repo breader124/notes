@@ -5,6 +5,4 @@ import org.springframework.boot.context.properties.ConstructorBinding
 
 @ConstructorBinding
 @ConfigurationProperties(prefix = "config.kernel")
-data class KernelExternalConfig(
-    var processor: String = ""
-)
+data class KernelExternalConfig(val processor: String)

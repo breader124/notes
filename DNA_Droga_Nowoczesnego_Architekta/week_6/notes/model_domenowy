@@ -1,0 +1,23 @@
+Model domenowy:
+  - model domenowy to rozwiązanie jakiegoś problemu
+  - model nie odzwierciedla rzeczywistości
+  - zawiera tylko wybrane aspekty, nie specyfikuje dokładnie szczegółów, które nie są istotne na danym etapie projektowania
+  - używa Ubiquitous Language
+
+Według Martina Fowlera, model domenowy jest implementacyjnym wzorcem zawierającym dane oraz zachowanie modułu.
+
+Według Erica Evansa model domenowy jest zbiorem konceptów, które służą wspólnemu zrozumieniu modelu domenowego, taki model
+może mieć różne reprezentacje, od opisu po angielsku do kodu źródłowego.
+
+Model domenowy w DNA:
+  - rozwiązanie problemu domenowego
+  - zbiór konceptów służących wspólnemu zrozumieniu
+  - różne reprezentacje (np. implementacja w kodzie)
+
+Implementacja jest reprezentacją modelu w kodzie i:
+  - zawiera dane, czyli stan
+  - zawiera zachowania
+  - nie zawiera implementacji integracji ze światem zewnętrznym
+
+Biorąc pod uwagę powyższe informacje, idealną architekturą aplikacyjną jest architektura heksagonalna, ponieważ dobrze oddziela
+ona podstawowe koncepty, które wynikają z domeny od nieistotnych aspektów, takich jak komunikacja z bazą czy zewnętrznymi API.
