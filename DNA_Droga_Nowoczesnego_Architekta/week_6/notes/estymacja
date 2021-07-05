@@ -1,0 +1,67 @@
+ruch #NoEstimates:
+  - estymacje są nieprecyzyjne - nie da się zawsze idealnie wycenić zadań i jest to zupełnie naturalne
+  - dostarczona wartość jest istotniejsza niż koszt - skupmy się na wartości biznesowej, mając budżet na ileś czasu, skupmy się na
+    dostarczeniu maksymalnej wartości, a nie estymacji
+  - estymacja prowadzi do dysfunkcyjnych zachowań - zaczynamy się spieszyć, obcinamy jakość itd.
+
+ruch #YesEstimates:
+  - estymacje mogą być precyzyjne - prawdopodobnie nie zawsze, ale jednak da się to zrobić
+  - szacowanie kosztu jest istotne - w wielu projektach nie mamy określonego czasu, a listę funkcjonalności
+  - brak estymat alienuje biznes - dla biznesu brak estymat jest bardzo niewygodnym rozwiązaniem
+
+Kiedy estymacja działa?
+  - gdy robiliśmy coś podobnego wcześniej
+  - gry rozumiemy jak coś ma działać
+  - gdy zakres prac jest mały
+  - gdy w międzyczasie nie zmieniają się wymagania
+  - gdy nie musimy czekać na innych
+
+Ryzyka i ich mitygacje:
+  - coś nowego:
+    - rodzaj:
+      - nowa technologia
+      - innowacyjne rozwiązanie
+      - nowe atrybuty jakościowe
+    - mitygacja - czasami zamiast brać problem całościowo staramy się go najpierw zdekomponować, starając się zauważyć podobne style,
+      elementy konstrukcyjne czy wzorce, podział taki potencjalnie pozwoli nam zakwalifikować problem bo jednej z 5 poniższych kategorii:
+      - wszyscy już coś takiego zrobiliśmy (#YesEstimate)
+      - ktoś w naszym zespole to zrobił (#YesEstimate)
+      - ktoś w naszej firmie to zrobił (#YesEstimate)
+      - ktoś to zrobił, ale w innym kontekście (#NoEstimate, ale robimy timeboxa i próbujemy wrócić do jednej z pierwszych trzech)
+      - nikt tego wcześniej nie zrobił (#NoEstimate, ale robimy timeboxa i próbujemy wrócić do jednej z pierwszych trzech)
+  - luki w wiedzy:
+    - rodzaj:
+      - ogóle wymagania
+      - braki w wymaganiach, których nie widać
+      - niezrozumienie po stronie zespołu
+    - mitygacja:
+      - uwidacznianie wiedzy poprzez wykorzystanie np. ES, BDD czy metryk
+  - duży zakres prac:
+    - rodzaj:
+      - zadania, które wydają się niepodzielne
+      - rozwiązania, które mocno ingerują w istniejący kod
+    - mitygacja:
+      - bounded context - dzięki nim jesteśmy w stanie podzielić elementy, które wcześniej wydawały sie niepodzielne
+      - elementy konstrukcyjne - w obrębie BC składamy moduł ze znanych elementów konstrukcyjnych, rozwiązujemy wtedy bardzo małe, proste
+        problemy na drodze do zaimplementowania dużej funkcjonalności
+  - zmiana wymagań:
+    - mitygacja - bolą nas jedynie zmiany wykraczające poza scope naszej funkcjonalności:
+      - subdomena - jeśli nasz model naśladuje biznes, to jest mała szansa, że zmiany wyjdą poza biznes, a co za tym idzie, poza nasz
+        system
+      - bounded context - dzięki podzieleniu całego systemu na małe, autonomiczne części, nadchodzące zmiany są odpowiednio zlokalizowane
+        i nie dotykają całego systemu
+  - czekanie:
+    - rodzaj:
+      - podczas estymacji bierzemy pod uwagę głównie czas pracy, nie estymujemy czasu, które spędzimy czekając
+    - mitygacja:
+      - bounded context - jeśli nasze BC są odpowiednio autonomiczne, to czekanie w obrębie innych komponentów nie dotyka nas za mocno
+      - prawo Conwaya - jeśli pokryjemy biznes/strukturę zespołu/system w odpowiedni sposób, to istnieje mała szansa, że ktoś przychodzący
+        z zewnątrz wywoła bardzo długi czas oczekiwania po naszej stronie
+      - automatyzacja - mając odpowiednio zaimplementowane: pipeliny, skrypty, monitoring itd. to zmniejszamy ryzyko pożarów, które mogą
+        nas wyciągnąć z naszego wiru pracy
+
+Podsumowanie:
+  - należy wiedzieć, kiedy nie estymować
+  - używać znanych elementów konstrukcyjnych, dzięki dekompozycji problemów można zapewniać precyzyjne estymaty
+  - szukaj autonomii, jest ona kluczowa w minimalizowaniu wpływu ryzyk na nasz projekt 
+  - skracaj cykl feedbacku
