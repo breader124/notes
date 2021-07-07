@@ -1,0 +1,32 @@
+Model anemiczny:
+  - mapujemy model danych do klas, jeden do jednego
+  - można to zrobić automatycznie (mapper obiektowo-relacyjny)
+  - same klasy i pola, nie ma mowy o zachowaniach 
+  - zachowania znajdują się w warstwie wyżej, operują one na warstwie danych za pomocą DAO (Data Access Object)
+  - operujemy na getterach i setterach, co przekłada się na operowanie bezpośrednio na wierszach bazy danych
+  - można to łatwo przekształcić na prosty skrypt operujący bezpośredno na bazie za pomocą SELECT i INSERT (wzorzec Transaction Script)
+  - można to traktować jako modernizację Transaction Scripta
+
+Zalety modelu anemicznego:
+  - większa czytelność
+  - zarządzanie transakcjami out of the box, jeśli korzystami z jakiegoś systemu ORM
+  - blokowanie optymistyczne
+
+Wady modelu anemicznego:
+  - abstrakcja może zabrać dostęp do specyficznych funkcji
+  - problem z operacjami typu bulk (wyciągnij wszystko, zmień jeden parametr i zapisz z powrotem albo zwróć wynik, taka operacja jest niesamowicie
+    kosztowna)
+
+Bogaty model domenowy:
+  - model, który enkapsuluje wszystkie dane, jedyna opcja dostępu do nich to przejście przez reguły
+
+Dobór rozwiązania:
+  - transaction script:
+    - operacje typu "bulk"
+    - złożone odczyty
+  - anemiczny model domenowy:
+    - logika prosta
+    - logika rzadko jest zmieniana
+  - bogaty model domenowy:
+    - logika bogata
+    - często zmieniana

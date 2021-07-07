@@ -1,0 +1,53 @@
+Warunki sprzyjające powstawaniu niespójności danych przy omyłkowym zastosowaniu anemicznego modelu danych:
+  - wszyscy mają dostęp do wszystkich tabelek
+  - design wspiera bezpośrednią modyfikacją wybranych danych
+  - wiedza o zachowaniu spójności leży po stronie programisty
+
+Konflikty pod kątem transakcyjności pojawiające się przy omyłkowym zastosowaniu anemicznego modelu danych:
+  - operacje niezwiązane biznesowo są wzajemnie blokowane
+  - pogarsza to skalowalność oraz UX
+
+Powstałe problemy:
+  - możliwa niespójność
+  - wzajemne blokowane niezwiązanych biznesowo transakcji, a co za tym idzie, mniejsza skalowalność
+  - czytelność kodu
+
+
+Niespójność - rozwiązanie:
+  - związanie danych oraz zachowań razem, dzięki temu każda modyfikacja danych jest efektem wywołania metody biznesowej
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Niezmienniki to reguły biznesowe, które muszą być spełnione, co by się nie działo, nie możemy sobie tutaj pozwolić na eventual consistency.
+
+Agregaty to byty, które wyznaczają granice spójności, ponadto:
+  - są to kolekcje obiektów domenowych, które traktowane są jako spójna całość i granica transakcji
+  - sprawadzają niezmienniki systemu
+  - komunikacja z agregatem jest możliwa tylko i wyłącznie przez obiekt zwany korzeniem (ang. Aggregate Root)
+  - agregaty nie mają referencji do innych agregatów, ponieważ w innym wypadku znowu będzie blokować transakcje
+  - modyfikujemy jeden agregat w transakcji
+  - są jednostkami persystencji, co oznacza, że są zapisywane w całości, a to przekłada się na możliwość partycjonowania (skalowalność)
+
+Dobre modelowanie Bounded Contextów i agregatów zmniejsza potrzebę relacji pomiędzy danymi!
+
+Persystencja agregatów:
+  - wzorzec repozytorium
+  - baza danych relacyjna
+  - baza danych dokumentowa (zwalcza object-relational impedance mismatch)
+
+Agregaty krok po kroku:
+  - enkapsuluj zmiany stanu pod biznesową komendą
+  - w komendzie obsługuj tylko prawdziwe niezmienniki
+  - grupuj wzajemnie wpływające na siebie komendy w jeden obiekt
+  - nazwij agregat
+  - zapewnij komunikację tylko przez korzeń
+  - upewnij się o braku referencji do innych agregatów
+  - zapewnij optymistyczne blokowanie
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Wnioski:
+  - gdy logika jest złożona i często zmieniana to budujemy bogaty model domenowy
+  - jeśli system na wielu współpracujących użytkowników:
+    - many writers vs. single writer
+    - szukaj małych agregatów

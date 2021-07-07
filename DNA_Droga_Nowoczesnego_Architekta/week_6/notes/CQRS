@@ -1,0 +1,50 @@
+CQRS rozgranicza write od readu modelu, komendy (Commands) jako skutek swojego działania wywołują zdarzenie poprzedzone sprawdzeniem reguł biznesowych,
+które to zdarzenia zmieniają stan naszej bazy. Zapytania (Queries) jedynie odczytują dane z bazy danych, na skutek ich działania nic się nie zmienia,
+co oznacza, że szansa wprowdzanie niespójności na skutek ich działania jest równa 0.
+
+CQS (Command Query Separation):
+  - komenda, która zmienia stan i nic nie zwraca
+  - query, które nic nie zmiania i zwraca stan
+  - CQRS jest rozwinięciem tej zasady stworzonej przez Grega younga
+
+CQRS jako wzorzec:
+  - rozwinięcie CQS do poziomu systemowego
+  - stosowanie w obrębie Bounded Contextów
+
+Co jeśli nasze View potrzbuje ogromu danych z różnych tabel i liczba joinów chce nas zabić?
+  - wprowadzamy zdenormalizowany model danych, który musimy synchronizować poprzez jedno z poniższych rozwiązań:
+    - widoki zmaterializowane w bazie - najprostsze w systemach zastanych, ale słabo przenośne i słabo testowalne
+    - synchronizacja bezpośrednia (jedna komenda aktualizuje docelową tabelę i nasz zdenormalizowany model)
+    - synchronizacja zdarzeniami (jednak komenda aktualizuje docelową tabelę i wysyła zdarzenia, które asynchronicznie aktualizuje zdenormalizowany 
+      model) - jest to bardzo fajna metoda, która jednak wprowadza nową rodzinę problemów związanych z asynchronicznych przetwarzaniem
+
+Jak wprowadzić CQRS w legacy?
+  - wypisujemy logi SQL (generowane przez ORM)
+  - namierzamy problematyczne query
+  - implementujemy je jako natywne query
+  - wyrzucamy niepotrzebne mapowania z obiektów
+  - zastanawiamy się nad potrzebą cache, DTOs
+
+Aby uzyskać bardzo dużą skalowalność, możemy zastosować osobne bazy danych do read i write modelu, wtedy efektem działania komendy jest update
+jednej bazy i wygenerowane zdarzenie, którego efektem będzie asynchroniczne zapisanie danych w bazie stworzonej tylko do odczytu na potrzeby View.
+
+Eventual consistency:
+  - pod kątem samego wyświetlania danych, spójność końcowa jest natualna dla bardzo wielu domen, ostatecznie wiele z nich działało przed komputerami
+  - pod kątem podejmowania decyzji na podstawie wyświetlanych danych musimy przeprowadzić rozmowę z ekspertem domenowym
+  - należy jasno określić jaki jest czas synchronizacji, nawet może związać to SLA
+  - Read Your Own Writes - mój tweet może być widoczny dla innych po 5-10 s, ale jeśli dla mnie nie jest widoczny od razu, to uznaję, że system nie 
+    działa poprawnie i ponawiam swoje działanie, ostatecznie dodając więcej niż 1 tweeta o tym samym, taki problem możemy rozwiązać po stronie
+    frontendu
+
+One-way command:
+  - komenda trafiająca do systemu jest wysyłana asynchronicznie, frontend natychmiastowo reaguje komunikatem o sukcesie (wzrasta UX)
+  - system procesuje takową komendę i w momencie, kiedy wszystko jest ok nie mówi nic, a jeśli coś jest nie tak, to wysyła maila, że jednak
+    akcja została podjęta, ale zapisano jednak delikatnie inne dane (spada UX)
+  - aby zminimalizować ryzyko porażki, możemy najpierw ze strony frontendu zapytać naszego read modelu o pewne dane, a następnie na ich podstawie
+    wysłać komendę, nie znosi to ryzyka porażki, ale możliwe, że dostatecznie je minimalizuje
+
+Procesowanie komend w CQRS to szczegół implementacyjny, który może być wykonywany przez:
+  - agregaty
+  - anemiczny model danych
+  - command bus
+  - serwisy aplikacyjne

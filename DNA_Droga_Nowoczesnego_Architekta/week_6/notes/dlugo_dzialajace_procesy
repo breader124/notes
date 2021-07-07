@@ -1,0 +1,27 @@
+Proces lokalny:
+  - sekwencja akcji
+  - w obrębie jednego modułu
+  - są bezstanowe
+  - często są transakcyjne
+
+Długo działające procesy:
+  - posiadają stan
+  - explicite modelują czas
+  - istnieją nieprzewidywalnie długo
+
+Procesy w DNA dzielimy na:
+  - lokalne
+  - długo żyjące, które implementujemy przy pomocy:
+    - SAGA
+    - Process Manager
+
+Narzędzia, które pomagają implementować Long Running Processes:
+  - biblioteki
+  - workflow engines
+  - NServiceBus (tylko .NET)
+  - Spring Batch?
+
+Podsumowanie:
+  - jeśli czas jest istotny, należy do zamodelować, musi być go widać
+  - polityki są indykatorami
+  - implementacja LRP jest nietrywialna
