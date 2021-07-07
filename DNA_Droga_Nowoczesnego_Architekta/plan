@@ -1,0 +1,12 @@
+5-11:
+  - scheduled: design level
+  - available: design level, tactical DDD, modularization
+12-18:
+  - scheduled: tactical DDD
+  - available: tactical DDD, modularization, REST
+19-25:
+  - scheduled: modularization, REST
+  - available: modularization, REST, persistency
+26-01:
+  - scheduled: persistency, event sourcing
+  - available: persistency, event sourcing
