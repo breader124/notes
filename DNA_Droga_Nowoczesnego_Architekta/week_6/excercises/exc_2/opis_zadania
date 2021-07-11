@@ -1,0 +1,28 @@
+Co należy zrobić?
+  - przeprowadź sesję Design Level
+  - zakończ na modelowaniu
+    - znajdź ewentualne agregaty
+    - znajdź ewentualne miejsca na CQRS
+    - znajdź ewentualne polityki, sagi
+  - nie implementuj, to zostanie zrobione w następnym module
+
+Wymagania biznesowe:
+  - na ekranie do zakupu subskrybcji chcemy dodawać promocje:
+    - do niektórych zakupionych subskrybcji dodajemy darmowego e-booka
+    - subskrybcje są różne i nie są stałe, będą się zmieniały
+    - biznes definiuje, do której subskrybcji dodajemy e-booki (to jest zmienne)
+
+Use cases:
+  - n zakupionych sukbskrybcji kursów IT daje n e-booków dotyczących DDD (important note! dodanie kolejnego tego
+    samego produktu powoduje tylko zwiększenie licznika, a nie tworzenie nowej pozycji!)
+  - usunięcie z zakupu subskrycji powoduje automatyczne usunięcie wszystkich związanych z tą subkrybcją gratisów
+  - przywrócenie subskrybcji do zakupu oczywiście znowu doda gratisowego e-booka
+  - możemy do zakupu dodać kolejnego (n + 1) e-booka DDD, ale za każdego ponad n zapłacimy dodatkowo
+  - można też rzecz jasna usunąć gratisa i wziąc m darmowych gratisów, gdzie m < n && m >= 0
+  - można zmienić zdanie i ponownie dodać e-booka do zakupu i powinien on wskoczyć jako darmowy
+
+Założenia:
+  - dodajemy tę funkcję do działającego już systemu
+  - celowo nie został sprecyzowany np. interfejs użytkownika, trzeba się zastanowić jakie pytania zadać
+  - tylko modelowanie logiki biznesowej (bez bazy, bez UI)
+  - nie ma jednego dobrego rozwiązani, chodzi o ćwiczenie myślenia
