@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2021-07-12T23:33:20.477Z" agent="5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.114 Safari/537.36" etag="WqTvqkv8t-g4DY2BABI1" version="14.7.6" type="github">
+<mxfile host="app.diagrams.net" modified="2021-07-12T23:40:04.838Z" agent="5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.114 Safari/537.36" etag="a13ujKT-peyHzKIebmzZ" version="14.7.6" type="github">
   <diagram id="DU26KerLcMkYLFJ57TxS" name="Page-1">
     <mxGraphModel dx="1561" dy="1121" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -31,7 +31,7 @@
         <mxCell id="A_zzD7TGVRZAwlRohh-x-9" value="Client" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
           <mxGeometry x="151" y="220" width="30" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="A_zzD7TGVRZAwlRohh-x-11" value="Subscription has been added to cart" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+        <mxCell id="A_zzD7TGVRZAwlRohh-x-11" value="Subscriptions counter has been incremented" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
           <mxGeometry x="354" y="220" width="110" height="60" as="geometry" />
         </mxCell>
         <mxCell id="A_zzD7TGVRZAwlRohh-x-13" value="Remove subscription from cart" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
@@ -40,7 +40,7 @@
         <mxCell id="A_zzD7TGVRZAwlRohh-x-14" value="Client" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
           <mxGeometry x="151" y="320" width="30" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="A_zzD7TGVRZAwlRohh-x-16" value="Subscription has been removed from cart" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+        <mxCell id="A_zzD7TGVRZAwlRohh-x-16" value="Subscriptions counter has been decremented" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
           <mxGeometry x="354" y="320" width="110" height="60" as="geometry" />
         </mxCell>
         <mxCell id="A_zzD7TGVRZAwlRohh-x-18" value="Cart view" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
@@ -58,13 +58,13 @@
         <mxCell id="A_zzD7TGVRZAwlRohh-x-39" value="Subscription has free gift associated" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
           <mxGeometry x="627" y="220" width="110" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="A_zzD7TGVRZAwlRohh-x-40" value="Free gift has been added to cart as an entry" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+        <mxCell id="A_zzD7TGVRZAwlRohh-x-40" value="Free gifts counter has been incremented" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
           <mxGeometry x="764" y="220" width="110" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="A_zzD7TGVRZAwlRohh-x-41" value="Subscription had free gift associated" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+        <mxCell id="A_zzD7TGVRZAwlRohh-x-41" value="Subscription has free gift associated" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
           <mxGeometry x="627" y="320" width="110" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="A_zzD7TGVRZAwlRohh-x-42" value="Free gift entry has been removed from cart" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+        <mxCell id="A_zzD7TGVRZAwlRohh-x-42" value="Free gifts counter has been decremented" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
           <mxGeometry x="764" y="320" width="110" height="60" as="geometry" />
         </mxCell>
       </root>
