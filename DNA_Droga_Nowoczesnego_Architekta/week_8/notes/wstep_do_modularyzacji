@@ -1,0 +1,30 @@
+Czym jest łatwa zmiana?
+  - jasny zakres zmian
+  - zmiana nie wymusza kaskadowych zmian
+  - niska 'lepkość'
+
+Chcemy zapewnić 'ewolucyjność', która oznacza, że naszych celem jest utrzymanie możliwości ciągłego zapewniania
+wybranych driverów oraz ciągła możliwość dodawania nowych driverów.
+
+Jak osiągnąć ewolucyjność? Poprzez modularność!
+
+Modularność:
+  - moduły grupują logicznie związane ze sobą funkcje, zawężają one zakres zmian i pwooduje, że zmiany nie są
+    propagowane poza moduł
+
+Moduły a Bounded Contexty:
+  - BC grupują nam podziały lingwistyczne, wyznaczają granice danych jednostek
+  - moduły wprowadzają podziały logiczne wewnątrz BC, tak, aby oddzielić od siebie poszczególne funkcje 
+
+Zalety modeularności:
+  - łatwiejsze zrozumienie
+  - elastyczność, testowalność
+  - wymienialność, reużywalność
+  - zrównoleglenie prac
+
+Modularność nie jest celem samym w sobie, jest ona rozwiązaniem danego problemu, nie powinniśmy jej wprowadzać na
+siłę tam, gdzie nie jest potrzebna, ponieważ my tego chcemy.
+
+Nie da się wymyślić takiego podejścia do modularyzacji, która wspiera wszystkie możliwe wektory zmian, należy
+kierować się tym, aby tam, gdzie jest wiele podejść do modularyzacji, wybrać akurat to, które wspiera 
+najwięcej wspomnianych wektorów zmian.

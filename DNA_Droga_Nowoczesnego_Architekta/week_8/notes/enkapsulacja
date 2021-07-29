@@ -1,0 +1,20 @@
+Istnienie modułów nie oznacza, że system jest modularny!
+  - modularyzacja wymaga kontraktu
+  - brak kontraktu skutkuje brakiem modularyzacji, ponieważ zmiany będą propagować po systemie
+  - kontrakt nie musi skutkować modularyzacją, jest warunkiem koniecznym, ale nie wystarczającym
+
+Enkapsulacja:
+  - ukrywanie szczegółów (jak vs co)
+  - ale też ukrywanie tego, co zmienne
+  - zastosowanie na różnych poziomach, od obiektów, przez moduły po mikroserwisy
+
+Modularyzacja:
+  - wypisz ważne/trudne decyzje związane z designem
+  - takie, które mają duże szanse na zmianę
+  - projektuj moduły tak, żeby te decyzje enkapsulować
+
+Indykatory braku enkapsulacji:
+  - niepełna abstrakcja
+  - brak abtrakcji
+  - cieknąca abtrakcja
+  - niewykorzystana abstrakcja
