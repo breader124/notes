@@ -1,0 +1,40 @@
+GRASP - 9 wzorców mówiących jak dodawać nowe funkcjonalności do istniejących modułów
+
+GRASP - General Responsibility Assignment Software Patterns
+
+Odpowiedzialność modułu:
+  - wykonywanie (akcji, tworzenia nowych obiektów, koordynacji itd)
+  - wiedzy (o swoich danych, o innych obiektach, danych, które obiekt może policzyć itd)
+
+Wzorce:
+  - Controller:
+    - wejściowy obiekt obsługi akcji biznesowej
+    - np. serwis aplikacyjny
+    - pierwszy obiekt pod warstwą UI
+  - Creator:
+    - obiekty X tworzą obiekty Y jeśli: 
+      - X agreguje/zawiera Y
+      - X ściśle używa Y
+      - X ma wszystkie dane do stworzenia Y
+  - Indirection:
+    - zmniejszamy coupling poprzez wprowadzanie obiektów typu intermediate, dzięki niemu poszczególne moduły nie wiedzą o 
+      sobie, a pracę związaną z przekazywaniem informacji zajmuje się wspomniany obiekt intermediate
+    - przykłady: adapter, mediator, fasada, bridge
+  - Information expert:
+    - dodając nową odpowiedzialność, powinniśmy dodać ją w miejscu, gdzie jest najwięcej informacji potrzebnych do 
+      zrealizowania nowej odpowiedzialności
+    - nie powinniśmy martwić się dodawaniem kolejnych rzeczy, ponieważ nie łamiemy wtedy żadnych zasad, nawet jeśli dana 
+      klasa rzeczywiście rośnie, mimo wszystko są to rzeczy, do któryh robienia ta klasa jest stworzona
+  - High cohesion
+  - Loose coupling
+  - Polymorphism:
+    - dla różniących się zachowań użyj polimorfizmu
+    - klient abstrakcji nie używa if-else
+    - klient nie sprawdza konkretnej implementacji
+  - Protected variations:
+    - ukrywamy rzeczy zmienne
+    - enkapsulacja
+  - Pure fabrications:
+    - "sztuczny obiekt", np. repozytorium czy serwis domenowy nie istnieje w modelu domenowym
+    - zwiększa kohezję
+    - zmniejsza coupling

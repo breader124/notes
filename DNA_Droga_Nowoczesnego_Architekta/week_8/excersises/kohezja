@@ -1,0 +1,4 @@
+Znajdź moduł/klasę, której kohezję można zwiększyć:
+  - może kryją się tam różne odpowiedzialności?
+  - jakie są powody zmiany tej klasy/modułu?
+  - jaka jest historia tej klasy/modułu?

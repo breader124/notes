@@ -1,0 +1,54 @@
+Idealne moduły mają niski coupling i wysoką kohezję! Nie ma jednak takiej opcji, żeby nie było żadnych wiązań.
+
+Coupling jest miarą tego, jak bardzo jedne moduły zależą od innych.
+
+Rodzaje couplingu:
+  - content coupling - jeden moduł rozmawia z wnętrzem innego, polega na jego implementacji
+  - common coupling - dwa moduły są zależne od jakiegoś jeszcze innego
+  - external coupling - dwa moduły polegają na jakimś zewnętrznym mechanizmie / urządzeniu
+  - control coupling - jeden moduł mówi innemu jak ma wykonywać swoją pracę, np. przekazując flagę
+  - stamp coupling - przekazujemy całe struktury, natomiast inny moduł korzysta tylko z niektórych pól
+  - data coupling - przekazujemy dokładnie tyle, ile jest potrzebe do wykonania operacji i nic więcej
+
+Coupling - tight vs. loose:
+  - mocny (tight) - nie ma enkapsulacji, bardzo zwiększa propagowanie się zmian
+  - luźny (loose) - polegamy na abstrakcjach, coupling jest właśnie do abstrakcji
+
+Coupling - explicit vs. implicit:
+  - explicit - widać go na pierwszy rzut oka
+  - implicit - nie widać go na pierwszy rzut oka, istnieją zależności logiczne, lub co gorsza, czasowe
+
+Semantic coupling - moduł polega nie ma syntaktycznych elementach, ale na konceptach, o których wie inny moduł, przykładem
+może być coupling polegający na algorytmach szyfrowania/deszyfrowania. Moduł może odszyfrować tylko wiadomość zaszyfrowaną
+w konkretny sposób, żadnej innej nie da rady odczytać. Na zewnątrz nie widać takiego powiązania pomiędzy modułami, są
+one ukryte dopiero w ich szczegółach implementacyjnych.
+
+Logical coupling - zmiany w jednym kodzie powodują zawsze też zmiany w innym, taki coupling można wykryć przegladając
+historię commitów.
+
+Metryki couplingu:
+  - liczba połączeń (wejściowe vs. wyjściowe)
+  - niestabilność (wyjściowe/(wejściowe + wyjściowe))
+
+Ogóla uwaga, lepiej zależeć od 5 wolno zmieniających się modułów, niż od 2 zmieniających się codziennie.
+
+Design for removability jest podejściem wspierającym:
+  - minimalizację couplingu
+  - modularyzację
+  - minimalizację czas na przepisanie modułu
+
+Law of Demeter:
+  - dobra praktyka projektowania
+  - zakłada brak wiedzy o detalach innych modułów/obiektów
+  - wspiera loose coupling
+
+Coupling na poziomie systemu:
+  - temporal - związanie czasem, dwie usługi zawsze muszą być dostępne razem
+  - spatial - związanie przestrzenią, usługi muszą dokładnie wiedzieć o swoim położeniu
+  - platform - związanie platformą, usługi komunikują się korzystając technologii specyficznej dla danego języka
+
+Podsumowanie:
+  - coupling powinien być jawny
+  - coupling jest nieunikniony
+  - loose coupling jest drogą do modularyzacji
+  - loose coupling to sukbiektywne określenie, jego natura może się diametralnie różnić w danym systemie

@@ -1,0 +1,25 @@
+Kohezja jest miarą tego, jak elementy danego modułu dobrze do niego przynależą.
+
+Kohezja:
+  - miara dobrego pogrupowania elementów w moduły
+  - wysoka kohezja wspiera modularyzację
+  - redukuje coupling pomiędzy modułami
+
+Typy kohezji (od najmniej do najbardziej pożądanej):
+  - coincidental - dwie funkcje wpadły w jeden moduł i to wszystko, co je wiąże (utilsy/commonsy)
+  - logical - wydaje się, że jest logiczne powiązanie, ale po przyjrzeniu się okazuje się, że nie ma żadnego związku
+  - temporal - związana z czasem, dwie funkcje są w danym module, bo wykonują się one w podobnym czasie
+  - procedural - funkcje wpadły do jednego modułu, bo są częścią danej procedury
+  - communicational - w module są funkcje, które korzystają z tym samych struktur danych
+  - sequential - w module mamy funkcje, które są powiązane tak, że jedna wykorzystuje to, co zwróciła inna do swojego 
+                 poprawnego działania
+  - functional - kohezja związana z funkcjonalnością, funkcje wpadły do danego modułu, ponieważ razem tworzą daną funkcję
+                 biznesową
+
+Metryki:
+  - LCOM (Lack of Cohesion of Methods)
+  - brak kohezji metod klasy
+
+LCOM polega na policzeniu par zbiorów, które są względem siebie rołączne, a następnie na policzeniu par, które mają część
+wspólną. Następnie liczby te od siebie odejmujemy. Minimalnym wynikiem jest 0, które jest najlepszym możliwym rezultatem,
+kiedy natomiast otrzymujemy dużą liczbę naturalną, to mówimy o wysokim współczynniku braku kohezji.

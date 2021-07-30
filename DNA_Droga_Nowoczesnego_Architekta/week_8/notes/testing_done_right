@@ -1,0 +1,39 @@
+Znane problemy:
+  - wielolinijkowe testy
+  - dużo zależności typu mock
+  - mała zmiana wpływa na bardzo dużo testów
+
+Problemy i przyczyny:
+  - mała zmiana psuje 100 testów:
+    - mała zmiana kodu produkcyjnego propaguje się na wiele testów
+
+Testy powinny działać na tych samych zasadach, co kod produkcyjny! Chodzi przede wszystkim o to, żeby test nie był
+bardzo ściśle związany ze szczegółami implementacyjnymi. Właśnie w takiej sytuacji zmiana jednej linijki powoduje 
+zepsucie się kilkudziesięciu testów na raz.
+
+Relacja testy -> kod produkcyjny:
+  - podlega zasadom couplingu
+  - podlega zasadom enkapsulacji
+  - testujemy stabilną abstrakcję
+  - nie testujemy niestabilnej implementacji!
+  - testujemy kontrakt, a nie to, jak kontrakt jest wykonanywany pod spodem
+
+TDD: red -> green -> refactor -> red 
+
+Po co podejście Test first?
+  - test jest pierwszym konsumentem tworzonej abstrakcji
+  - czyni abstrakcję łatwiejszą
+  - testowanie abstrakcji wspomana krok refactor w TDD
+
+Kiedy napisać nowy test?
+  - nowa metoda czy klasa to nie jest powód do napisania nowego testu
+  - nowe wymaganie to powód do napisania testu
+
+Czym jest jednostka (unit)?
+  - unit to niekoniecznie klasa
+  - unit to niekoniecznie metoda
+  - unit to może być zestaw logicznie powiązanych klas/funkcji
+
+Testowanie a prawo Demeter - jeśli nie przestrzegamy prawa Demeter i stosujemy tzw. "wraki pociągów", to aby przetestować
+jedną linijkę kodu, może być potrzebne nawet kilka mocków, zdecydowanie nie chcemy czeegoś takiego, ponieważ testy są wtedy
+bardzo podatne na jakiekolwiek zmiany w kodzie i niesamowicie karkołomne do utrzymania.

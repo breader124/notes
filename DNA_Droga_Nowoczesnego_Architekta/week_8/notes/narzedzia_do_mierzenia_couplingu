@@ -1,0 +1,12 @@
+Jeśli chodzi o syntaktyczny coupling:
+  - SonarQube
+  - NDepend, ReSharper
+  - Cast
+  - stan4j (jak sama nazwa mówi, dla Javy)
+
+ArchUnit - biblioteka pozwalająca pisać testy jednostkowe architektury, piszemy asserty sprawdzające, czy nie ma określonych
+           przez nas wcześniej, 'szkodliwych' połączeń
+
+Narzędzia - logical coupling (dużo cięższy do wyłapania niż syntactic coupling):
+  - Code Maat
+  - CodeScene

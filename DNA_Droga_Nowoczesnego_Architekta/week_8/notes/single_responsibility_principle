@@ -1,0 +1,21 @@
+Single Responsibility Principle - a class should have only one reason to change. Powodem do zmiany jest biznesowe 
+wymaganie, zostało to uszczegółowione przez Roberta Martina (autora zasady).
+
+Single Responsibility Principle - gather together the things that change for the same reason. Separate those things that
+change for different reasons.
+
+Single Responsibility Principle:
+  - zwiększaj kohezję pomiędzy elementami logicznie związanymi ze sobą
+  - zmniejszaj coupling pomiędzy elementami logicznie niezwiązanymi ze sobą
+  - jest konsekwencją:
+    - enkapsulacji
+    - wysokiej kohezji
+    - niskiego couplingu do innych elementów
+
+Agregaty jako przykład SRP:
+  - wysoka kohezja
+  - niski coupling
+  - Law of Demeter
+  - enkapsulacja
+
+Ukrywanie aggregate rook osiągamy poprzez domyślny modyfikator widoczności package private.
