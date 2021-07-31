@@ -1,0 +1,71 @@
+Zasoby ( https://{adres-serwera}/{kolekcja}/{id}/{elements} ):
+  - kolekcja - liczba mnoga
+  - id - unikalny identyfikator
+  - element - element podrzędny
+
+Przykłady zasobów:
+  - /flights - lista lotów
+  - /flights/L01234 - szczegóły lotu
+  - /flights/L01234/seats - lista miejsc
+  - /flights/L01234/seats/8D - szczegóły miejsca
+
+Podstawowe metody HTTP:
+  - GET
+    - pobiera reprezentaję zasoby
+    - idempotentna i bezpieczna
+    - nigdy nie modyfikuje danych
+    - standardowa odpowiedź: 200 OK + body
+  - POST
+    - tworzy nowy zasób
+    - nieidempotentna i niebezpieczna
+    - standardowa odpowiedź: 201 Created + Location
+  - PUT
+    - modyfikuje zasób
+    - może tworzyć zasób, jeżeli o identyfikatorze decyduje klient
+    - idempotentna i niebezpieczna
+    - standardowe odpowiedzi: 202 Accepted / 204 No Content
+  - DELETE
+    - usuwa zasób
+    - idempotentna i niebezpieczna
+    - standardowa odpowiedź: 204 Content
+  - OPTIONS
+    - zwraca informacje o zasobie, np. listę dozwolonych operacji
+    - idempotentwa i bezpieczna
+    - standardowa odpowiedź: 200 OK + body
+
+Grupy kodów odpowiedzi:
+  - 20x - wszystko dobrze
+    - 200 OK - wszystko w porządku, obligatoryjnie musimy być body
+    - 201 Created - zasób utworzony, zwracamy jeszcze Location w takim przypadku
+    - 202 Accepted - przyjąteo, ale nie zakończono przetwarzania, może być wykonywane asynchronicznie
+    - 204 No Content - zrealizowane i nie potrzeba dokumentu
+  - 30x - zapytaj gdzieś indziej
+    - 301 Moved Permanenty - trwale przeniesiony, przeglądarki często cachują te przekierowania
+    - 304 Not Modified - nie zmieniono
+    - 307 Temporary Redirect - tymczasowe przekierowanie
+  - 40x - błąd klienta
+    - 400 Bad Request - nieokreślony błąd
+    - 401 Unauthorized - brak uwierzytelnienia
+    - 403 Forbidden - brak uprawnień (czy chcemy komunikować, że zasób istnieje i ktoś nie ma dostępu?)
+    - 404 Not Found - zasób nie istnieje, warto podać, czy jest to błędy URL czy brak zasoby o danym id
+    - 405 Method Not Allowed - metoda niedozwolona
+    - 409 Conflict - konflikt z obecnym stanem zasobu
+    - 410 Gone - zasób nie jest już dostępny
+    - 415 Unsupported Media Type - nieobsługiwana reprezentacja zasobu, wyślij JSONa, a nie XMLa, mamy 2021 rok
+  - 50x - błąd serwera
+    - 500 Internal Server Error - nieokreślony błąd serwera
+    - 503 Service Unavailable - serwer chwilowo niedostępny
+    - 504 Gateway Timeout - czas odpowiedzi na żądanie został przekroczony
+
+Reprezentacje zasobów:
+  - nagłówki Accept i Content-Type
+  - proste:
+    - application/xml
+    - application/json;charset=UTF-8
+  - złożone:
+    - application/vnd.dna+json
+    - application/json;entity=Payment
+
+Daty:
+  - preferowana serializacja: epoch milliseconds lub ISO 8601
+  - jasno określamy strefy czasowe, najlepiej zawsze poruszać się w UTC

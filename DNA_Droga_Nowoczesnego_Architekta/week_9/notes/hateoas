@@ -1,0 +1,13 @@
+Czy jest HATEOAS?
+  - Hypermedia As The Engine Of Application State 
+  - wprowadzamy odnośniki, aby ułatwić nawigację po zasobach
+
+Rodzaje formatów odpowiedzi:
+  - application/json: standardowa zwrotka z serwera zawierająca dodatkowo listę _links z parami (rel, href)
+  - application/hal+json: wprowadza rozróżnienie na obiekty zagnieżdżone (_embedded) i linki (_links), metadane są
+    dostępne w prosty sposób, nie są one żadnym zasobem, więc nie można ich umieścić w żadnej kategorii podanej poniżej;
+    linki dostępne są inaczej niż w przypadku application/json, w postaci "rel": { "href": "sth" }, widoczna jest
+    zmiana w kontekście struktury, tutaj mamy zagnieżdżenie, w poprzednim przypadku link był płaski
+
+Hypermedia idealnie nadają się do zwracania danych dotyczących stronicowania, możemy w linkach zwrócić takie pola, jak:
+first, self, next, last, mówiące klientowi bardzo dużo pod kątem tego, gdzie się znajduje i gdzie może się znaleźć.

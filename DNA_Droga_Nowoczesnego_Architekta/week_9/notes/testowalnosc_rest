@@ -1,0 +1,15 @@
+Kto jest zainteresowany testowaniem API?
+  - producent testuje zgodność implementacji ze specyfikacją
+  - klient testuje poprawność integracji z naszym API
+
+Rodzaje API:
+  - dedykowane publiczne REST API
+    - udostępnienie środowiska testowego/sandboxa
+    - testowy klucz API na środowisku produkcyjnym zwracający zastubowane odpowiedzi
+  - REST API na potrzeby aplikacji web/mobile
+    - wykorzystywane w e2e jako alternatywa testów z interfejsu użytkownika
+    - przy brakach w API dedykowanym wykorzystywane przez klientów w ramach robotyzacji procesów
+
+Testy API wewnętrznego:
+  - częste zmiany, zwłaszcza niekompatybilne wstecznie, utrudniają utrzymywanie testów
+  - im więcej logiki po stronie klienta, tym takie testy będą mniej reprezentatywne

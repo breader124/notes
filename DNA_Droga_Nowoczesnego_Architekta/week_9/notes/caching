@@ -1,0 +1,48 @@
+Po co cachować?
+  - eliminujemy część żądań
+    - poprawiamy dostępność
+    - poprawiamy opóźnienia (latency)
+  - walidujemy aktualność posiadanego zasobu bez jego ponownego pobierania
+
+Kontrola cache (warto stosować jednocześnie, ponieważ niektóre narzędzia ignorują jeden z nagłówków):
+  - nagłówek odpowiedzi Expires
+    - określa ważność zasobu
+  - nagłówek Cache-control
+    - może być dodawany zarówno do żądania jak i odpowiedzi
+    - public - możliwość zapisu w cache publicznym
+    - private - możliwość zapisu na cache prywatnym
+    - no-cache - wymusza walidację aktualności posiadanej kopii
+    - no-store - wyłącza możliwość przechowywania kopii
+    - ważność:
+      - max-age=<sec> - maksymalny czas świeżości zasobu
+      - s-maxage=<sec> - jak wyżej, ale w odniesieniu do cache publicznego
+      - max-stale=<sec> - maksymalny czas akceptowania wygasłej kopii
+    - walidacja:
+      - must-revalidate - po upływie max-age należy sprawdzić aktualność zasobu, wysyłając żądanie do serwera
+      - proxy-revalidate - jak wyżej, ale dla cache publicznego
+
+Przykłady Cache-control:
+  - Cache-control: no-store, no-cache, max-age=0
+  - Cache-control: private, max-ag
+
+
+
+Dobór okresu ważności:
+  - jedna z trudniejszych decyzji przy projektowaniu API
+  - można stosować wieczny (eternal) cache i zmieniać adres zasobu
+  - można stosować tagowanie zasobów:
+    - serwer dołącza do odpowiedzi nagłówek ETag
+    - klient wysyła żądanie warunkowe z nagłówkiem:
+      - If-None-Match
+      - If-Modified-Since
+
+
+
+Optymistyczne blokowanie:
+  - REST nie wspiera natywnie optymistycznego blokowania
+  - możemy je obsłużyć za pomocą ETag i żądań warunkowych If-Match
+  - serwer sprawdza wersję w If-Match i odpowiada 2xx bądź 412 Precondition Failed
+
+Przykład wersjonowania encji:
+  - GET /users/12345 -> 200OK + ETag: 6 + body
+  - PUT /users/12345 + If-Match: 6 -> 204 No Content / 412 Precondition Failed

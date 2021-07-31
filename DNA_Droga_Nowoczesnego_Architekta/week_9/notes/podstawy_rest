@@ -1,0 +1,39 @@
+Co to jest REST?
+  - Representational State Transfer
+  - styl architektoniczny
+  - podstawowe zasady
+  - bogaty zestaw wskazówek
+
+REST constraints:
+  - separacja klient-serwer
+    - charakterystyka systemu rozproszonego
+    - klient inicjuje żądania
+    - serwer obsługuje żądania klienta
+  - bezstanowość
+    - stan jest praktycznie zawsze
+    - powodzenie kolejnego żądania nie może zależeć od trafienia na ten sam serwer co poprzednie
+    - nie przechowujemy stanu w formie ulotnej po stronie serwera, wynosimy go do bazy danych lub rozproszonego cache'a
+  - cache'owalność
+    - eliminuje część komunikacji
+    - odpowiednie nagłówki kontrolują możliwość i parametry cache'owania
+  - spójny (uniform) interfejs
+    - zobowiązuje do stosowania się do specyfikacji HTTP
+    - wykorzystuje samoopisujące się żądania/odpowiedzi
+    - pozwala na reużycie bibliotek
+  - warstwowość
+    - poprawność komunikacji nie może zależeć od liczby komponentów pomiędzy klientem, a serwerem
+    - dodanie CDN/cache/proxy/load-balancera nie ma wpływu na rezultat akcji
+
+Bezstanowość a sesyjnośc:
+  - sesja poprawia wydajność, bo hashowanie hasła/tokenu jest bardzo kosztowne
+  - mechanizm sticky-sessions pozwala kierować klienta na preferowane instancje
+
+Sticky-sessions:
+  - identyfikator instancji w cookie
+  - spójne hashowanie (consistent hashing), np. adresu IP
+
+Model dojrzałości Richardsona:
+  - poziom 0: XML
+  - poziom 1: zasoby
+  - poziom 2: czasowniki HTTP
+  - poziom 3: hipermedia

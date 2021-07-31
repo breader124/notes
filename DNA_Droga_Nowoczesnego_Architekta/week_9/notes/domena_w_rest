@@ -1,0 +1,13 @@
+CRUD a domena:
+  - REST ma naturę CRUD
+  - implementacja złożonych procesów często kończy się na klonach JSON-RPC
+  - REST opiera się na dokumentach, a nie na usługach
+
+Encje a zasoby:
+  - zasoby reprezentują potrzeby klienta
+  - encje reprezentują model domeny po stronie serwera
+  - mapowanie 1:1 encji na zasoby nie jest dobre, ponieważ silnie łączymy rozłączne światy
+
+Mapowanie:
+  - stosujemy wydzielony Bounded Context dla interfejsu API
+  - wykorzystujemy wzorzec Adapter do przemapowania obiektów, tutaj wszystkie chwyty dozwolone

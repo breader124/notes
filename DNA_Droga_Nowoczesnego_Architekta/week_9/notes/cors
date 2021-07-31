@@ -1,0 +1,28 @@
+Mechanizm CORS:
+  - zapobiega atakom cross-site request forgery (CSRF)
+  - przed wysłaniem docelowego żądania przeglądarka sprawdza możliwość jego wykonania (preflight request) i wykonuje je
+    jedynie po otrzymaniu poprawnej odpowiedzi preflight request
+
+Preflight request:
+  - docelowy URL + metoda OPTIONS
+  - nagłówki żądania:
+    - Origin - z jakiej domeny
+    - Access-Control-Request-Method - jaka metoda
+    - Access-Control-Request-Headers - jakie nagłówki
+  - nagłówki odpowiedzi (walidowane pod warunkiem otrzymania kodu odpowiedzi z grupy 20x):
+    - Access-Control-Allow-Origin - dozwolone domeny
+    - Access-Control-Allow-Method - dozwolone metody
+    - Access-Control-Allow-Headers - dozwolone nagłówki
+    - Access-Control-Max-Age - ważność odpowiedzi
+
+Co wymaga wykorzystania CORS?
+  - interakcja z API przy użyciu XMLHttpRequest i Fetch API
+  - import czcionek (@font-face)
+  - grafiki wykorzystywane w ramach drawImage
+  - tekstury WebGL
+
+Eliminacja CORS:
+  - wyeliminowanie CORS wpływa na poprawę wydajności aplikacji
+  - stosujemy proxy, które mapuje domain.com do strony dostępnej z przeglądarki, requesty trafiają do serwera zwracającego
+    statyczne zasoby, natomiast domain.com/api to naszego restowego api wykorzystywanego przez statyczną stronę. W takim
+    przypadku nie ma mowy o żadnych requestach cross-site. Follow up on Same-Site cookies?

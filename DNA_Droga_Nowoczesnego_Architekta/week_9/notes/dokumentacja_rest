@@ -1,0 +1,27 @@
+Cechy dobrej dokumentacji:
+  - aktualna
+  - czytelna
+  - dostępna
+  - uruchamialna (żeby użytkownik mógł kliknąć i zobaczyć funkcjonowanie)
+
+Jak zapewnić aktualność?
+  - dokumentacja musi być ściśle związana z kodem i wpięta w proces kompilacji
+  - testy zgodności dokumentacji z kodem czy przyjętą specyfikacją
+
+Co dokumentować?
+  - dostępne metody
+  - strukturę dokumentu
+    - opisy ról
+    - wartości wyliczeniowe (enum)
+    - formaty danych
+  - przykładowe żądania i odpowiedzi
+
+Jak dokumentować?
+  - dokumentacja generowana w runtime na podstawie definicji zasobów i endpoint'ów
+    - wada polegająca na tym, że nie możemy porównać wzorca z rzeczywistym zachowaniem, ponieważ dokumentacja zawsze
+      pokazuje aktualne zachowanie
+  - dokumentacja generowana podczas kompilacji na podstawie specyfikacji API
+
+Narzędzia do generowania dokumentacji:
+  - Swagger (daje możliwość wywoływania konkretnych endpointów, jest bardzo estetyczne out of the box)
+  - Slate (trzykolumnowa kompozycja strony, również można wywoływać endpointy)

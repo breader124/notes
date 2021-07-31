@@ -1,0 +1,20 @@
+Kiedy wersjonować? 
+  - przy złamaniu kompatybilności wstecznej (nie chcemy zepsuć starych aplikacji)
+  - przy zmianie modelu biznesowego
+
+Zasób a reprezentacja:
+  - URI jednoznacznie określa zasób: /users/123
+  - reprezentacja zasobu określana jest przy użyciu nagłówków:
+    - Accept: application/json
+    - Content-Type: application/json
+  - nie łączymy zasobu z reprezentacją
+
+Co wersjonujemy?
+  - z reguły encja się nie zmienia, /users/123 to ta sama encja niezależnie od wersji API
+  - różni się reprezentacja użytkownika, np:
+    - Accept: application/v1+json
+    - Accept: application/v2+json
+
+Kiedy wersjonować w URL?
+  - zmiana zasobu - book znaczy coś innego niż wcześniej
+  - zmiana serwera - łatwiej robić routing po URL niż po nagłówku
