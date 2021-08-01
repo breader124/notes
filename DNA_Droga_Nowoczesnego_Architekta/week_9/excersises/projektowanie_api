@@ -1,0 +1,64 @@
+Kontekst biznesowy:
+  - system rezerwacji sal konferencyjnych
+  - obsługa poszczególnych sal jak i większych wielodniowych wydarzeń
+  - wystawiamy API na potrzeby aplikacji web i mobile
+
+Wymagania:
+  - pojedyncza rezerwacja obejmuje jedną salę na jeden dzień
+  - rezerwując salę podajemy datę i godziny, liczbę osób, ustawienie stołów, etc.
+  - rezerwację można anulować, zmienić termin bądź zmienić szczegóły
+  - klient może zlecić paczkę rezerwacji obejmującą wiele sal na wiele dni
+  - paczkę rezerwacji można anulować, jednak nie można edytować
+  - niektóre widoki w systemie zawierają jednie ogólne informacje o rezerwacji/salach, a niektóre bardzo
+    szczegółowe
+
+Sposób realizacji:
+  - rzeczywista dokumentacja
+  - prosty plik tekstowy opisujący stworzony projekt
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Solution:
+  - assumptions:
+    - there are fixed number of rooms, it's not possible to create new room from user perspective
+    - events are handled differently from ordinary reservations according to business expert, it's possible
+      to earn much more from event than from reservation, thus we'd like to consider each case separately 
+      and don't say something is impossible to the client before trying to contact him with slightly different,
+      personalized offer
+  - resources:
+    - reservation
+    - room
+    - event (kind of an aggregate containing reservations and rooms)
+  - endpoints:
+    - /rooms
+      - GET - returns list of rooms with links to: detailed view, reservations overview 
+    - /rooms/{room_id}; 200 OK + (probably empty) body 
+      - GET - returns detailed info about room with links to: rooms overview, reservations overview
+    - /rooms/{room_id}/reservations; 200 OK + body / 404 NOT FOUND
+      - GET - returns reservations list for given room with links to: each reservation's details, rooms
+              rooms overview; 200 OK + (probably empty) body 
+      - POST - creates reservation for given room for one, specified day; 201 CREATED + Location / 410 GONE
+               / 400 BAD REQUEST + explanation
+    - /rooms/{room_id}/reservations/{room_id}
+      - GET - returns reservation's details for given reservation with links to: reservations overview, room
+              details, rooms overview; 200 OK + body / 404 NOT FOUND / 410 GONE
+      - PUT - alters specified reservations: 204 NO CONTENT / 410 GONE / 400 BAD REQUEST + explanation 
+      - DELETE - deletes specified reservation: 204 NO CONTENT / 404 NOT FOUND / 410 GONE
+    - /events
+      - GET - returns list of events with links to: each event's details; 200 OK + (probably empty) body
+    - /events/{event_id}
+      - GET - returns object containing overview of rooms and reservations together creating 
+              mentioned event with links to: events overview, each room's details, each reservation's details;
+              200 OK + (probably empty) body
+      - POST - submits request for booking multiple rooms for multiple days, response will be delivered later
+               using other communication way, because of high complexity and possible offer personalization
+               request will be processed asynchronously; 202 ACCEPTED 
+      - DELETE - submits request for deletion of big reservation, processing has async character because of
+                 high complexity and to gain a chance to contact customer once again and somehow convince him
+                 to stay; 202 ACCEPTED
+  - headers:
+    - For all GETs used to fetch information about room, reservation and event resources it's possible to use
+      two types of Content-Type header: application/json to get shallow info and application/detailed+json to
+      dig much deeper and find every little info about desired type of resource
