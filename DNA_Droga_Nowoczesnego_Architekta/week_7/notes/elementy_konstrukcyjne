@@ -1,0 +1,20 @@
+Elementy konstrukcyjne:
+  - zdarzenia, komendy, zapytania (widoki), reguły i agregaty, polityki (reprezentujące zachowania modelu):
+    - definiowanie granic
+    - kto, co i jak
+    - komunikacja z biznesem
+  - wartości (value objects), encje, serwisy domenowe (reprezentujące strukturę modelu - są częścią ubiquotus language):
+    - encje to byty zmieniające się w czasie, posiadające swoją tożsamość niezależnie od atrybutów i posiadające pewien cykl życia
+    - wartości (value objects) to byty, które nie zmieniają się w czasie, wartość jest ich tożsamością, ponadto to one same są atrybutami
+    - serwisy domenowe reprezentują operacje, które nie są częścią ani encji ani wartości, uskuteczniają bezstanowe wyliczenia; istnieją serwisy
+      aplikacyjne i infrastrukturalne
+  - fabryki, repozytoria (reprezentujące cykl życia modelu - nie są częścią ubiquotus language):
+    - fabryki pozwalają na tworzenie elementów konstrukcyjnych
+    - repozytoria pozwalają na utrwalanie i odczyt
+
+Dlaczego elementy konstrukcyjne są ważne:
+  - umożliwiają wczesne otrzymywanie feedbacku
+  - budują ubiquotus language
+  - pozwalają odkładać decyzje techniczne na później
+
+Dzięki elementom konstrukcyjnom jesteśmy w stanie maksymalnie odwlekać czas podejmowania decyzji, jest to bardzo ważne!

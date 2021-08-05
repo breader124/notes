@@ -1,0 +1,46 @@
+Poziom izolacji:
+  - read committed:
+    - zapobiega dirty write (pisanie i commitowanie zmian na tych samych danych, co ostatecznie kończy się utratą spójności) i 
+      dirty read (odczytywanie danych, które podlegają modyfikacji, kończymy czytać zanim ktoś inny skończy pisać)
+    - bazowy poziom izolacji, będący domyślnym ustawieniem dla np. Oracle 11g, PostgreSQL, SLQ Server 2012
+    - wewnętrznie implementowane tak, że istnieją dwie kopie danego rekordu: kopia przeznaczona dla transakcji typu read wykonana
+      zanim rozpoczęła się transakcja typu write, i kopia dostępna tylko dla transakcji typu write z dostępnym lockiem, który zajmuje
+      owa transakcja 
+  - snapshot isolation:
+    - znane jako multiversion concurrency control (MVCC)
+    - zapobiega dirty write i dirty read
+    - zapobiega non-repeatable read (polega na tym, że istnieje transakcja, które czyta bardzo długo i w trakcie jej działania już zdążyła
+      się wykonać transakcja typu write, wobec czego wspomniana transakcja typu read czyta dane z dwóch różnych stanów)
+    - każda transakcja typu read dostaje swoją kopię (snapshot) danych, które czyta i ten snapshot jest utrzymywany tak długo, jak trwa ta 
+      transakcja typu read
+  - serializable:
+    - najsilniejsza gwarancja
+    - symulacja transakcji "w szeregu", które w rzeczywistości są współbieżne
+    - różne sposoby implementacji (jeden wątek / 2-Phase-Locking / Serializable Snapshot Isolation)
+
+Problem typu lost update:
+  - polega na tym, że User A odczytuje dane, zaraz za nim User B robi to samo, następnie User A wylicza nową wartość, po czym User B wylicza
+    nową wartość, User A zapisuje i User B zapisuje zaraz po nim, ostatecznie nasze wyliczenia zostały zaaplikowane tylko jednokrotnie
+  - zapobieganie:
+    - atomowe zapisy - nie zawsze dostępne, szczególnie jeśli działamy za ORM
+    - blokowanie pesymistyczne - również nie zawsze dostępne jeśli działamy za ORM
+    - blokowanie optymistyczne:
+      - do każdego wiersza dodajemy informację o wersji
+      - podczas zapisu porównujemy uprzednio odczytaną wersję i odczytujemy aktualną, jeśli się różnią to ktoś nas uprzedził i musimy 
+        zrezygnować z działania
+
+Problem typu phantom read:
+  - polega na tym, że mamy jedną, długo trwającą transakcję, które odczytuje liczebność danego zbioru oraz drugą transakcję, która w trakcie
+    trwania tej pierwszej zmienia tę liczebność, pierwsza transakcja pytając o tę samą liczebność na początku oraz na końcu swojego działania
+    dostanie inne dane 
+  - może być rozwiązane poprzez snapshot isolation
+
+Problem typu write skew:
+  - warunek "maksymalnie 3 aktywne plany"
+  - dwie transakcje w tym samym czasie sprawdzają stan, widzą 2 aktywne plany
+  - dwie transakcje dodają 3 plan, w rezultacie są 4 plany
+
+Problemy poziomów izolacji:
+  - poziomy izolacji różnią się implementacją, należy sprawdzać dokumentację
+  - w dużej aplikacji ciężko przewidzieć skutek zastosowania konkretnego poziomu izolacji
+  - błędy często wychodzą dopiero na produkcji

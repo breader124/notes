@@ -1,0 +1,10 @@
+Czym jest transakcja?
+  - zgrupowanie odczytów i zapisów w nierozrywalną całość
+  - traktowana jako jedna operacja
+  - transakcja kończy się sukcesem (ang. commit) albo porażką (ang. rollback)
+
+Właściwości transakcji (ACID)
+  - atomowość (atomicity) - możliwość wykonania kilku operacji zapisowych, powiodą się albo wszystkie albo żadna
+  - spójność (consistency) - nie są naruszone "niezmienniki", nie są naruszone zasady integralności, dane są w poprawnym stanie
+  - izolacja (isolation) - izoluje współbieżne transakcje, zapewnia, że niezależne transakcje na siebie nie wpływają
+  - trwałość (durability) - obietnica zapisu wszystkich operacji w zakończonych sukcesem transakcjach, dane są na dysku, zazwyczaj osiągane za pomocą write-ahead log
