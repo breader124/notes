@@ -1,0 +1,47 @@
+Mapowanie obiektowo-relacyjne:
+  - odwzorowanie obiektowej architektury na relacyjną bazę danych
+  - proces ten zachodzi zawsze, gdy mamy:
+    - język obiektowy
+    - relacyjną bazę danych
+
+Mapowanie obiektowo-relacyjne:
+  - brak (operowanie tylko na relacjach) - Transaction Script
+  - ręcznie - własny kod do zapisu i odczytu obiektów z bazy
+  - automatycznie - ORMs, np. MyBatis, Hibernate, Entity
+
+Funkcje ORMów:
+  - change tracking - systemy ORM posiadają dwie kopie obiektów (przed i po zmianie), w momencie kiedy kończymy przetwarzania to wnioskują
+    co się zmieniło i tłumaczą to na język SQL
+  - lazy loading:
+    - zaciąganie danych z asocjacji, dopiero gdy są potrzebne
+    - relizowane najczęściej przez wzorzecz proxy
+    - występuje problem N+1, kiedy chcemy odnieść się do danych ładowanych przy pomocy lazy loadingu to nawiązujemy następne połączenie
+      z bazą danych
+    - występuje problem ukrytego wywołania, wspomnianego doładowywania danych z bazy nie widać na pierwszy rzut oka
+    - może poprawić wydajność:
+      - nie wyciąga danych, jeśli nie są potrzebne
+      - ale po co mieć asocjacje, które nie są potrzebne
+      - argument średnio się sprawdza przy dobrym modelowaniu
+  - blokowanie optymistyczne - przy zapisie rekordu sprawdzimy wersję tego rekordu w bazie, jeśli jest inna to przerywamy
+
+Agregaty i ORM:
+  - należy zawsze zwiększyć wersję po pozytywnym obsłużeniu komendy, ponieważ:
+    - mogą zmieniać się obiekty w grafie, a sam korzeń nie
+    - mogą być niezmienniki rozpięte na tych obiektach w grafie
+
+ORM - stosowalność:
+  - to nie jest narzędzie dla całego systemu!
+  - można je stosować lokalnie
+  - a w innych miejscach komunikować się z bazą w inny sposób
+  - nie dla złożonych odczytów
+  - nie dla operacji typu batch
+  - dla komend:
+    - gdzie model nie jest złożony
+    - jeśli wydajność nie jest kluczowa
+  - proste użycie ORM dla CRUDów
+
+Wnioski:
+  - w teorii abtrakcja pozwala na wymienialność warstwy niżej
+  - używanie ORM nie oznacza, że możemy nie wiedzieć jak działa baza danych
+    - jeśli aplikacja używa bazy danych, to jako programiści musimy wiedzieć jak ona działa
+    - musimy to wiedzieć niezależnie od tego, jak się z nią komunikujemy
