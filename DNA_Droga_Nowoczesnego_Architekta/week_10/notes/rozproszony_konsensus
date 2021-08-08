@@ -1,0 +1,41 @@
+Problem:
+  - potrzeba uzgodnienia wartości w systemie rozproszonym
+  - klasy problemu:
+    - wybór lidera
+    - replikacja stanu
+
+Popularne algorytmy:
+  - Paxos:
+    - opisany w 1989
+    - mówi się, że rozumie go tylko kilka osób na świecie
+  - Raft (Replicated and Fault Tolerant)
+    - opisany w 2014
+    - nastawiony na czytelność i pragmatyzm
+
+Dekompozycja Raft:
+  - wybór lidera (leader election) - wybór jednego lidera i późniejsze reelekcje
+  - replikacja logu (log replication) - lider aktualizuje log i replikuje go na pozostałe instancje
+  - bezpieczeństwo (safety) - raz zapisany indeks nie może być zmieniony na innej instancji
+
+Role w Raft:
+  - każdy z serwerów w klastrze Raft możę mieć w danym momencie jedną z trzech ról:
+    - leader
+    - follower
+    - candidate
+
+Kadencje (terms):
+  - czas działania jest podzielony na kadencje
+  - każda kadencja może mieć tylko jednego lidera
+  - niektóre kadencje nie mają liderów (nieudane wybory)
+  - każda instancja utrzymuje aktualną kadencję:
+    - wymieniana w każdej komendzie
+    - dostajemy nowszą kadencję - wracamy do statusu follower
+    - dostajemy starszą kadencję - zwracamy błąd
+
+Zdalnie wywoływane procedury (RPC)
+  - podstawowym budulcem RAFT są wywoływane przez lidera zdalne procedury
+
+Wady Raft:
+  - wymaga działania większości node'ów
+  - cały ruch przechodzi przez jednego lidera
+  - brak wsparcia dla problemu bizantyjskich generałów
