@@ -1,0 +1,24 @@
+Po co programować reaktywnie?
+  - oszczędzamy wątki:
+    - mniej przełączania kontekstów (context switches)
+    - mniejsze użycie pamięci
+    - mniej blokowania
+  - kontrolujemy ilości otrzymywanych danych (back pressure)
+  - zrównoleglamy operacje
+
+Przetwarzanie danych:
+  - klasyczne - czekamy na dane z bazy, ładujemy je do pamięci, filtrujemy i dopiero zwracamy do użytkownika
+  - reaktywne - zwracamy dane stopniowo i tylko do zakończenia przetwarzania strumienia
+
+Jak reaktywne jest źródło danych?
+  - reaktywne API
+  - reaktywny transport
+  - reaktywna baza
+
+Dostępne reaktywne źródła danych:
+  - MongoDB Change Streams
+  - .NET System.Reactive.Linq
+  - MongoDB Reactive Java Driver
+  - Java R2DBC
+  - DataStax Java Driver for Cassandra
+  - Lettuce Redis Java Driver
