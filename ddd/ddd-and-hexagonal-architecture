@@ -1,5 +1,0 @@
-diagram: hexagonal-architecture-diagram.png
-
-layers of hexagonal architecture oriented application:
-	- domain model
-	- application services -> stateless, enforce system security, control database transactions, orchestrate business operations but don't make any business decisions
