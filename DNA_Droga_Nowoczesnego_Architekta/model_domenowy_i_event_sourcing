@@ -1,0 +1,41 @@
+Zdarzenia domenowe:
+  - proste i niemutowalne struktury
+  - mają identyfikator obiektu, który je wygenerował
+  - mogą zawierać koncepty domenowe (value object)
+  - grupowane w jednej klasie/pliku
+
+Agregat:
+  - kolekcje obiektów domenowych, które traktowane są jako spójna całość i granica transakcji
+  - sprawdzają niezmienniki systemu
+  - komunikacja z agregatem możliwa tylko przez obiekt, który jest korzeniem (ang. aggregate root)
+
+Publikacja zdarzeń:
+  - wewnętrzna kolekcja zdarzeń
+  - zwracanie zdarzeńv (preferowane przez twórców DNA)
+  - statyczna klasa publikująca
+
+Jak odtworzyć stan agregatu?
+  - dokładamy metodę apply dostającą event jako argument i zmieniającą stan agregatu na podstawie typu otrzymanego obiektu,
+    gdzie typ sprawdzamy na podstawie operatora instanceof
+  - stosujemy wzorzec wizytatora
+  - stosujemy pattern matching
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Co zyskujemy dzięki temu podejściu?
+  - zyskujemy elastyczną strukturę modelu, która:
+    - pozwala na zmianę modelu bez zmiany schematu (zaleta)
+    - pozwala na utrzymywanie równoległych modeli (zaleta)
+    - wprowadza konieczność ręcznego mapowania (wada)
+  - testowanie staje się niesamowicie proste, możemy doprowadzić agregat do takiego stanu, jakiego chcemy dzięki podawaniu
+    im zdarzeń
+  - jesteśmy w stanie robić symulacje:
+    - jak by się zachował nasz system gdyby...
+    - co zobaczyłby user gdyby...
+    - jaki błąd pojawi się jeśli...
+
+Przyjęte założenia:
+  - agregaty są pochodną event stormingu i są stosunkowo małe
+  - agregaty posiadają pojedynczą odpowiedzialność
+  - cykl życia agregatu jest krótki (liczba zdarzeń w ciągu całego życia agregatu jest niedużo, do 100)
+
