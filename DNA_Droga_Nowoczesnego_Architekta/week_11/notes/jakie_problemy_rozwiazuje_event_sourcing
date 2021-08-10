@@ -1,0 +1,19 @@
+Utrata informacji - Jeśli wiele dróg prowadzi do tego samego stanu, to znaczy, że tracimy informacje.
+
+Strategie radzenia sobie z utratą informacji:
+  - Tabela audytująca:
+    - kopiujemy zmieniającą się tabelkę i tworzymy relację 1-1 z wierszem przechowującym timestamp, kiedy
+      tabela się zmieniła
+    - gotowe narzędzia: Hibernate Envers, PGAudit, Oracle Audit Trail
+  - Log zdarzeń
+
+Zdarzenie vs zmiana stanu:
+  - zmiany stanów są generyczne
+  - zmiany stanu nie pokazują nam intencji, nie wiemy dlaczego user postąpił w dany sposób 
+  - ze zdarzenia jesteśmy w stanie wyciągnąć wnioski
+
+Podsumowanie - co daje nam Event Sourcing?
+  - zachowanie wszystkich informacji
+  - audit trail - możemy wykazać co się stało ze 100 pewnością
+  - obserwowalność - dużo łatwiej obserwować jest co się dzieje i przede wszystki, dlaczego się dzieje!
+  - analiza danych - trzymamy nie tylko suchą informaję, ale też intencje użytkownika
