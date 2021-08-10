@@ -1,0 +1,76 @@
+Zazwyczaj w prawdziwym życiu wprowadzamy rozróżnienie pomiędzy zdarzeniem domenowym a persystentnym.
+
+Zdarzenie persystentne:
+  
+  class PersistableEvent {
+    private final UUID eventId; // added as an effect of enrichment process
+    private final UID aggregateId; // added as an effect of enrichment process
+    private final UUID userId; // added as an effect of enrichment process
+    private final UUID correlationId;  // for events chaining purpose
+    private final UUID causationId; // for chaining events purpose
+    private final Integer version;  // for optimistic locking purpose
+    private final String eventType; // taken from domain event
+    private final String eventData; // taken from domain event
+  }
+
+Struktura zdarzenia persystentnego w event store:
+
+  class EventData {
+    public final UUID eventId;
+    public final String eventType;
+    public final boolean isJson;
+    public final byte[] data;
+    public final byte[] metadata;
+  } 
+
+
+Zdarzenie persystentne jest generyczne dla wszystkich agregatów! Proces enrichmentu jest przeprowadzany po stronie
+repozytorium lub DAO (wrappera na event store). W przypadku extractingu, po stronie event store'a warto jest przechowywać
+mapę dwukierunkową, która mapuje nazwę zdarzenia do kwalifikowanej nazwy klasy, dzięki temu będzie mogła zajść 
+deserializacja i my będziemy mieli nad nią pełną kontrolę. Gdybyśmy zapisywali nazwę kwalifikowaną w polu eventType
+płynącym z modelu domenowego, to najprawdopodobniej mielibyśmy problem z deserializacją po pierwszy lepszym refactoringu.
+
+
+W bazie danych (naszym event storze) posiadamy jeden strumień eventów dla każdej instancji agregatu po stronie modelu
+domenowego.
+
+
+Co za nas robi ORM w przypadku podejścia bez event sourcingu?
+  - podczas oczytu:
+    - generuje zapytanie
+    - mapuje ResultSet na obiekt
+  - podczas zapisu:
+    - generuje DML na podstawie zmian jakie zaszły w obiekcie oraz mapowania
+  - każdy agregat musi być inaczej mapowany, ORM faktycznie się przydaje
+
+Jak to wygląda w event sourcingu?
+  - podczas odczytu:
+    - pobiera strumień zdarzeń
+    - ekstrahuje zdarzenie domenowe
+  - podczas zapisu
+    - konwertuje do zdarzenia persystentnego
+    - dodaje zdarzenie do strumienia
+  - dla każdego agregatu ta sama procedura wykonywana w ten sam sposób
+
+
+Technologie, które możemy wykorzystać do postawienia Event Store'a:
+  - bazy relacyjne:
+    - SQL Stream Core - C#
+    - message-db - Ruby
+    - Commanded - Elixir
+    - Marten - C#
+    - Prooph - PHP
+    - Rails Event Store - Ruby
+  - baza dokumentowa:
+    - DynamoDB
+    - CosmosDB (Eveneum)
+  - dedykowana baza do persystowania eventów:
+    - EventStore (8 lat na rynku, open source)
+    - AxonServer (1 rok na rynku, closed source)
+
+
+Podsumowanie:
+  - musimy odróżnić zdarzenia domenowe od zdarzeń persystentnych
+  - persystencja jest generyczna, event dla każdego agregatu jest zapisywany ostatecznie w ten sam sposób
+  - implementacja persystencji jest dużo prostsza w przypadku event sourcingu niż w przypadku ORMów
+  - istnieje szeroki wybór baz danych, gdzie chyba najlepszą opcją jest EventStore stworzony specjalnie do tego celu

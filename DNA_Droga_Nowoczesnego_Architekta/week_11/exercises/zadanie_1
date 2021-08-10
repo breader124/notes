@@ -1,0 +1,4 @@
+Zadanie:
+  - znajdź niezbyt złożony agregat
+  - zaimplementuj odtwarzanie stanu przy użyciu zdarzeń
+  - napisz kilka testów jednostkowych
