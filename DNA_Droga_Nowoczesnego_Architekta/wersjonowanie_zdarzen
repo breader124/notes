@@ -1,0 +1,52 @@
+Zdarzenia są niemutowalne ze względu na:
+  - audyt
+  - nasłuchiwać na nie mogą zewnętrzni konsumenci, którzy wykonują jakieś akcje na ich podstawie
+  - mamy modele odczytu, które subskrybują się na nasze zdarzenia
+
+Zdarzenia się zmieniają, uwzględniając poniższe rodzaje zmian:
+  - ilości danych
+    - mogą zostać dodane pewnie pola, natomist inne mogą stać się niepotrzebne
+    - silny schemat (strong schema):
+      - struktura zapisana na poziomie typu, nie jest ona persystowana
+      - dopuszcza dowolny mechanizm serializacji (typ jest potrzebny do deserializacji)
+      - stosujemy wzorzec upcastingu, każde zdarzenie może być doprowadzone do najnowszej wersji
+    - słaby schemat (weak schema):
+      - informacje o strukturze są persystowane przy pomocy JSON / XML
+      - też piszemy upcaster ale tylko jeden dla wszystkich zdarzeń, a nie jeden dla każdego typu
+      - można mówić o mapowaniu zamiast serializacji
+      - mapowanie wedle następującej reguły (patrzymy czy pole jest w JSONie i czy jest w nowym typie): 
+        - JSON and Object -> take from JSON
+        - JSON and no Object -> ignore
+        - no JSON and Object -> default value
+  - struktura i wartości
+    - może pojawić się inny typ, pole może zmienić nazwę, ale możemy też łączyć czy dzielić zdarzenia
+    - powodem do zmiany może być błąd w kodzie, zdarzenia muszą być poprawione w takim przypadku
+    - stosujemy taktykę copy and replace, obracamy się w obrębie jednego event logu:
+      - nie można manipulować zdarzeniami w strumieniu, ale można skopiować strumień zmieniając go i zamknąć stary:
+        - problem z klientami nasłuchującymi
+        - problem z wewnętrznymi / zewnętrznymi modelami odczytu
+        - problem z audytem
+    - stosujemy taktykę copy and transform, obracamy się w obrębie całego event store'a przypisanego do BC:
+      - kopiujemy eventy ze starego event store do nowego event store zmieniając je
+      - mając gotowy nowy event store jesteśmy w stanie przepiąć nasz BC na nowego event store i kontynuować działanie
+      - stary event store można rzecz jasna zostawić dla celów audytowych, albo usunąć zupełnie jeśli chcemy i możemy
+  - znaczenie (semantyka):
+    - przykłady:
+      - temperaturę we wszystkich eventach zapisywaliśmy w C, a przeszliśmy na F
+      - nasz kraj zmienił walutę i musimy uaktualnić wszystkie event na inną walutę
+      - jednostka, która miała dla dwóch zespołów inne znaczenie i trzeba część poprawić
+    - stosujemy zasadę: nowe znaczenie == nowe zdarzenie
+
+Potrzeba wersjonowania w praktyce:
+  - jak stabilna jest Twoja domena?
+  - czy przeprowadzono dogłębny storming?
+  - jaka jest ziarnistość agregatów?
+  - należy pamiętać, że przypadki wersjonowania zdarzają się niezwykle rzadko przy dobrze poprowadzonym projekcie
+    korzystającym z DDD
+
+Zdarzenia publiczne:
+  - minimalizują potrzebę wersjonowania poprzez to, że:
+    - są dużo bardziej ogólne
+    - wykorzystują jedynie typy proste
+    - wykorzystujemy wzorzec słabego schematu, mapowanie ponad deserializację
+  - musimy utrzymywać kompatybilność wsteczną 
