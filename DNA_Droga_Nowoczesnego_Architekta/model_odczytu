@@ -1,0 +1,123 @@
+CQRS:
+  - roszerzenie CQS
+  - osobny model zapisu i odczytu
+  - replikacja synchroniczna lub asynchroniczna
+
+Trudności:
+  - wyświetlanie danych z wielu agregatów na jednym widoku
+  - raporty
+  - wyszukiwanie
+  - RODO
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Wyświetlanie danych - przypadek 1
+  - krótko żyjący agregat
+  - prosta struktura modelu
+  - nie potrzebujemy danych z zewnątrz
+  - przeciętne obciążenie agregatu
+
+Przykład - koordynacja procesu:
+  - stan wysłanego zaproszenia
+  - stan zadania pracującego w tle
+  - stan zamówienia
+  - negocjacja ceny
+
+Rozwiązanie:
+  - prawdopodobnie nie potrzebujemy osobnego modelu, wykorzustujemy po prostu model zapisu
+  - zakładamy, że nie używamy żadnego ORMa, jest to istotne ze względu na szybkość działania, sam ORM dokłada
+    na sam start niesamowitą ilość abstrakcji, które spowalniają każdą operację typu read, którą wykonujemy
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Wyświetlanie danych - przypadek 2
+  - długo żyjący agregat 
+  - złożona struktura modelu 
+  - nie potrzebujemy danych z zewnątrz
+  - przeciętne obciążenie odczytu
+
+Przykład - pogląd modelu draft
+  - sprawa ubezpieczeniowa
+  - redagowanie dokumentu
+  - przygotowanie konfiguracji
+  - przygotowanie ogłoszenia
+
+Rozwiązanie:
+  - możemy na spokojnie zacząć od jednej bazy danych aktualizując model odczytu synchronicznie
+  - aktualizując synchronicznie poświęcamy latencję zapisu, ale bardzo możliwe, że nas to nie boli
+  - kiedy obciążenie po stronie odczytu bardzo mocno rośnie, wtedy przechodzimy na synchronizację asynchroniczną,
+    dochodzą nam wtedy jednak wszystkie problemy związane z EC i async computing
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Wyświetlanie danych - przypadek 3
+  - potrzebujemy danych z różnych agregatów
+  - które mają różne cykle życia
+  - istnieje duże obciążenie odczytu
+
+Przykład - taki sam jak w przypadku nr 2
+
+Rozwiązanie:
+  - każdy BC ma swój własny dedykowany read model, do którego uderza frontend
+  - composite UI:
+    - robimy wiele requestów do naszego backendu równolegle, wydajność jak zwykle zależy od przypadku biznesowego
+    - możemy zastosować BFF, który jest proxy do naszego systemu, zbiera on wszystkie potrzebne dane i je formatuje
+    - możemy też zastosować GraphQL, który sam zbierze potrzebne dane bez potrzeby ręcznego ich assemblowania przez nas
+
+RODO i kompozytowy UI:
+  - dane wrażliwe w jednym agregacie
+  - usuwamy strumień, który odpowiada temu agregatowi
+  - resztę danych możemy anonimizować
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Wyświetlanie danych - przypadek 4
+  - przeszukiwanie danych należących do różnych agregatów
+
+Przykład:
+  - wyszukiwarki
+  - raporty
+  - analizy
+  - wykrywanie oszustw
+
+Rozwiązanie:
+  - tworzymy dedykowany, publiczny read model, możliwe, że w zewnętrznym systemie, który potrafi obsługiwać gigantyczne
+    ilości danych
+
+Zdarzenia publiczne i prywatne:
+  - prywatne:
+    - dodano paragraf
+    - zmieniono czcionkę
+    - wystawiono obrazek
+  - publiczne:
+    - zmodyfikowano treść
+
+Zdarzenia publiczne:
+  - Outbox pattern
+  - mogą być wzbogacane, wołając zewnętrzne serwisy, których dane dodajemy do publicznego zdarzenia 
+  - globalna kolejność może być istotna
+  - mogą być przetwarzane w różnym tempie
+
+RODO i publicznego modele odczytu:
+  - dane są zreplikowane w wielu miejscach
+  - każdy moduł odczytowy realizuje prawo do zapomnienia
+  - usuwanie / anonimizowanie strumienia
+
+Spójność końcowa:
+  - wynikająca z domeny, przykładowe sytuacje:
+    - ktoś inny zapisuje, ktoś inny odczytuje, np. ktoś wrzucił ofertę, a ktoś ją ma zobaczyć powiedzmy na Allegro
+    - przekazanie zlecenia
+  - czytanie własnych zapisów (read your own writes):
+    - na bazie zwróconego sukcesu
+    - na bazie zwróconego zdarzenia
+  - spowolnienie użytkownika:
+    - strona z potwierdzeniem lub podsumowaniem
+    - wydłużanie przetwarzania komendy
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Podsumowanie:
+  - odczyt może być spójny, ale płacimy latencją
+  - lokalne modele odczytowe + kompozytowy UI
+  - agregująca modele odczytowe i zdarzenia publiczne
+  - spójność końcowa
