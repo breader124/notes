@@ -1,0 +1,76 @@
+Problemy z wydajnością:
+  - dużo zdarzeń per agregat
+  - duże zdarzenia (dziesiątki kB danych w pojedynczym zdarzeniu)
+  - dużo zapisów w ciągu krótkiego czasu
+  - dużo zdarzeń w bazie (jak wygląda skalowanie po dłuższym czasie)
+
+------------------------------------------------------------------------------------------------
+
+Dużo zdarzeń per agregat - przykłady:
+  - polisy żyjące kilkadziesiąt lat
+  - koszyk w e-commerce
+  - draft modele, które dużo się zmieniają ale długo zostają w tej formie
+  - rachunek oszczędnościowo-rozliczeniowy 
+
+Dużo zdarzeń per agregat - rozwiązanie:
+  - snapshot techniczny
+  - job działający w tle pobierający zdarzenia dla jednego agregatu
+  - ze zdarzeń tworzy specjalne snapshotowe zdarzenie, które zapisujemy sobie gdzieś z boku
+  - z tego specjalnego zdarzenia możemy łatwo odtworzyć dany stan agregatu
+    - jest tylko jeden snapshot event per agregat
+    - aby odtworzyć wspomniany stan wywołujemy applySnapshot
+  - nie jest to kolejne źródło prawdy, ale jedynie pochodna tego jedynego dobrego 
+  - zazwyczaj snapshoty są zapisywane w osobnej bazie danych takich jak:
+    - key-value - Redis
+    - wide column - Cassandra
+
+Dla pewnych domen naturalnym rozwiązaniem są snapshoty domenowe. Np. dla branży finansowej tworzy się
+podsumowania kwartalne/roczne. Możliwym jest, że właśnie wtedy zamykane są długo żyjące agregaty i problem
+długo żyjących agregatów rozwiązuje się sam.
+
+------------------------------------------------------------------------------------------------
+
+Duże zdarzenia - przykłady:
+  - dokumenty
+  - obszerne formularze
+  - CMSy
+
+Duże zdarzenia - rozwiązanie:
+  - rozbijanie:
+    - Task-Based UI - może modyfikacja może być rozbita na kilka mniejszych
+    - weryfikacja niezmienników - czy na pewno mamy dobrze zebrane niezmienniki
+    - szukanie elementów składowych
+  - operowanie na diff-ach - stosujemy kiedy nie da się zrobić nic w temacie rozbijania
+
+------------------------------------------------------------------------------------------------
+
+Dużo zapisów w ciągu krótkiego czasu do jednego agregatu - przykłady:
+  - przetwarzanie transakcji giełdowych
+  - import danych
+  - systemu IoT
+
+Dużo zapisów w ciągu krótkiego czasu do jednego agregatu - rozwiązanie:
+  - trzymamy agregat w pamięci:
+    - model aktorów (np. wykorzystując model Akka)
+    - cache zdarzeń + sticky sessions
+    - cache snapshotu + sticky sessions
+
+------------------------------------------------------------------------------------------------
+
+Dużo zdarzeń w bazie - przykłady:
+  - co będzie za 5-10 lat
+  - mnóstwo małych operacji
+  - bardzo wielu użytkowników
+
+Dużo zdarzeń w bazie - rozwiązanie:
+  - cold storage - zazwyczaj nie potrzebujemy bardzo starych eventów w kontekście zapisów, stare eventy 
+    możemy w takim przypadku przenieść na zewnątrz bazy, gdzie przechowywanie jest tańsze tracąc wspomnianą
+    możliwość zapisu
+  - kompaktowanie - trzeba sprawdzić, czy nie można kilku zdarzeń spłaszczyć, czy na pewno wszystkie informacje
+    są dla nas bardzo istotne
+
+------------------------------------------------------------------------------------------------
+
+Podsumowanie:
+  - na każdy problem istnieje sensowne rozwiązanie
+  - w wielu wypadkach nie będą konieczne
