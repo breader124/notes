@@ -1,0 +1,24 @@
+1. Sieć jest niezawodna - istnieje wiele możliwości i przypadków niedostępności sieci, ponadto pojawiają się takie
+   problemy jak brak możliwości wykorzystania klasycznych transakcji bazodanowych, które bez problemu można 
+   wykorzystać w przypadku jednej, monolitycznej aplikacji.
+
+2. Opóźnienie wynosi 0 - czas komunikacji pomiędzy aplikacjami jest znaczący, nie wilno go pomijać.
+
+3. Przepustowość jest nieskończona - łącze sieciowe przypomina tunel metra, istnieje z góry znana, ograniczona
+   liczba osób, które mogą pojechać daną linią metra w danym czasie zachowując wszystkie standardy bezpieczeństwa.
+
+4. Sieć jest bezpieczna
+
+5. Topologia się nie zmienia - w czasie chmury topologia naszego rozwiązania bardzo się zmienia, nie możemy się 
+   przywiązywać do żadnego adresu IP
+
+6. Jest jeden administrator - należy zawsze pamiętać, że najprawdopodobniej nie ma jednej osoby, która wie wszystko
+   o danym systemie, wiedza jest rozproszona pomiędzy adminów, deweloperów i testerów. Aby ułatwić sobie proces 
+   migrowania do najnowszej wersji, powinniśmy raczej zadbać o poprawne procesy i CI/CD, a nie liczyć, że ktoś
+   ma kompleksową wiedzę na temat wszystkiego, co można spotkać w systemie.
+
+7. Koszt transportu wynosi 0 - komunikacja sieciowa jest kosztowna sama w sobie, ale do tego dochodzą chociażby
+   jeszcze takie koszty jak koszty każdorazowego serializowania i deserializowania danych
+
+8. Sieć jest jednorodna (zakładająca, że na wszystkich końcówkach są komputery posługujące się tymi samymi
+    protokołami)
