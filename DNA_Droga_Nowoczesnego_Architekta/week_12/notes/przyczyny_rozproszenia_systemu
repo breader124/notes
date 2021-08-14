@@ -1,0 +1,61 @@
+Pierwsza zasada - don't even consider microservices unless you have a system that's too complex to manage as
+                  monolith
+
+Należy pamiętać, że zawsze obowiązuje zasada monolith first!
+
+Przyczyny złożoności:
+  - organizacyjne:
+    - wielkość zespołu/projektu - ciężko jest pracować w wiele osób nad jednym codebasem
+    - organizacja pracy - staramy się zrobić tak, aby na naszą korzyść działało prawo Conwaya
+    - proces wytwarzania
+    - względy bezpieczeństwa
+  - techniczne
+    - zasoby - często pewne moduły są dużo bardziej zasobożerne, co się przekłada na cały system
+    - odporność na błędy - nie chcemy, żeby błąd w jednym module miał wpływ na cały system
+    - skalowalność - monolit bardzo ciężko jest skalować
+    - dostępność - jeśli nie działa monolit to nie działa całość
+
+Anty-przyczyny do stosowania mikroserwisów:
+  - najlepsza praktyka - mikroserwisy jako styl architektoniczny rozwiązują dane problemy, nie są najlepsze 
+    na świecie z samego faktu bycia najnowszą, najbardziej trendy architekturą
+  - sposób na modularyzację - nie powinniśmy traktować modularyzacji w sposób tożsamy z mikroserwisami
+  - częste wydania - istnieje popularna opinia, że stosująć podejście z mikroserwisami, będziemy mogli częściej
+    wydawać, bo zespoły nie będą sobie wzajemnie przeszkadzały, jest to oczywiście prawda, ale ten sam efekt da
+    się osiągnąć dużo mniejszym kosztem
+
+Podejścia do rozpraszania systemu:
+  - Function as a Service (FaaS):
+    - małe funkcje
+    - bardzo wąska odpowiedzialność
+    - uruchamiane przez zdarzenia
+    - komunikują się asynchronicznie
+    - zastosowania:
+      - edge computing (Lambda@Edge, Cloudflare Workers)
+      - sporadycznie używane moduły
+  - Nanoserwisy:
+    - małe serwisy
+    - sporo kaskadowych wywołań serwisów
+    - sporo komunikacji synchronicznej
+    - duży narzut infrastrukturalny 
+    - zastosowanie:
+      - obsługa ogromnego ruchu
+      - usługi o globalnym zakresie
+  - Mikroserwisy:
+    - wielkość determinowana przez domenę 
+    - autonomia
+    - mało kaskadowych wywołań
+    - sporo komunikacji asynchronicznej
+    - zastosowanie:
+      - większść systemów, które wymagają rozproszenia
+      - brak globalnej, ekstremalnej skali
+
+Bounded Context a system rozproszony:
+  - ziarnistość serwisów - wszystko zależy od domeny i zasięgu naszego rozwiązania
+  - ilość agregatów w kontekście - należy pamiętać, że granicą spójności jest agregat, a nie BC
+
+Podsumowanie:
+  - z modularnym monolitem jesteśmy w stanie zajść daleko
+  - głównym driverem, który mówi nam, że powinniśmy iść w stronę systemów rozproszonych jest skala ruchu,
+    zasobów lub organizacji
+  - serwisy mogą mieć różną wielkość w zależności potrzeb, zaczynamy od mikroserwisów i dopiero jeśli jest taka
+    potrzeba to przechodzić do nanoserwisów/FaaS
