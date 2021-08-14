@@ -1,0 +1,27 @@
+Trzy osie podziału prac:
+  - wiele systemów
+  - wiele zespołów
+  - wiele równoległych projektów
+
+Zespół per system:
+  - znajomość systemu i domeny (+)
+  - poczucie własności (+)
+  - trudna koordynacja prac (-)
+  - brak świadomości kontekstu (-)
+  - brak wymiany wiedzy technicznej (-)
+
+Zespół per projekt:
+  - świadomość konktekstu (+)
+  - prosta koordynacja prac (+)
+  - wymiana wiedzy technicznej (+)
+  - brak wiedzy eksperckiej (-)
+  - brak własności systemów (-)
+
+Podejścia mieszane:
+  - preferencja systemu (kiedy każdy projekt używa tej samej technologii)
+  - preferencja projektu (kiedy jest duża dywersyfikacja technologii w projektach w firmie)
+    - łatwiej wyeliminować minusy tego podejścia poprzez:
+      - własność systemów
+      - wypożyczenia eksperta na grooming i code-review
+      - gildie techniczne
+    - wymaga utrzymania homogeniczności (tzn. powinniśmy utrzymywać podobne technologie dla każdego projektu)
