@@ -1,0 +1,8 @@
+Temporal coupling:
+  - komponenty są związane ze sobą czasowo - dalszcze procesowanie wymaga uzyskania odpowiedzi z innego
+    komponentu
+  - niedostępność innego komponentu powoduje błąd
+  - każda komunikacja synchroniczna wprowadza temporal coupling
+
+Rozwiązaniem dla temporal coupling jest komunikacja asynchroniczna! Jest ona podstawowym sposobem komunikacji
+w systemach rozproszonych.

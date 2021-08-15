@@ -1,0 +1,33 @@
+Wdrożenia bez niedostępności inaczej nazywane są:
+  - zero-downtime deployment
+  - rolling update
+
+Zmiany odroczone:
+  - deffered changes 
+  - polegają na rozbiciu zmiany niekompatybilnej wstecznie na szereg zmian kompatybilnych wstecznie
+
+Przykład - migracja date -> datetime
+  1. dodajemy kolumnę datetime
+  2. wdrażamy wersji 2.0
+     - odczyt z date
+     - zapis do date + datetime
+  3. migrujemy dane date -> datetime 
+  4. wdrażamy wersję 3.0
+     - odczyt z datetime
+     - zapis do date + datetime
+  5. wdrażamy wersję 4.0
+     - odczyt z datetime
+     - zapis do datetime
+  6. usuwamy kolumnę date
+
+Wersja          Odczyt        Zapis
+1.0             date          date
+2.0             date          date+datetime
+3.0             datetime      date+datetime
+4.0             datetime      datetime
+
+
+Wnioski:
+  - omawiana zmiana nie jest trudna
+  - złożone zmiany typu denormalizacja modelu są praktycznie nierealne do wykonania w tym modelu
+  - mechanizm jest uniwersalny i jest aplikowalny nie tylko dla baz danych
