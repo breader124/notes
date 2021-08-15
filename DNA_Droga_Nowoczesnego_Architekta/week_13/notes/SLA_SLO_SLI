@@ -1,0 +1,31 @@
+SLA (Service-Level Agreement):
+  - umowa z klientem dotycząca poziomu świadczenia usług
+  - deklarujemy np. procent czasu, w którym w danym okresie usługa będzie dostępne
+  - wprowadzamy refundacje, bądź kary umowne za niewywiązanie się z umowy 	
+  - przykłady:
+    - dostępność 99.95% tygodniowo
+    - 1500ms opóźnienia dla 99.9 percentyla operacji dodania kursy
+    - maksymalnie 0.1% żądań dodania kursu zakończonych błędem
+
+Service-Level Objective:
+  - wewnętrzny cel poziomu świadczenia usług
+  - zapewnia bufor między umową z klientem, a momentem podjęcia akcji naprawczych
+
+Service-Level Indicator:
+  - mierzalne cechy/metryki danego systemu, takie jak dostępność, opóźnienia, przepustowość, poziom błędów etc.
+  - wskaźniki mierzące zdrowie platformy
+
+
+Kompletny przykład:
+  - SLA: 99.9% żądań do serwera ma opóźnienie < 200ms 
+  - SLO: 99.95%	żądań do serwera ma opóźnienie < 180ms
+  - SLI: opóźnienie żądań do serwera
+
+Budżet błędów:
+  - error budget
+  - jeżeli mamy wyższą niezawodność niż planowana, możemy wydać różnicę
+  - jeżeli budżet topnieje, to np. wstrzymujemy wdrożenia
+
+Jak zacząć?
+  - dla nowych aplikacji SLI i SLO powinny być częścią wymagań
+  - dla istniejących systemów określamy je, bazując na SLA

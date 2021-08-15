@@ -1,0 +1,27 @@
+Czym są mikroserwisy?
+  - szczególnym przypadkiem systemu rozproszonego
+  - nastawionym na zapewnienie autonomii
+
+Rodzaje autonomii:
+  - autonomia rozwoju - ekspest domenowy samodzielnie decyduje o zmianach
+  - autonomia wdrożeń - jednostka biznesowa niezależnie ustala kalendarz wdrożeń
+  - autonomia technologii - dobieramy narzędzie do danego problemu
+
+Jak mikro są mikroserwisy?
+  - realnie mikroserwisy mają 5-50k linii kodu, czyli są de facto małymi monolitami
+
+Czemu nie chcemy małych usług?
+  - rośnie zawodność systemu, więcej usług musi się ze sobą komunikować, aby zrealizować proces
+  - rośnie złożoność systemu
+
+Produkt czy projekt?
+  - mikroserwisy są zorientowane biznesowo
+  - komponenty techniczne świetnie czują się jako biblioteki, co nie znaczy, że nie można robić 
+    technicznych mikroserwisów
+
+Kiedy robić serwis techniczny?
+  - skalowalność i zasoby
+  - odporność
+  - różne technologie
+  - utrzymanie stanu
+  - licencjonowanie, bezpieczeństwo, wymagania funkcjonalne
