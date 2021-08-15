@@ -1,0 +1,40 @@
+Proces określania dostępności:
+  - zebranie procesów biznesowych
+  - określenie dostępności poszczególnych procesów
+  - podział systemu na jednostki wdrożeniowe
+  - mapowanie procesów na jednostki wdrożeniowe
+  - rozrzucenie dostępności procesów na jednostki wdrożeniowe biorące w nich udział
+
+Przykład - proces:
+  - zalogowany użytkownik dokonuje zakupu nowej subskrybcji
+  - maksymalna niedostępność:
+    - chwilowo: 60s
+    - dziennie: 5min
+  - systemy w procesie:
+    - użytkownicy
+    - subskrybcje
+    - plany subskrybcji
+    - płatności
+  - rozrzucenie;
+    - użytkownicy: 2s/10s
+    - subskrybcje: 5s/30s
+    - plany subskrybcji: 20s/1min
+    - płatności: 30s/3m
+
+
+Dostępnośc jako zdarzenie losowe:
+  - dostępność systemu jest zdarzeniem losowym
+  - zależność między dostępnością systemów jest przypadkowa
+  - prawdopodobieństwo całkowite zdarzeń niezależnych jest równe iloczynomi prawdopodobieństw tych zdarzeń
+    - 5 usług z SLA 99.5 daje SLA procesu 97.5
+    - 10 usług z SLA 99.9 daje SLA 99.0
+  - na dostępność usługi wpływa również infrastruktura:
+    - sieć
+    - serwery lub maszyny wirtualne uruchamiające usługę
+    - wykorzystywane przez usługę bazy danych, kolejki etc.
+  - wniosek: im więcej systemów biorących udziała w procesie, tym gorsza jest dostępność takiego procesu
+
+
+Techniki poprawy dostępności:
+  - eliminowanie planowanych wyłączeń (maintenance windows)
+  - eliminacja zależności czasowych (temporal coupling)
