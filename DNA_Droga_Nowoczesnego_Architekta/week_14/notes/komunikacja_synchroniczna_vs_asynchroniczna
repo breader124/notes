@@ -1,0 +1,51 @@
+Style komunikacji:
+  - fire & forget
+  - request-response synchroniczny
+    - blokujące IO
+    - kod wykonywany w kolejności pisania
+    - łatwy debug i monitoring
+    - thread per request
+  - request-response asynchroniczny
+    - nieblokujące IO
+    - potrzeba dodatkowych bibliotek
+    - nieoczywisty kod (ale jest to najczęściej po prostu kwestia przyzwyczajenia)
+    - pętle zdarzeń (event loop) 
+  - request-stream
+  - channel
+
+Wzorce obsługi requestów:
+  - wątek per żądanie
+  - pętla zdarzeń (event loop)
+
+Podejście synchroniczne: wady
+  - słaba utylizacja CPU
+  - duże zużycie pamięci
+  - context switch
+  - ograniczona przepustowość
+
+Włókna (fibers)
+  - lekkie wątki
+  - zachowują kolejność wykonania kodu
+  - lepsza utylizacja zasobów niż wątki
+  - fiber per request
+
+Podejście strumieniowe:
+  - strumienie danych
+  - real-time
+  - niższe zużycie pamięci
+  - łatwa kompozycja wywołań (RX)
+
+Rozwiązania on-premise:
+  - reactive extensions
+  - gRpc
+  - rsocket
+
+Rozwiązania IaaS:
+  - pubnub
+  - ably
+  - pusher
+  - fanout
+
+
+Design For Failure: wszystkie formy komunikacji request-reply wymagają odpowiedniej obsługi błędów niezależnie
+                    czy są synchroniczne czy asynchroniczne

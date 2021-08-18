@@ -1,0 +1,27 @@
+Każda integracja z drugim serwisem powinna rodzić pytania:
+  - co jeśli serwis nie działa?
+  - co jeśli serwis odpowiada bardzo długo?
+  - jaki to ma wpływ na serwis który tworzę i jego klientów?
+
+User experience:
+  - długi oczekiwanie
+    - czasem zakończone sukcesem
+    - zazwyczaj zakończone błędem
+  - krótkie oczekiwanie
+    - z błędem
+    - lub deskryptywną informacją
+    - lub wartością domyślną
+
+
+Główna zasada: Dobra dekompozycja problemu zmniejsza potrzebę integrowania się!
+
+
+Co robić, jeśli serwis jest niedostępny?
+  - cache - pojawia się problem, kiedy ten cache unieważnić
+  - retry - jakaś taktyka ponawiania zapytania przez przeglądarkę, a nie przez usera
+  - rate limiters - ograniczenie liczby zapytań, serwis musi mieć czas się podnieść
+  - fallback - np. wyjmowanie danych skądś indziej w momencie kiedy docelowe źródło jest niedostępne
+  - circuit breakers
+  - metrics
+  - komunikacja asynchroniczna
+  - testowanie (chaos monkey - losowe wyłączanie pewnych instancji i patrzenie jak zareaguje system)
