@@ -1,0 +1,76 @@
+Style komunikacji:
+  - Request-Reply (Message driven w programowaniu reaktywnym)
+  - Fire & Forget/One-Way (Event driven w programowaniu reaktywnym)
+    - kolejka
+    - publish subscribe
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Przypadki użycia kolejek dla zdarzeń i dla komend (jedna wiadomość przetwarzana TYLKO przez jednego odbiorcę):
+  - równoległe przetwarzanie
+  - przetwarzanie w tle
+  - bufor
+
+Przykłady narzędzi:
+  - Amazon SQS
+  - RabbitMQ (Direct Exchange)
+  - Google PubSub (Topic z jedną subskrybcją)
+  - Kafka (Topic z jedną grupą konsumentów)
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Przypadki użycia Publish Subscribe (jedna wiadomość przetwarzana przez kilku odbiorców):
+  - notyfikacja innych serwisów lub urządzeń klienckich
+
+Przykłady:
+  - Amazon SNS
+  - Rabbit MQ (Fanout Exchange)
+  - Google PubSub (Topic z wieloma subskrybcjami)
+  - Kafka (Topic z wieloma konsumentami)
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Publikowanie wiadomości:
+  - wzorzec outbox:
+    - w jednej transakcji zapisujemy dane oraz zdarzenie do bazy
+    - na naszej bazie operuje publisher, który procesuje napotkane w bazie zdarzenia
+    - problem pojawia się przy istnieniu > 1 instancji publikującej
+    - rozwiązanie opiera się na wyborze lidera, który publikuje wspomniane zdarzenia
+    - wybór lidera dokonuje się przy pomocy:
+      - Raft
+      - Zookeeper
+      - Consul
+      - Etcd
+
+Semantyka dostarczania:
+  - at most once:
+    - chcemy wysyłać bardzo dużo wiadomości, na których potwierdzenie dostarczenia nie czekamy
+    - nie zależy nam na tym, że tracimy część wiadomości
+  - at least once:
+    - wiadomość na pewno zostanie dostarczona, ale jest możliwe, że więcej niż raz
+  - exactly once
+
+Dlaczego nie jesteśmy w stanie zagwarantować exactly once?
+  - problem z otrzymaniem wiadomości ACK od kolejki przez producenta
+  - problem z otrzymaniem wiadomości ACK od producenta przez outboxa
+
+Przetwarzanie wiadomości:
+  - deduplikacja:
+    - każda wiadomość ma swój identyfikator
+    - wiele systemów implementuje swojego małego deduplikatora
+    - wspomniany deduplikator sprawdza identyfikatory i odrzuca wiadomości, który identyfikatory są już znane
+    - implementujemy okno czasowe
+  - idempotentność:
+    - kod jest w stanie przyjąć daną wiadomość kilka razy, a naprawdę przetworzyć ją tylko raz
+
+Poison message (niepoprawna wiadomość) i sposoby jej obsłużenia:
+  - po stronie producenta:
+    - zaprzestanie wysyłania
+    - oznaczenie jako niepoprawne
+  - po stronie konsumenta:
+    - dead letter queue
+
+Podsumowanie:
+  - dobierz wzorzec do problemu
+  - poznaj architekturę narzędzi
+  - zapewnij obsługę błędów
