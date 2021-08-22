@@ -1,0 +1,28 @@
+Podział procesów:
+  - lokalny
+  - długo żyjący:
+    - saga
+    - process manager
+
+Charakterystyka rozproszonej sagi:
+  - semantyka wszystko albo nic
+  - kompensacja zamiast rollback
+
+Kompensacja a rollback:
+  - w przypadku kompensacji aplkujemy jeszcze jedno zdarzenie = zdarzenie^-1
+  - w przypadku rollbacku po prostu usuwamy dane zdarzenie, którego nie chcemy
+
+Narzędzia do obsługi sagi:
+  - AWS Step Function
+  - Uber Cadence
+  - Netflix Conductor
+  - Camunda
+  - MassTransit
+
+Podsumowanie:
+  - wszystko albo nic
+  - kompensacja
+  - idempotentność
+  - używaj gotowych narzędzi, to skomplikowany do zaimplementowania wzorzec
+  - dwa razy zastanów się przed użyciem sagi
+    - być może konieczność jej użycia jest sygnałem złego designu i zbyt małej autonomii serwisów
