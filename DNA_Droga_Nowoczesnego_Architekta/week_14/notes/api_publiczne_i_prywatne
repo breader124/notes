@@ -1,0 +1,19 @@
+API:
+  - publiczne:
+    - udostępnione klientom, nad którymi nie mamy kontroli
+  - prywatne:
+    - mamy kontrolę nad klientami
+    - prywatne nie zawsze oznacza wewnętrzne
+    - systemy z niską kadencją wdrożeń traktujemy jako zewnętrzne
+
+Wersjonowanie:
+  - API publiczne:
+    - wersjonowane są wszystkie zmiany niekompatybilne wstecz
+    - próbujemy zachować interoperacyjność różnych wersji
+  - API prywatne
+    - jest jedna, aktualna wersja
+    - stosujemy zmiany odroczone
+
+Zmiany odroczone:
+  - ten sam mechanizm, który wykorzystywaliśmy przy wdrożeniach bez niedostępności
+  - wyznaczamy określone odstępy między niekompatybilnymi etapami - z reguły minimum 2 sprinty

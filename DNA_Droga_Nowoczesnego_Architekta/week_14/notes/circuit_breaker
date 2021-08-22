@@ -1,0 +1,18 @@
+Jeśli zewnętrzny serwis zawodzi, to:
+  - nie powinniśmy długo czekać na błędną odpowiedź
+  - przy ciągłych problemach, lepiej po prostu przestać ten serwis odpytywać
+
+Procent nieudanych połączeń (X) w oknie czasowym (Y):
+  - przekroczenie zdefiniowanego progu błędów (Z): odcięcie następnych połączeń
+  - w przeciwnym wypadku kontynuacja
+
+Implementacje:
+  - resilience4j (Java)
+  - Polly (C#)
+  - ganesha (PHP)
+  - opossum (node.js)
+
+Kiedy nie stosować?
+  - kiedy połączeń między serwisami jest mało
+    - zbieranie statystyk trwa długo
+    - więc wyłączanie/włączenie obwodu będzie bardzo rzadkie

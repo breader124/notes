@@ -1,0 +1,17 @@
+Service Discovery:
+  - serwisy muszą się rejestrować:
+    - przez API Service Registry
+    - serwis często podaje endpoint do health check
+  - serwisy pobierają adresy innych serwisów:
+    - tych zarejestrowanych i dostępnych
+    - mogą te adresy trzymać w cache
+  - nie jest Single Point Of Failure, bo mamy możliwość użycia cache:
+    - co z kolei oznacza, że nie zawsze mamy najbardziej aktualne dane
+  - po stronie aplikacji:
+    - koncept rejestru rozumiany przez aplikacje biznesowe, np. Eureka, Consul
+    - niezależny od platformy wdrożeniowej
+    - wymaga dodatkowych bibliotek
+  - po stronie infrastruktury:
+    - koncept rejestru wbudowany w platformę wdrożeniową, np. Kubernetes
+    - żadnego dodatkowego kodu po stronie aplikacji
+    - zależność od platformy wdrożeniowej

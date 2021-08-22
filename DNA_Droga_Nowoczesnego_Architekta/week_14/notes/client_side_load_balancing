@@ -1,0 +1,26 @@
+Server-Side Load Balancing:
+  - Single Point of Failure
+  - niższa wydajność:
+    - wąskie gardło
+    - dodatkowy element sieciowy
+  - często wymaga ręcznej aktualizacji
+
+Client-Side Load Balancing:
+  - zalety:
+    - klient wybiera instancję 
+      - często przy współpracy z Service Registry
+    - eliminuje problem SPoF
+    - mniejszy koszt infrastrukturalny
+    - bezpośrednia komunikacja (ominięcie dodatkowego węzła)
+    - większa kontrola po stronie klienta
+    - przykład:
+      - HTTP POST ze zleceniem nowej transkrypcji audio
+      - HTTP GET  do tej samej instancji w celu sprawdzenia wyniku/stanu transkrypcji
+  - wady:
+    - wymaga biblioteki (np. Ribbon)
+    - w teorii wszystkie serwisy mogą wybierać tę samą instancję
+
+Algorytmy wyboru instancji, z którą się komunikujemy:
+  - WeightedResponseTimeRule
+  - AvailabilityFilteringRule
+  - RoundRobinRule
