@@ -1,0 +1,18 @@
+Zalety testów E2E:
+  - weryfikują całościowo proces biznesowy
+  - potwierdzają prawidłową integrację i współdziałanie wszystkich komponentów
+
+Niestabilność testów E2E:
+  - rezultaty false-negative:
+    - z uwagi na wrażliwość na niestabilność środowiska
+    - brak procesu utrzymania testów w zgodności z logiką biznesową
+  - długo trwają
+
+Stabilizowanie testów E2E:
+  - testy e2e można ustabilizować, ale wiąże się to z dużymi nakładami
+    - środowisko per zespół
+    - ograniczenie jednoczesnych wdrożeń
+
+Fałszywa stabilność testów E2E:
+  - poprawne zaprojektowanie systemu (m.in. wykorzystanie mechanizmów fallback) może doprowadzić do skrajnie 
+    niekorzystnego scenariusza false-positive

@@ -1,0 +1,31 @@
+Jakość komunikacji:
+  - systemy rozproszone opierają się na komunikacji sieciowej
+  - niestabilność komunikacji przekłada się bardzo na niestabilność całego systemu
+
+Stabilność komunikacji:
+  - stabilność transportu:
+    - sieć
+    - topologia
+    - klienty
+  - stabilność treści:
+    - zgodność URL
+    - zgodność dokumentów
+
+Sposoby zapewnienia spójności danych:
+  - model kanoniczny
+    - jeden, spójny, właściwy model
+    - współdzielenie DTO między serwerem, a klientem
+    - brak autonomii
+  - słabe typowanie (weakly-typed serialization)
+    - z pełnego dokumentu deserializujemy jedynie potrzebne nam pola
+    - zyskujemy autonomię
+    - tracimy spójność komunikatu
+
+Problemy współdzielenia modelu:
+  - komunikacja pomiędzy klientem i serwerem posiada bardzo silny schemat
+  - klient parsuje pole, nawet jeżeli go nie używa:
+    - zmiana formatu daty będzie efektować błędem
+    - dodanie wartości enum będzie efektować błędem
+
+
+Postel's Law: Be conservative in what you send, be liberal in what you accept
