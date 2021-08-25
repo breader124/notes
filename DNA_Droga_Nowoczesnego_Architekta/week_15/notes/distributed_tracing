@@ -1,0 +1,12 @@
+Śledzenie komunikacji:
+  - korelujemy logi z różnych systemów
+  - pozwala nam to analizować przepływ procesu
+  - profilowanie i monitoring wydajności
+
+Identyfikatory korelacji:
+  - specyfikacja B3 Propagation
+    - TraceID - identyfikator całego przepływu w systemie
+    - SpanID - identyfikator żądania
+    - ParentSpanID - ParentSpanID
+    - Sampled - informacja (0/1) czy dany trace jest próbkowany
+    - nagłówki X-B3-{element}
