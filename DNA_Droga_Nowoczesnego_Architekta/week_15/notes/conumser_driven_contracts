@@ -1,0 +1,25 @@
+TDD na poziomie komunikacji:
+  - Test Driven Design wpływa pozytywnie na użyteczność interfejsów
+  - Consumer Driven Contracts to przeniesienie idei TDD na poziom komunikacji
+  - kontrakt jest abstrakcją integracji systemów
+
+Klient steruje kontraktem
+  - kontrakt jest definiowany przez system
+  - przy wielu klientach zespół producenta jest odpowiedzialny za uspójnienie oczekiwań
+
+Gdzie trzymać kontrakty?
+  - kontrakt przy kliencie
+  - kontrakt przy producencie
+    - repozytorium z testami mamy po swojej stronie
+    - klient proponuje nam zmiany przez Pull Requesty
+    - kontrakt per klient
+    - kontrakt globalny (zdecydowanie łatwiej utrzymywalny i stosowany)
+
+Scenariusze czy struktura?
+  - w kontraktach skupiamy się na strukturze komunikacji (nagłówki, pola, etc.)
+  - kontrakty nie są zaślepkami do testów BDD
+
+CDC a agile
+  - klient może implementować swoją stronę komunikacji bez czekania na producenta
+  - stuby w trybie developerskim dostępne dla kontratków będących w trakcie implementacji
+  - klient ma znacznie większą elastyczność zmian API

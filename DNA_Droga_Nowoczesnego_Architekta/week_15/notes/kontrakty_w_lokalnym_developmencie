@@ -1,0 +1,8 @@
+Wersje stubów:
+  - do testów w ramach wdrożenia aplikacji używamy kontraktów produkcyjnych
+  - podczas developmentu często udostępniamy kontrakty, dla których API jeszcze nie jest zaimplementowane
+
+API sterowane przez klientów:
+  - udostepnienie API klientowi prezd jego fizycznym zaimplementowaniem pozwala na szybką weryfikację jego
+    użyteczności
+  - zmiana definicji kontraktu jest o rzędy wielkości tańsza niż jego zmiana po samej implementacji

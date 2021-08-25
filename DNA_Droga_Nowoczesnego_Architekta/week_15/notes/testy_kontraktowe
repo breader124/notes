@@ -1,0 +1,26 @@
+Geneza:
+  - do potwierdzenie poprawności komunikacji logika biznesowa jest zbędna
+  - zamiast testować jednocześnie dwie strony komunikacji, robimy to osobno
+
+Kontrakt:
+  - umowa dotycząca sturktury komunikacji między producentem, a klientem
+  - przykład: umawiamy się, że na każde HTTP GET serwere odpowie HTTP 200 z określonym body
+
+Produkty kontraktu:
+  - największej wartości dostarcza automatyczna weryfikacja zgodności obu stron z kontraktem
+    - generujemy testy producenta
+    - generujemy namiastkę (stub) producenta do wykorzystania w testach klienta
+
+Kontrakty w zmianach odroczonych:
+  - w skrócie zmiana odroczona składa się z następujących etapów:
+    - dodanie nowej wersji
+    - oczekiwanie na migrację klientów
+    - usunięcie starej wersji
+
+Dostępne narzędzia wspierające testy kontraktowe:
+  - Spring Cloud Contract
+    - HTTP + messaging
+    - dostępne także poza Javą dzięki kontenerom Dockera
+  - Pact
+    - HTTP + powoli messaging
+    - wspiera bardzo wiele różnorakich językow i środowisk
