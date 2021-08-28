@@ -1,0 +1,54 @@
+AWS consists of 5 main pillars:
+  - Operational Excellence
+    - It can be treated as a kind of an approach to automation of processes. Most commonly biggest mistakes come from
+      actions done manually by human, so it is work worth all effort to identify and automate such processes
+    - concepts:
+      - Infrastructure as Code: You specify how your infrastructure looks like using files in YAML/JSON format. 
+        Taking those files as an input, platform takes care of provisioning and configuring all required 
+        resources.
+      - Observability: You can't improve something you don't measure. Ensuring perfection of provided services, there
+        is need to make 3 steps: collect the data, analyze it and eventually, take some action. This way we make
+        data-driven decision, which can be easily justified while talking with business people about improvements
+        we need to introduce to our system.
+  - Security:
+    - When we think about systems in a cloud, most reasonable approach is to utilize zero trust approach. We simply
+      treat every single component as vulnerable one.
+    - concepts:
+      - Identity and Access Management: AWS applies the law of minimal privileges needed to perform particular action.
+      - Network Security
+      - Data Encryption: After adotpion of zero trust policy in data encryption topic, we need to encrypt data 
+        whenever we transmit it over the wire and when it is just stored somewhere. There must be no chance for
+        anyone to spot any single point when our data is just ready to read without any decryption actions taken.
+  - Reliability
+    - While thinking about reliability we must think in terms of blast radius. Then the question of "if" becomes
+      question of "when" and our job is to minimize impact of a failure we assume will happen at some point in the
+      future.
+    - concepts:
+      - Fault Isolation: AWS limits blast radius by introducing independent components separated by fault isolation
+        zones. Zones term is splitted into 3 different levels of isolation: Resource and Request, Availability,
+        Region.
+      - Limits: AWS introduces term of a limit. It is mechanism protecting our services against extensive load
+        generated either by unexpected outer conditions or DDoS attack
+  - Performance Efficiency
+    - When we move from on-premise to cloud solutions, we need to change the way we think about performance and
+      physical devices behind. We no longer utilize monster like servers, which were extremely expensive in terms
+      of annual cost, but also in terms of work needed to put in whenever we wanted to extend our data center by
+      one additional server. From now on, we treat our services as cattle, not pets. We just shouldn't be tied
+      any longer to single machines standing in our server rooms.
+    - concepts:
+      - Selection: You may achieve higher performance by carefully choosing best services for your purposes
+      - Scaling: AWS makes it possible to achieve both vertical and horizontal scaling. Vertical type is about
+        upgrading given instance to use higher plan and assigning it more resources at the same time. Horizontal
+        scaling is about launching new instances of given service, it comes with additional effort we need to invest
+        while implementing our services.
+  - Cost optimization
+    - Whenever we think about cost optimization on the cloud, we need to think rather in terms of pay-as-you-go 
+      model than in terms of one-time purchase model. Advantage of the first mentioned type over second one is 
+      a fact, that when you go for one-time purchase, then it's not known whether you'll use all just bought 
+      resources or not. When paying for real usage, you can just switch to another plan.
+    - concepts:
+      - Pay For Use: We need to take a couple of things into consideration when paying for actual usage of
+        resources and after all we need to choose most important vector of saving money, e.g. we can make a decision
+        to try with serverless architecture and then realize it's not optimal solution and using reservations 
+        can make our solution better optimized in terms of cost-effectiveness.
+      - Cost Optimization Lifecycle: review -> track -> optimize -> review
