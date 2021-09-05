@@ -1,0 +1,12 @@
+Fail-safe:
+  - projektowanie nastawione na przewidywanie i zapobieganie potencjalnym problemom
+  - zakłada, że wiemy, co i gdzie może pójść źle
+
+Safe-to-fail:
+  - koncentrujemy się na minimalizowaniu konsekwencji niespodziewanych problemów 
+  - nie wiemy, co i kiedy może pójść źle
+
+Co wybrać?
+  - stabilność (fail-safe) vs eksperymenty (safe-to-fail)
+  - lokalne drivery - należy pamiętać, że wszystko się zmienia i być może inne podejście będziemy musieli zastosować
+    kiedy nasz produkt zacznie być co raz to bardziej dojrzały i oczekiwania naszych klientów staną się poważniejsze

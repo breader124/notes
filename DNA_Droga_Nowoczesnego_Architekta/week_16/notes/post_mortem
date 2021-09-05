@@ -1,0 +1,28 @@
+Studium przypadku:
+  - update users set active = false
+  - co było problemem?
+    - nieuważny programista?
+    - włączony autocommit?
+    - możliwość wykonania zapytania z IDE?
+    - dostęp write do produkcji?
+    - możliwość wykonania zapytania, które nie było autoryzowane?
+
+Domniemanie niewinności:
+  - założenie braku złych intencji pozwala skupić się na dotarciu do sedna problemu
+  - pytajmy "dlaczego" tak długo, aż nie dotrzemy do problemów źródłowych (root-cause analysis)
+
+Co powinno zawierać post-mortem?
+  - oś czasu (timeline)
+  - wykresy, metryki
+  - komunikację, doraźne wnioski
+  - wszystko, co się przyda podczas analizy
+
+Środki zaradzcze:
+  - każde post-mortem powinno kończyć się zdefiniowaniem środków zaradczych, aby problem nie powtórzył się 
+    w przyszłości
+  - próbujemy także szukać meta-rozwiązań
+
+Po co?
+  - wspiera uczenie się na błędach
+  - poprawia komunikację
+  - przyzwolenie na błąd

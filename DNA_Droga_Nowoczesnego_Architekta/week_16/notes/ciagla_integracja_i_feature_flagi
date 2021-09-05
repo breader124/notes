@@ -1,0 +1,76 @@
+Jak utrzymać mastera w ciągłej gotowości?
+  - feature flagi
+  - wydanie vs wdrożenie
+  - pre-commit flow
+
+Flagi:
+  - feature flag
+  - feature toggle
+  - feature switch
+  - feature flips
+
+Rodzaje flag:
+  - ze względu na czas życia:
+  - ze względu na dynamikę:
+    - wymagające rekompilacji aplikacji
+    - podawane podczas rozruchu aplikacji
+    - możliwe do zmiany w runtimie
+    - możliwe do zmiany co request
+
+Flagi wydaniowe (żyją od tygodni do miesięcy):
+  - standardowe wydanie: może to być wersja z włączonymi konkretnymi featurami na stałe, np. systemy embedded
+  - beta: chcemy udostępnić feature tylko konkretnym osobom, flaga na poziomie startup/runtime
+  - canary release: chcemy udostępnić feature konkretnym użytkownikom z możliwością zwiększania ich liczby,
+                    takie flagi najczęsciej są implementowane na poziomie runtime
+  - A/B test: flagę implementujemy na poziomie requestu
+
+Flagi operacyjne (żyją od miesięcy do lat)
+  - tracing: chcemy mieć dużo więcej logowania, flaga na poziomie builda
+  - przełącznik: jeśli funkcja nie działa/zabiera za dużo zasobów to jest to opcja na jej wyłączenie, flaga na poziomie
+                 runtime
+  - pokrętło: np. regulacja liczby requestów przychodzących do aplikacji, kiedy nie radzi sobie ona z loadem, flaga
+              na poziomie request
+
+Kiedy używać flag:
+  - nowy test ------------------> nie
+  - refactor -------------------> nie
+  - bugfix ---------------------> nie 
+  - nowa funkcja (UI) ----------> tak, flaga może być na poziomie UI
+  - zmiana istniejącej funkcji -> wymaga zastanowienia + technika branch by abstraction
+
+Branch by abstraction: pomiędzy dwa komunikujące się moduły wprowadzamy abstrakcję, której jeden z modułów staje
+się implementacją, następnie wprowadzamy drugi, nowy moduł, także implementujący naszą abstrakcję, feature flag
+ostatecznie działa na poziomie wspomnianej abstrakcji wybierając pomiędzy dwoma konkretnymi implementacjami. Jedyny
+kod, jaki będziemy modyfikować to kod infrastrukturalny, nie ingerujemy w naszą logikę biznesową.
+
+Flagi - dobre praktyki:
+  - daty ważności - build powinien failować po upływie flagi ważności
+  - zakaz zagnieżdżania
+  - kontrola dostępu
+  - audytowanie zmian
+
+Flagi - narzędzia:
+  - launchdarkly
+  - split
+  - togglz
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Ciągłe wdrażanie:
+  - wdrożenie (deploy) - instalacja oprogramowania w wybranym środowisku
+  - wydanie (release) - udostępnienie nowych funkcji użytkownikom
+
+Jak zmniejszyć ryzyko czerwonego buila na serwerze CI:
+  - CI pre-commit
+  - git pre-commit hook
+  - IDE pre-commit
+
+Ciągłe wdrażanie - warunki:
+  - feature flagi
+  - ciągła inspekcja
+  - zero-downtime deployment
+  - stablne testy E2E
+
+Ciągłe wdrażanie - jak często?
+  - w dni robocze gdy jest najmniejszy ruch
+  - po każdym commicie/mergu do mastera (uwaga na wydajność!)
