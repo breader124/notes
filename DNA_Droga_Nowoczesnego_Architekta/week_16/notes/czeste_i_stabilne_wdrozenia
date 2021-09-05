@@ -1,0 +1,74 @@
+Małe zadania jako fundament:
+  - modelowanie
+  - autonomiczne moduły
+  - elementy konstrukcyjne
+  - testy automatyczne
+  - separacja domeny od infrastruktury
+
+Co nas blokuje?
+  - manulany deployment
+  - ubogi build
+  - brak ciągłej integracji
+
+Build, Deploy, Weryfikacja:
+  - build:
+    - in: kod
+    - out: wdrażalny artefakt
+  - deployment:
+    - in: wdrażalny artefakt
+    - out: nowa wersja środowiska
+  - weryfikacja:
+    - przetestowanie aplikacji
+
+Pipeline powinien mieć następującą strukturę:
+  - build -> deploy (TEST) -> weryfikacja -> deploy (UAT) -> weryfikacja -> deploy (PROD) -> weryfikacja
+
+Problem manualnego deploymentu i z czego wynika:
+  - brak automatyzacji migracji bazy danych
+    - DbUp
+    - Liquidbase
+    - Flyway
+  - osobny zespół odpowiedzialny za wdrożenie
+  - brak potrzebnych umiejętności
+
+Problem ubogiego buildu i cechy poprawnego:
+  - cel:
+    - udowodnić, ze kod NIE NADAJE SIĘ na produkcję z 80% pewnością
+    - udowodnić to tak szybko, jak to tylko możliwe
+    - i stworzyć artefakt
+  - sprawdza:
+    - poprawność kodu:
+      - testy jednostkowe
+      - testy integracyjne
+      - testy akceptacyjne
+    - przestrzeganie konwencji
+    - jakość kodu (statyczna analiza kodu)
+    - luki w bezpieczeństwie
+  - każde z powyższych sprawdzeń powinno uszkadzać build
+  - jeśli projekt jest duży to dzielimy go na mniejszy moduły i rozważamy użycie Bazel
+
+
+WSZYSTKO CO ZOSTAŁO NAPISANE POWYŻEJ MOŻNA NAZWAĆ CIĄGŁĄ INSPEKCJĄ, ALE NIE CIĄGLĄ INTEGRACJĄ!
+
+
+Ciągła integracja w żołnierskich słowach sprowadza się do mergownia do mastera nawet kilka razy dziennie.
+
+Czy robisz ciągłą integrację?
+  - test Davida Farleya:
+    - czy wszyscy pushują/mergują codziennie do mastera?
+    - czy każdy commit odpala build?
+    - czy czerwony build jest naprawiany w ciągu 10 minut?
+  - faktycznie praktykujemy CI jeśli na wszystkie pytania powyżej odpowiedzieliśmy TAK
+
+Github Flow:
+  - kod na branchu master/main jest wdrażalny
+  - rozpoczynają pracę nad czymś nowym, tworzymy nowego brancha
+  - wypychamy zmiany do zdalnego brancha tak często, jak to możliwe
+  - gdy potrzebujemy wsparcia lub jesteśmy gotowi na merge, wystawiamy PR
+  - gdy ktoś zaakceptuje zmiany to mergujemy do mastera/maina
+  - zmergowane zmiany powinny zostać wdrożone jak najszybciej
+
+Jak utrzymać mastera w ciągłej gotowości?
+  - wydanie vs wdrożenie 
+  - pre-commit flow
+  - feature flagi
