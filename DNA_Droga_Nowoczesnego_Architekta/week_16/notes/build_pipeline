@@ -1,0 +1,19 @@
+Po co nam tak naprawdę dobra architektura?
+  - wprowadzanie zmian
+    - szybko
+    - bezpiecznie
+    - łatwo
+
+Metryki - szybkość:
+  - częstotliwość wdrożeń (nie wydań)
+    - liczba wdrożeń na produkcję, najlepsze zespoły robią to kilka razy dziennie
+  - czas realizacji zmian
+    - czas od commitu do produkcji, najlepsze zespoły potrafią zejść do < 1 dzień
+
+Metryki - stabilność:
+  - czas przywrócenia usługi:
+    - czas od odkrycia do usunięcia awarii, najlepsze zespoły robią to w < 1h
+  - wskaźnik awaryjności zmian
+    - procent wdrożeń kończących się awarią, najlepsza zespoły osiągają < 15%
+
+DevOps mantra: "Move fast, and do not break things"
