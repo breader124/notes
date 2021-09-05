@@ -1,0 +1,15 @@
+Rodzaje testów:
+  - wydajnościowe (performance)
+  - obciążeniowe (load)
+  - wytrzymałościowe (stress)
+
+Wymagania testów wydajnościowych:
+  - środowisko odpowiadające produkcji (near-production)
+  - dane produkcyjne
+  - ruch produkcyjny
+  - odpowiednie rozgrzanie aplikacji
+
+Realia:
+  - poza testami w skali micro (micro-benchmarks) ciężko oczekiwać miarodajnych wyników
+  - testy są drogie, a ich wiarygodność dość niska
+  - preferujemy monitoring, a dla nowych funkcji/aplikacji stosujemy stress testing
