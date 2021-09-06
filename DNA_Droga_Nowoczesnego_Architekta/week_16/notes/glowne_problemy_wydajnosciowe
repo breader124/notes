@@ -1,0 +1,23 @@
+Źródła problemów wydajnościowych:
+  - nieprawidłowe wykorzystanie technologii
+  - podejście do danych
+  - komunikacja sieciowa
+
+Jak unikać problemów wydajnościowych:
+  - zrozum wykorzystywane technologie
+    - biblioteki komunikacyjne
+      - wielkość pakietów
+      - fetching
+    - ORM
+      - zbyt dużo gorliwego wczytywania (eager loading)
+      - zbyt duże obiekty
+      - brak wykorzystania DTO
+  - podejście do danych
+    - nie wszystko musi być transakcyjne - dbaj o poprawne wyznaczenie granic aplikacji
+    - brak wykorzystania żadnego cache'a
+    - natywne rozwiązania są z reguły dużo wydajniejsze niż generyczne
+  - komunikacja sieciowa
+    - pomijanie czasu komunikacji 
+      - brak operacji batch
+      - brak limitowania liczby żądań
+    - błędne ustawienia limitów (timeouts)
