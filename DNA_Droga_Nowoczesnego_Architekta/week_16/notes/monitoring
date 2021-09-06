@@ -1,0 +1,32 @@
+Monitoring a obserwowalność
+  - obserwowalność to cecha systemu, pozwalająca na określanie jego wewnętrznego stanu na podstawie 
+    udostepnianych wyników
+  - monitoring to kontrola zdrowia systemu na podstawiego jego aktualnego stanu
+
+Monitoring is the new testing:
+  - sterowanie danymi
+  - kontrola w docelowym środowisku
+  - mniejsze ryzyko błędnego założenia niż w przypadku testów
+
+Co monitorować?
+  - stabilność systemu
+    - metryki
+    - kody odpowiedzi HTTP
+    - liczba logowanych wyjątków
+    - nieudane transakcje biznesowe
+    - Datadog, InfluxDB, New Relic, Prometheus
+  - wydajność systemu
+    - ciągły monitoring wydajności w docelowym środowisku
+    - odpowiadaa na pytanie "co tyle trwa?"
+    - AppDynamics, Datadog, Dynatrace, New Relic
+  - interakcje użytkowników
+  - metryki biznesowe
+
+Aby poprawnie obrazować dane wyniesione z naszego systemu powinniśmy posługiwać się wykresami percentylowymi.
+W ten sposób możemy namacalnie zobaczyć, czy nasz system jest systemem typu High Throughput czy też może 
+Low Latency i oczywiście przeprowadzić odpowiednią ewaluację, czy dokładnie o to nam chodziło. Co do zasady systemu
+typu LL będą klasyfikowały się gorszym czasem odpowiedzi w znacznym zakresie percentylowym, niemniej jednak
+utrzymają swoją powolną tendencję wzrostu czasu odpowiedzi dla wysokych wartości percentyli. Systemy klasy HT
+posiadając niższe wartości czasu odpowiedzi dla prawie całego przedziału, nie zachowują tej tendencji dla 
+wysokich wartości percentylowych osiągając tam bardzo wysokie czasy odpowiedzi, które są znacznie gorsze od tych
+uzyskiwanych dla systemów klasy LT.
