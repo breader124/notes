@@ -1,0 +1,38 @@
+Co to jest infrastruktura?
+  - wszystko, czego potrzebujemy do uruchomienia systemu, poza kodem źródłowym aplikacji
+  - do infrastruktury wliczamy także wszystko, co nie jest wymagane tylko do samego uruchomienia systemu, 
+    ale też do jego poprawnego monitorowania
+
+Elementy infrastruktury:
+  - Hypervisor
+  - Usługi w chmurze
+  - Serwery (fizyczne albo wirtualne)
+  - Kubernetes
+  - Docker
+  - Systemy operacyjny i ich konfiguracja
+  - Skrypty budujące i wdrożeniowe
+  - Pipeline'y wdrożeniowe
+  - Konfiguracja aplikacji
+
+Krótka historia:
+  - serwery fizyczne
+  - serwery wirtualne
+  - kontenery
+  - serverless
+
+Sposoby utrzymania:
+  - pupile (pets)
+    - żyją długo
+    - zmiany wprowadzane sa przez modyfikowanie działających instancji (automatycznie bądź ręcznie)
+    - prowadzi to do dryfowania konfiguracji (configuration drift)
+  - bydło (cattle)
+    - w przypadku awarii instancja jest usuwana i zastępowana nową
+    - nadal może występować configuration drift jeśli nasza infrastruktura jest mutowalna
+    - dla niemutowalnej infrastruktury jej elementy po wdrożeniu pozostają niezmienne
+    - akutalizacje i wdrażanie nowych wersji aplikacji realizujemy przez utworzenie nowych instancji
+
+Zalety niezmiennej infrastruktury:
+  - brak dryfowania konfiguracji
+  - pełna audytowalność zmian
+  - wysoka spójność i niezawodność
+  - repozytorium kodu jest jedynym źródłem prawdy

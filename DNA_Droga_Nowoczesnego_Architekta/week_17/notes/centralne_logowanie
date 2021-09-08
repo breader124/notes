@@ -1,0 +1,26 @@
+Logi systemowe i aplikacyjne:
+  - pozwalają obserwować, co się dzieje w systemie
+  - standardowo zapisywane na dysku w plikach płaskich
+  - klasyczne podejście z logami na hostach nie zdaje egzaminu przy systemach rozproszonych
+  - mają więcej kontekstu niż metryki
+
+Centralne logowanie:
+  - przetwarzanie logów z różnych źródeł w jednym miejscu
+  - pozwala szybko i łatwo przeszukiwać wszystkie zapisy
+  - umożliwia zarządzanie dostępem i retencją wpisów
+  - umożliwia monitorowanie i alerty
+
+Zapis logów:
+  - pliki płaskie muszą być później odpowiednio parsowane (warto zachować spójny format w całym systemie)
+  - formaty ustrukturyzowane ułatwiają późniejsze przetwarzanie
+  - trzeba pamiętać o spójnej strefie czasowej! (np. UTC, która powinna być standardem)
+
+Transport:
+  - push - bezpośredni zapis przez API mechanizmu transportowego
+  - pull - narzędzie transportowe odczytuje pliki i przesyła je dalej
+
+Dobre praktyki:
+  - logi powinny zawierać wszelkie informacje potrzebne do analizy
+  - uważaj na dane wrażliwe - nie logujemy nr PESEL, nr kart kredytowych itd. 
+  - zmienne elementy logu trzymaj na końcu, aby uprościć wyszukiwanie 
+  - zawsze dbaj o identyfikatory korelujące

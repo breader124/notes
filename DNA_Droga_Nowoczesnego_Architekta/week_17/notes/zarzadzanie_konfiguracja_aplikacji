@@ -1,0 +1,30 @@
+Rodzaje konfiguracji:
+  - aplikacyjna:
+    - konfiguracja frameworków
+    - wartości domyślne
+  - środowiskowa:
+    - hasła, certyfikaty
+    - dostrajanie (tuning)
+
+Miejsce składowania:
+  - przy aplikajcji:
+    - łatwa integracja z IDE, które może sprawdzić, czy np. klucze, których używamy w ogóle istnieją
+    - brak centralizacji ustawień
+  - dedykowane repozytorium
+    - scentralizowana
+    - brak powiązania z wersją aplikacji
+
+Sposób dystrybucji konfiguracji:
+  - model push - ustawienia są wypychane podczas wdrożenia
+  - model pull - aplikacja zaciąga ustawienia z centralnego serwera
+
+Zmienne systemowe:
+  - często wykorzystujemy zmienne systemowe do przechowywania konfiguracji
+  - można centralizować czy przy użyciu narzędzi configuration management
+
+Szyfrowanie:
+  - nigdy nie przechowujemy kluczy/haseł jawnym tekstem!
+  - wykorzystujemy narzędzia przeznaczone do zarządzania sekretami:
+    - Hashicorp Vault
+    - Cloud Key Management Service (KMS)
+    - Ansible Vault

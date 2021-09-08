@@ -1,0 +1,63 @@
+Poziomy dojrzałości:
+  - ręcznie 
+    - czasochłonne
+    - błędogenne
+  - skrypty
+    - ciężko zachować idempotentność
+    - brak dry-run
+    - nieodporne na zmiany API
+  - deklaratywne
+    - deklarujemy stan, a nie czynności
+    - brak abstrakcji
+  - komponentowe
+    - deklarujemy na podstawie reużywalnych komponentów
+
+Automatyzacja a orkiestracja
+  - automatyzacja skupia się na poszczególnych zadaniach (krokach)
+  - orkiestracja skupia się na procesie i na końcowym rezultacie (stanie)
+
+Orkiestracja - na przykładzie kontenerów:
+  - dba o utrzymanie spójności stanu rzeczywistego ze stanem zdefiniowanym
+  - abstrakcja na środowisko uruchomieniowe, nie musimy przejmować się konkretną technologią, wybieramy tylko providera
+
+Co nam to daje?
+  - skraca czas odtworzenia po awarii
+  - poprawia przenaszalność
+  - upraszcza kopie zapasowe
+  - poprawia czytelność infrastruktury
+  - wprowadza audytowalność
+  - umożliwia testowalność
+
+Trudności:
+  - dług techniczny - stare technologie nie wspierają trywialnej automatyzacji
+  - braki kompetencyjne - znalezienie dobrego DevOpsa to nie jest prosta sztuka
+  - czasochłonne w przypadku niespójnej infrastruktury - szczególnie, kiedy nie ma żadnej dokumentacji, a wiedzę mają ludzie
+
+Konwencje mogą pomóc uspójnić infrastrukturę:
+  - konwencje to ogólne przyjete normy
+  - konwencja jest funkcją
+  - konfiguracja jest wynikiem działania funkcji
+  - konwencje muszą być wymuszane, nie możemy pozwalać na dalsze rozspójnianie się architektury
+
+Konwencje pozwalają lepiej zarządzać test envs:
+  - środowiska powinny być do siebie maksymalnie zbliżone
+  - te same komponenty powinny być w tych samych wersjach
+  - różnica leży oczywiście w skali i w idealnym świecie powinna leżeć tylko w niej
+
+Narzędzia:
+  - provisioning - tworzenie i przygotowanie infrastruktury do użytku korzystając z:
+    - Terraform,
+    - CloudFormation
+    - GCP
+    - Deployment Manager
+  - zarządzanie konfiguracją - część provisioningu, jest to instalacja oprogramowania i konfiguracja OS:
+    - Ansible
+    - SaltStack
+    - Chef
+    - Puppet
+  - przygotowanie komponentów:
+    - Packer
+    - LinuxKit
+  - deployment / workload orchestration:
+    - Nomad
+    - Spinnaker
