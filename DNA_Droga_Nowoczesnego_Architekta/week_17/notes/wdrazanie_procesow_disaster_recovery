@@ -1,0 +1,39 @@
+Disaster - wszystko padło, wszystkie nasze działania zawiodły, staramy się pozbierać rozrzucone szczątki
+
+Planowanie ciągłości działania
+  - Business Continuity Planning - BCP
+  - zdolność zapewnienia klientom dostępności świadczonych usług 
+  - ograniczenie ryzyka wystąpienia awarii i gotowości do reakcji w wypadku jej wystąpienia
+
+Analiza ryzyka:
+  - identyfikacja ryzyk
+  - opracowanie planu zarządzania ryzykiem - SARA (Share, Avoid, Reduce, Accept)
+
+Metryki ciągłości działania:
+  - Recovery Point Objective (RPO) - dopuszczalna utrata danych
+  - Recovery Time Objective (RTO) - maksymalny oczekiwany czas przywrócenia systemu
+  - Maximum Allowable Outage (MAO) - maksymalny dozwolony czas niedostępności systemu
+
+Dbanie o powyższe metryki na poziomie architektury:
+  - RPO:
+    - sekundy => replikacja (Continuous Data Protection)
+    - minuty => snapshoty
+    - godziny => kopie zapasowe
+  - RTO:
+    - na zapewnienie odpowiedniego RPO składa się:
+      - czas wykrycia awarii
+      - czas rozpoczęcia przywracania
+      - czas przywracania
+
+Przechowywanie danych
+  - encryption at rest - dane na dyskach są przechowywane w formie zaszyfrowanej
+  - off-site data protection - inny region lub inny dostawca (wpływa negatywnie zarówno na RPO i RTO, ale daje 
+    większe bezpieczeństwo)
+
+Doskonalenie
+  - testowanie backupów
+  - cykl Deminga (PDCA)
+    - Plan - zaplanuj usprawnienie
+    - Do - zrealizuj
+    - Check - Oceń rezultaty
+    - Act - uznaj za standardy

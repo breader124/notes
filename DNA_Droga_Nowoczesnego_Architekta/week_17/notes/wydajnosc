@@ -1,0 +1,46 @@
+Czemu systemy są wolne?
+  - długi czas przetwarzania przez system
+  - duży wolumen zasobów
+  - wolna sieć użytkownika, należy jeszcze wziąć pod uwagę dużą odległość usera od centrum danych
+
+Czemu system wolno przetwarza żądania?
+  - nieprawidłowe podejście do danych, może używamy błędnie ORMy?
+  - nadużywanie spójności danych, nie zawsze potrzebujemy maksymalnej świeżości
+  - błędna architektura komunikacji, dobrze byłoby zrobić analizę most time-consuming, aby odkryć problematyczne
+    miejsce, taką analizę robimy za pomocą narzędzia APM
+
+Zrozum wykorzystywane technologie!
+  - biblioteki komunikacyjne
+    - wielkość pakietów
+    - fetching
+  - ORM
+    - zbyt dużo gorliwego wczytywania (eager loading)
+    - zbyt duże obiekty
+    - brak wykorzystania DTO, jest to błąd, ponieważ wyciąganie małych projekcji bardzo przyspiesza programy
+
+Podejście do danych
+  - nie wszystko musi być transakcyjne, dbaj o poprawne wyznaczenie granic aplikacji!
+  - wykorzystuj cache
+  - rozwiązania natywne są z reguł dużo bardziej wydajne niż generyczne
+
+Komunikacja sieciowa
+  - pomijanie czasu komunikacji
+    - brak operacji batch
+    - brak limitowania liczby żądań
+  - błędne ustawienia limitów połączeń (timeouts)
+
+Duży wolumen danych
+  - zwracanie nadmiarowych danych z API, jako rozwiązania możemy używać GraphQL
+  - brak minifikacji i kompresji
+
+Zasoby statyczne
+  - powinny być zwracane z osobnych domen bez cookies (cookieles static domains)
+  - w tym celu można wykorzystać magazyny typu Amazon S3 
+  - CORS możemy wyeliminować serwując index.html z tej samej domeny co API
+ 
+Optymalizacja dostarczania treści
+  - zmiana rozdzielczości i jakości grafik
+  - minifikacja JS, CSS i HTML
+  - zmniejszenie opóźnień dzięki wykorzystaniu sieci szkieletowej dostawcy CDN
+  - ochrona DDoS dzięki wykrywaniu i blokowaniu złośliwych klientów
+  - CDN oferują wiele optymalizacji jak cache, kompresja, minifikacja czy dopasowanie obrazów

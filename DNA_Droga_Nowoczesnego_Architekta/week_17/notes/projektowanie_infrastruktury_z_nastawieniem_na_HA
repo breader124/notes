@@ -1,0 +1,53 @@
+Aby osiągnąć bardzo wysoką dostępność, nie możemy polegać na ręcznych mechanizmach i procedurach, skupić musimy
+się natomiast na zapewnieniu tzw. "availability by design".
+
+Podstawowe pojęcia
+  - redundancja (redundancy)
+  - odporność (resilience)
+  - skalowalność (scalability)
+
+Replikacja danych:
+  - leader-follower:
+    - read-replica (uczestniczy tylko w odczytach, dane są tutaj propagowane z innych replik lub leadera)
+    - standby-replica (w momencie padnięcia leadera, ta replika staje się jej kopią -> obsługuje read i write)
+  - multi-master - do wszystkich komponentów mogę pisać i czytać, w przypadku padnięcia jednego komponentu, nie
+    ma to żadnego wpływu na dostępność, należy jednak wziąć pod uwagę takie pojęcia jak synchronizacja i jej typ
+    oraz replication lag
+
+Replikacja semi-synchroniczna zapewnia replikację tylko na poziomie commit logu, wiemy, że ona jest zapisana, ale 
+musi minąć replication lag, zanim te dane będą realnie dostępne do odczytu w drugiej bazie danych.
+
+Redundancja w chmurze:
+  - pojedyncza strefa (zonal)
+  - pojedynczy region (regional)
+  - wiele regionów (multi-region)
+  - wiele chmur (multi-cloud)
+  - data locality - należy zwrócić uwagę na prawne przyzwolenie na transferowanie danych za granicę w kontekście 
+    RODO lub innych regulacji prawnych
+
+Ograniczenia chmury
+  - weryfikujemy obietnice HA w kontekście okien konserwacji
+  - jeżeli wymagana jest dostępność na poziomie wyższym niż gwarantuje chmura, rozwiązaniem jest architektura
+    multi-cloud
+
+GeoDNS
+  - bazuje na lokalizacji geograficznej klienta
+  - dla jednego wpisu A DNA zwraca różne wartości w zależności od lokalizacji użytkownika
+  - przykładowe rozwiązania: Amazon Route 53, Azure Traffic Manager, Cloudflare
+
+Anycast
+  - wiele węzłów współdzieli ten sam adres IP
+  - dane wysyłane są do topologiczne najbliższego węzła
+  - przykładowe rozwiązania: Amazon Route 53, Azure Traffic Manager, Cloudflare, Google Cloud DNS
+
+Odporność:
+  - zdolność systemu do zachowania sprawności pomimo awarii
+  - stosowanie opcji awaryjnych (fallback)
+  - uproszczone przy stosowaniu podejścia cattle
+
+Chaos engineering
+  - celowo wprowadzamy błędy do systemu w celu weryfikacji poprawności reakcji
+  - wyłączamy maszyny, zrywamy lub opóźniamy połączenia sieciowe, spowalniamy dyski, wysyłame złe dane, 
+    wyrzucamy całe regiony
+  - pamiętajmy, że kill -9 nie symuluje pełnego padu maszyny, ponieważ daje szansę na np. zsynchronizowanie się
+   buforów, co nie stałoby się podczas pełnego padu maszyny
