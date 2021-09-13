@@ -1,0 +1,50 @@
+Na etapie projektowania infrastruktury, aby zapewnić wsparcie dla określonych driverów architektonicznych, wybieramy takie
+narzędzia, które poprzez swoje zdolności, pomogą nam te drivery osiągnąć. Jest to istotne, ponieważ na poziomie 
+aplikacyjnym nie jesteśmy w stanie zapewnić zawsze wszystkich wymagań stawianych naszej aplikacji.
+
+Chmura jako zestaw zdolności:
+  - usługa na żądanie
+  - szeroki dostęp sieciowy
+  - usługa rozliczalna
+  - pula zasobów
+
+Należy sobie postawić pytanie, czy faktycznie korzystamy z chmury, czy tylko w niej jesteśmy. Być może nasze drivery 
+architektoniczne wcale nie wprowadzają konieczności korzystania z atutów chmury...
+
+4 modele rozmieszczenie usług:
+  - chmura publiczna
+  - chmura prywatna
+  - chmura hybrydowa
+  - chmura współdzielona (community)
+
+W temacie chmury dochodzimy powoli do momentu takiego upowszechnienia, że niedługo nie będzie sensu korzystania z czegoś
+innego, chmura upowszechni się tak bardzo, że będzie występować jako wszędobylskie medium, które jest dużo tańsze od
+jakichkolwiek prób utrzymywania infrastruktury samemu.
+
+W nawiązaniu do poprzedniego zdania, co wziąć pod uwagę jeśli chmura jest nieunikniona?
+  - total cost of ownership - czasami ciężko policzyć koszty ponoszone w chwili obecnej
+  - ograniczenia prawne - niektóre gałęzie biznesu nie mogą pozwolić sobie na wysłanie danych poza granice kraju
+  - potrzebny know-how - zespoły muszą wiedzieć jak działać w chmurze i pisać aplikacji cloud-native
+  - istniejące systemy - nie wszystkie systemy nie nadają się do szybkiego przeniesienia do chmury
+  - limity - należy pamiętać, że chmura nie jest nieograniczona, nie zawsze dostaniemy tyle zasobów, ile chcemy
+
+Strategie korzystania z chmury
+  - vendor lock-in - korzystamy z gotowych usług
+    - uzyskujemy dużo wyższą szybkość wytwarzania
+    - takie rozwiązanie generuje niższe koszty
+  - cloud agnostic - korzystamy z własnych usług postawionych w chmurze
+    - zyskujemy przenaszalność, nie przywiązaujemy się mocno do usług danego producenta
+    - potrzebujemy silnego know-how w firmie 
+
+Cloud agnostic - strategia wyjścia
+  - musi zapewnić niezależność na poziomie infrastrkturalnym jeśli chodzi o:
+    - środowisko uruchomieniowe
+    - stanowe usługi (np. DB)
+  - niezależność na poziomie aplikacyjnym wystarczy jeśli chodzi o:
+    - bezstanowe usługi, np. kolejki wiadomości
+
+Podsumowanie:
+  - dla większości firm przejście stanie się koniecznością
+  - utrzymywanie własnych rozwiązań stanie się zbyt kosztowne
+  - budujemy zestaw zdolności
+  - dobieramy odpowiednią strategię (vendor lock-in vs cloud-agnostic)

@@ -1,0 +1,37 @@
+Jednorodny interfejs kontenerów:
+  - pomysł wziął się z obserwacji branży logistycznej i wykorzystywanych tam kontenerów
+  - kontenery odseparowują od siebie fazy implementacji i obsługi działającej aplikacji
+  - z uwaagi na bardzo podobny 'wygląd' wszystkich kontenerów, systemy, na których uruchamiane są kontenery,
+    nie muszą przejmować się co to tak naprawdę jest
+  - środowisko uruchomieniowe musi wspierać jedynie jeden, określony format kontenera (ponieważ kontenery mają jednolity
+    interfejs)
+
+Maszyny wirtualne vs kontenery:
+  - maszyna wirtualna jest bardziej jak dom ze wszystkimi swoimi przyłączami
+  - kontenery są bardziej jak mieszkania, infrastruktura dookoła (np. przyłącza) są zarządzane raz dla całego budynku
+  - technicznie, kontenery pozostawiają dużo więcej swobody operatorowi, który z nich korzysta
+  - przy stosowaniu kontenerów zaczynamy od zera i dokładamy to, czego potrzebujemy
+  - przy stosowaniu VM startujemy pełnym OS i usuwamy to, czego nie potrzebujemy
+
+Zdolności kontenerów:
+  - separacja infrastruktury od pracy deweloperów
+  - dostarczanie aplikacji - wersjonowanie całej paczki, a nie tylko kodu używając taga
+  - przenaszalność - z uwagi na jednorody interfejs, nie przejmujemy się gdzieś nasz kontener będzie uruchamiany
+  - eliminujemy problem "u mnie działa" - przynajmniej w większości :) 
+
+Przydatne narzędzia do pracy z kontenerami:
+  - Container structure test - do testowania metadanych, poprawność wykonanie komend, obecność plików itd.
+  - Conftest - narzędzie do testowania konfiguracji kontenerów oraz konfiguracji Kubernetesa
+  - Distroless - zestaw bardzo lekkich kontenerów, które nie posiadają OS, a jedynie środowisko uruchomieniowe
+
+Trochę o przyszłości (ponieważ kontenery nie są rozwiązaniem idealnym ze względu na security):
+  - istnieją bardzo lekkie maszyny wirtualne, które łączą szybki start aplikacji i bezpieczne tworzenie sandboxa:
+    - Kata Containers
+    - Firecracker
+    - gVisor
+
+Podsumowanie, kontenery:
+  - ułatwiają budowanie i dostarczanie aplikacji
+  - nie są lekkimi maszynami wirtualnymi
+  - są standaryzowane przez OCI
+  - umożliwiają nam separację developmentu od infrastruktury
