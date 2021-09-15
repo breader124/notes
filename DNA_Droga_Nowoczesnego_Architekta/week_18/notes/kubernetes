@@ -1,0 +1,42 @@
+Konkurujące ze sobą rozwiązania:
+  - Kubernetes -> ostateczny zwycięzca
+  - Apache Mezos
+  - Nomad
+  - Docker Swarm
+
+Dlaczego Kubernetes wygrał?
+  - jest dzieckiem dużej i znanej firmy
+  - wspiera deklaratywną konfigurację
+  - skupił się na stworzeniu podstawowych elementów konstrukcyjnych, 
+    z których możemy budować naszą infrastrukturę
+  - elastyczne grupowanie (labels)
+
+Zdolności Kubernetesa:
+  - automatyzacja wdrożeń
+  - automatyzacja skalowania
+  - auto-recovery kontenerów
+  - zarządzanie sekretami
+  - zarządzanie wolumenami
+  - service discovery
+
+Strategie wdrożeń:
+  - terminate - wyłączamy aplikację i włączamy następną wersję (downtime deployment)
+  - ramped/rolling - wyłączamy i włączamy kolejne instancje
+  - blue-green - włączamy wszystkie nowe instancje i przekierowujemy ruch ze starych do nowych
+  - canary - kolejne zastępujemy stare instancje nowymi, aplikacja jest cały czas podniesiona, więc
+    żądania są obsługiwane zarówno przez nowe, jak i stare instancje
+  - shadow - uruchamiamy nowe instancje i duplikujemy ruch, produkcyjny jest obsługiwany przez stare,
+    a nowe są w ten sposób testowane z danymi produkcyjnymi
+  - A/B - bardzo podobne do canary, ale w tym przypadku dobieramy się do wielu danych o użytkowniku w celach
+    analizy
+
+Najczęstsze problemy:
+  - balansowanie klastra
+  - aktualizacja wersji k8s (praktycznie wymaga postawienia nowego klastra nowej wersji i migracji podów)
+  - zarządzanie wieloma klastrami
+  - dużo yamli (plików konfiguracyjnych) i zarządzanie nimi
+
+Container runtime as a service (Kubernetes jako usługa, znaczne uproszczenie w temacie zarządzanie Kubernetesem):
+  - AWS Fargate
+  - Coogle Cloud Run
+  - Azure Container Instances

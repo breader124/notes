@@ -1,0 +1,54 @@
+Problemy z topologią sieci zaczynają się z przekroczeniem pewnej skali pod kątem:
+  - liczby zespołów 
+  - liczby technologii
+  - polityk/regulacji
+  - bezpieczeństwa
+
+Kroki związane ze zmianą topologii:
+  - melodyjno-słowny opis
+  - stworzenie ticketa dla OPS
+  - oczekiwania
+  - niedziałająca konfiguracja :D
+
+Zarządzanie ruchem:
+  - w kodzie (biblioteka)
+    - kod niezrozumiały dla OPS
+    - duplikacja pomiędzy językami
+    - przyjazne dla programistów
+  - przez dodatkowy komponent proxy z konfiguracją w zewnętrznym pliku
+    - konfiguracja jest tworzona przez zespół developerski
+    - konfiguracja jest zatwierdzana przez zespół sieciowy/sec np. poprzez pull request
+    - domyślne konfiguracje dostarczane i aktualizowane
+    - dodatkowa latencja
+    - złożona infrastruktura
+
+Zdolności uzyskane dzięki posiadaniu service mesh:
+  - zarządzanie certyfikatami
+  - zarządzanie ruchem:
+    - routing
+    - load balancing
+    - odporność (resilience)
+  - egzekwowanie reguł
+  - obserwowalność
+
+Dostępne implementacje Service Mesh:
+  - Istio
+  - LinkerD
+  - Consul
+  - AWS App Mesh
+
+Różnice w load balancingu pomiędzy Kubernetesem, a Service Meshem:
+  - Kubernetes robi load balancing na warstwie 4 protokołu ISO/OSI - oznacza to, że Kubernetes 
+    wykonuje load balancing na poziomie połączeń, może się zdarzyć sytuacja, w której jedno połączenie
+    zawierać będzie bardzo dużo requestów, a drugie mało. Znamienita większość requestów będzie wtedy
+    przekierowana do jednej instancji aplikacji i stracimy zalety load balancingu
+  - Service Mesh robi load balancing na warstwie 7 protokołu ISO/OSI - oznacza to, że ma dostęp do 
+    każdego przepuszczanego requestu, to znaczy, że jest w stanie równomiernie rozłożyć ich liczbę
+    pomiędzy wszystkie instancje aplikacji
+
+Podsumowanie:
+  - ciągle niedojrzała technologia
+  - nieinwazyjna dla kodu
+  - odpowiednie dla dużych projektów, które charakteryzują się dużą złożonością
+  - zwiększa autonomię zespołów DEV
+  - umożliwia współpracę z zespołami OPS
