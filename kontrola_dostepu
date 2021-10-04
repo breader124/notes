@@ -1,0 +1,26 @@
+Rodzaje dostępów:
+  - ludzie do narzędzi: GitHub/Jenkins/logi
+  - ludzie do infrastruktury: ssh/bazy danych
+  - infra do infry: bazy danych/monitoring/logowanie
+
+Dostępy dla ludzi:
+  - wszelkie modyfikacje wykonujemy w kodzie
+  - dostęp "do odczytu" nadajemy tymczasowo w razie potrzeby
+
+Poświadczenia aplikacji:
+  - hardcode
+  - properties w repozytorium
+  - configuration management
+  - secrets management
+
+Dlaczego poświadczenia aplikacji są ważne?
+  - ponieważ żyją znacznie dłużej niż aplikacja
+
+Należy wprowadzać dynamiczne poświadczenia:
+  - efemeryczne - ograniczamy konsekwencje wycieku
+  - unikalne - ułatwiamy ewentualną analizę
+
+
+Narzędzia:
+  - HashiCorp Vault
+  - CyberArk Conjur

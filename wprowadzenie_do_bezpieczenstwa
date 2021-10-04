@@ -1,0 +1,37 @@
+Mechanizmy bezpieczeństwa:
+  - kryptografia (cryptography)
+    - szyfrowanie (encryption)
+    - hashowanie (hashing)
+    - insfrastruktura klucza publicznego (PKI)
+  - uwierzytelnianie (authentication)
+    - kim jestem? np. biometryka
+    - co wiem? np. hasło
+    - co mam? np. token
+    - wieloskładnikowe, np. 2FA w postaci hasło + token
+  - autoryzacja (authorization)
+    - co wolno mi zrobić?
+    - kontrola dostępu
+    - role
+    - uprawnienia
+    - wyzwania uwierzytelniania:
+      - skomplikowane polityki haseł
+      - wiele systemów z których na co dzień korzystamy:
+        - wiele loginów i haseł, co przekłada się na bardzo utrudnione zarządzanie
+  - zapora sieciowa (firewall)
+  - audytowanie (auditing)
+
+Single Sign-On (SSO)
+  - pojedyncze logowanie
+  - scentralizowana baza użytkowników lub serwer dostępowy
+  - np. LDAP lub Kerberos
+
+Federated identity
+  - SSO na poziomie wielu organizacji
+  - zestaw standardów wymiany tożsamości
+  - użytkownik nie loguje się bezpośrednio w aplikacji, tylko jest przekierowywany 
+    do innego systemu zarządzającego tożsamością
+
+Błędy bezpieczeństwa
+  - terminowanie SSL
+  - brak walidacji certyfikatów
+  - wykorzystywane prostych tokenów zamiast certyfikatów
