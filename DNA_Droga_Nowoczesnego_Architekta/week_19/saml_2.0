@@ -1,0 +1,42 @@
+SAML:
+  - Security Assertion Markup Language
+  - standard wymiany danych uwierzytelniających i autoryzacyjnych
+  - federated identity
+  - bazuje na tokenach XML
+
+Komponenty:
+  - użytkownik (principal)
+  - Identity Provider (IdP)
+  - Service Provider (SP)
+
+Asercje:
+  - podstawowe paczki informacji
+  - rodzaje asercji:
+    - Authentitaction - potwierdzenie identyfikacji użytkownika
+    - Attribute - potwierdzenie atrybutów użytkownika
+    - Authorization Decision - potwierdzenie albo odrzucenie prośby o dostęp do zasobu
+
+Protokoły:
+  - reguły przetwarzania i opis, w jaki sposób asercje są pakowane w ramach elementów
+    żądania i odpowiedzi
+  - przykładowo:
+    - Authentication Request Protocol
+    - Assertion Query And Request Protocol
+    - Single Logout Protocol
+
+Bindings:
+  - mapowania protokołów na standardowe formaty przesyłania komunikatów lub protokoły
+    komunikacji sieciowej
+  - przykładowo:
+    - HTTP POST Binding
+    - HTTP Redirect Binding
+
+Profile:
+  - zestawy mapowań, protokołów i asercji przekładające się na zdefiniowane przypadki użycia
+  - przykłady:
+    - Web Browser SSO Profile
+    - Single Logout Profile
+    - Identity Provider Discovery Profile
+
+Metadane:
+  - zestawy danych konfiguracyjnych dla dostawców usług i tożsamości

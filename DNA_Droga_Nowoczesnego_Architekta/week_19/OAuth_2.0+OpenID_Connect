@@ -1,0 +1,42 @@
+Czym jest OAuth 2.0?
+  - otwartym standardem autoryzacji
+  - wspiera delegację autoryzacji na potrzeby API/REST
+
+Role OAuth 2.0:
+  - Resource Owner - właściciel zasobu
+  - Resource Server - system przechowujący żądany zasób
+  - Client - aplikacja, które próbuje uzyskać dostęp do zasobu
+  - Authorization Server - udziela klientowi dostępu do zasobu
+
+OAuth 2.0 Tokens:
+  - rodzaje:
+    - Access Token - poświadczenie dostępu do zasobu
+    - Refresh Token - umożliwia odświeżenie Access Token
+  - sposoby dystrybucji:
+    - Bearer Token - unikalny identyfikator poświadczenia
+    - Self-Encoded Access Token - zawiera w sobie potrzebne dane
+
+Authorization Grants:
+  - Authorization Code
+  - User Credentials
+  - Client Credentials 
+  - Refresh Token
+  - Implicit
+
+Uwierzytelnianie w OAuth 2.0:
+  - OAuth 2.0 zapewnia jedynie pseudo-uwierzytelnianie
+  - brak mechanizmu pobierania danych o użytkowniku
+  - brak zdefiniowanego zbioru informacji
+
+OpenID Connect:
+  - standard uwierzytelniania
+  - dodaje token identyfikacyjny (ID Token)
+    - standardowy zestaw informacji (claims) o użytkowniku
+    - self-encoded token
+  - endpoint UserInfo
+
+Potencjalne pułapki
+  - duża złożoność i trudność implementacji
+  - zbyt długi czas życia tokenów
+  - brak powiązania tokenu z klientem
+  - odpornośćna kradzież tokenu
