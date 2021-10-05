@@ -1,0 +1,27 @@
+Big Ball of Mud jest systemem, który nie jest rozproszony i nie jest modularny.
+Modularny monolit jest systemem, który jest modularny, ale nie rozproszony, tutaj zmierzamy z Big Ball Of Mud.
+
+Założenia refaktoryzacji:
+  - organizacja nie może sobie pozwolić na przestój:
+    - dodajemy nowe funkcje
+    - przy okazji zmieniamy architekturę
+
+Najczęstsze przypadki:
+  - rozjazd pożądanych i faktycznych modułów:
+    - znalezione odpowiednie granice (np. za pomocą Event Stormingu) i do tego implementacja, która ich nie przestrzega
+    - kluczem do rozwiązania takiego przypadku jest pragmatyczne podejście
+    - naprawiamy moduły krok po kroku, nie wszystko na raz, ponieważ w takim przypadku dużo ryzykujemy
+    - dostarczamy często wartość biznesową, aby pozostać w zgodzie z biznesem
+    - zaczynamy od ustalenia dwóch czynników dla każdego z modułów:
+      - łatwość dekompozycji
+      - zysk z refaktoringu
+    - biorąc pod uwagę wspomniane czynniki, interesują nas moduły, które są łatwe do dekompozycji i zapewniają duży zysk
+  - niedopasowany model:
+    - dobre granice modułów i do tego naiwny model któregoś z nich
+    - refaktoryzacja takiego przypadku jest dużo łatwiejsza jeśli granice są w porządku i zachowana jest enkapsulacja
+    - przy braku enkapsulacji zaczynamy od wprowadzenia abstrakcji, należy też spodziewać się, że bardzo nas to spowolni
+      nawet w przypadku, kiedy granice są w porządku
+    - enkapsulację należy przeanalizować nie tylko na poziomie kodu, ale też na poziomie bazy danych, ponieważ w takim
+      przypadku powinniśmy najpierw zatroszczyć się o to, żeby dane, z których korzystamy były prywatne tylko dla nas
+    - jeśli korzystamy z API, które nie pasuje do naszego modułu, np. pod kątem lingwistycznym, to możemy wprowadzić tzw.
+      Anti-Corruption Layer, czyli warstwę, która jako jedyna będzie rozumiała oba języki i znała mapowanie pomiędzy nimi

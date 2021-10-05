@@ -1,0 +1,65 @@
+Refaktoryzacja - proces zmiany wewnętrznej struktury kodu bez zmiany zewnętrznych zachowań, warto zaznaczyć, że 
+refactoring jest niepomijalnym elementem inżynierii oprogramowania i tworzenia systemu, bardzo często jest tak, że
+nawet mając wcześniej wspomniany design przed uruchomieniem edytora, to i tak w trakcie samego procesu pisania wpadniemy
+na pomysł lub odkryjemy wymaganie, które pociągnie za sobą zmiany w innych częściach projektu, a co za tym idzie 
+w designie innych komponentów. Należy sobie z takimi zmianami radzić i zdawać sobie sprawę, że są one istotną częścią w 
+procesie wytwarzania oprogramowania i nie powinne być traktowane jako ujma, która jakoby miałaby polegać na odkryciu
+błędu we wcześniej stworzonym projekcie systemu.
+
+Zmiana kodu:
+  - łatwiej zmienia się kod, który ma prostszą strukturę, ponieważ łatwiej zlokalizować miejsce podlegające zmianie oraz
+    istnieje mniejsza szansa na pomyłkę
+
+Nadrzędny driver refaktoryzacji:
+  - zmiany i rozwój wymagań/funkcji to driver refaktoryzacji
+  - jeśli program działa i nie musi się zmieniać, refaktoryzacja nie jest kluczowa
+  - refaktoryzacja nie jest celem, tylko środkiem do łatwiejszej zmiany
+  - refaktoryzacja poprawia design
+  - refaktoryzacja pomaga szybciej programować
+  - refaktoryzacja powoduje, że kod jest łatwiejszy do zrozumienia
+  - refaktoryzacja pomaga odkrywać błędy
+  - wszystko powyższe jest prawdą, ale pierwszym krokiem przed rozpoczęciem refaktoryzacji jest określenie, jaki będzie
+    zwrot z podejmowanej inwestycji, jeśli efekty nie będą widoczne przez długi czas to po prostu stracimy czas, który
+    moglibyśmy poświęcić na zadania dostarczające wartości biznesowej
+
+Zmienność kodu:
+  - nie wszystko zmienia się tak samo, zdecydowanie częściej będzie zmieniać się core domain
+  - odkrywać często zmienne i krytyczne miejsca można na przykład za pomocą:
+    - Event Stormingu
+    - Value Mappingu
+    - analizy historii kodu
+
+Ważne pytania:
+  - jak często zmienia się ten kod?
+  - jaka jest jego biznesowa wartość?
+  - jak często ten kod jest czytany?
+
+Kiedy zacząć refaktoryzację?
+  - refaktoryzacja przygotowująca - jest to refaktoryzacja, która pozwala przygotować dany fragment systemu na przyjęcie
+    nowych funkcjonalności, które na ten moment zupełnie do niego nie pasują pod różnymi względami
+  - refaktoryzacja zwiększająca zrozumienie - w tym przypadku musimy wziąć pod uwagę czas, po którym zwróci się nasza
+    inwestycja
+
+Kiedy nie refaktorować?
+  - kiedy nie muszę rozumieć kodu
+  - kiedy nie muszę zmieniać kodu
+
+Problemy z refaktoryzacją:
+  - ownership - musimy być pewni tego, kto jest właścicielem, jaka jest jego opinia i opinia innych korzystających
+  - spowolnienie innych zadań
+  - rozmowy z biznesem
+  - testy:
+    - obserwowalne zachowania jako testy - należy je najpierw znaleźć, a następnie zautomatyzować
+    - drobna refaktoryzacja za pomocą IDE może odbyć się bez testów
+
+Refactor vs. Rewrite:
+  - refaktoryzacja ma na celu łatwiejszą pracę z kodem
+  - driverami przepisania mogą być:
+    - bezpieczeństwo
+    - nieznajomość technologii
+    - wydajność
+
+Katalog wzorców refaktoryzacji:
+  - Extract/Inline function
+  - Split phase
+  - Combine functions into class
