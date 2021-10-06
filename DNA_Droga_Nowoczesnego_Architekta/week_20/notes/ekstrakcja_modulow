@@ -1,0 +1,28 @@
+Dla przypomnienia, mówimy o module, który posiada naiwną implementację, ale dobre granice i 
+enkapsulację na odpowiednim poziomie, ponadto nie pasuje do nowych wymagań biznesowych.
+
+Problemy z refaktoryzacją krok po kroku:
+  - rollback - np. po migracji danych w bazie
+  - walka z obecnym designem - wiąże się to z walką z obecnym designem
+  - długie oczekiwanie na wartość biznesową
+
+Problemy z przepisaniem modułu:
+  - konieczność utrzymywanie dwóch modeli równolegle aż do końca prac nad projektem
+
+Co wybrać?
+  - w złożonych problemach biznesowych opcja z drugim równoległym modelem jest zazwyczaj
+    odpowiednim wyborem
+  - kluczem do bezpiczenej refaktoryzacji w kierunku modularyzacji jest posiadanie starego
+    i nowego modlu jednocześnie
+
+Aby bezpiecznie i pragmatycznie przeprowadzić refaktoryzacją modułu, bardzo dobrym podejściem
+jest wyszukanie tzw. "szwów", w których możemy wstrzyknąć wybór pomiędzy tym, który model
+obsłuży nam przychodzące żądanie do refaktorowanego komponentu. Mając tak zorganizowany kod
+możemy nawet pokusić się o wykonanie logiki starego i nowego modułu, a następnie porównanie 
+otrzymanych wyników, w ten sposób na produkcji bezpiecznie sprawdzimy sobie, czy nasze wysiłki
+nie zmieniają nie tylko wewnętrznej struktury kodu, ale też rezultaty jego wykonania widoczne
+na zewnątrz. Aby nie pogorszyć wydajności systemu, takie porównanie dla bezstanowych obliczeń
+możemy przeprowadzić w innym wątku, natomiast dla stanowych operacji raczej nie mamy takiej
+możliwości. Należałoby wtedy oszacować, jak duży wpływ na wydajnośc ma wołanie obu modeli.
+Doświadczenie pokazuje, że raczej niewielki, zakładając, że nowy model jest napisany faktycznie
+lepiej od starego.

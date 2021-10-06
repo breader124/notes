@@ -1,0 +1,42 @@
+Systemy mikroserwisowe cechują się wysokim rozproszeniem oraz wysoką modularnością. Droga
+do mikroserwisów wiedzie od big ball of mud przez modularny monolit, aż do mikroserwisów.
+
+Oprócz wspomnianych 3 architektur systemowych, istnieje jeszcze 4ta (distributed big ball
+of mud). Systemu te cechują się wysokim rozproszeniem i niską modularnością. Ze względu na
+brak autonomii, są one bardzo trudne do utrzymania i rozwijania. Powodują one zazwyczaj
+dużo więcej problemów niż klasyczne big ball of mud.
+
+Strangler pattern - wyciągamy moduły, do których idą zapytania do wnętrza monolitu do
+osobnego mikroserwisu. Zapytania wychodzącego kierujemy potem do wnętrza systemu, ale po sieci
+a nie po pamięci, tak jak to było robione poprzednio. Jest to wzorzec trudny do 
+zaimplementowania w momencie, kiedy duża część systemu odwołuje się bezpośrednio do
+modułu, o którym obecnie myślimy.
+
+Dane - synchronizacja po rozproszeniu systemu:
+  - jeśli serwis służy tylko odczytowi (np. search):
+    - synchronizacja bezpośrednia z aplikacji (np. Store and Forward)
+    - mechanizm Change Data Capture
+    - bulk updates
+  - jeśli serwis przyjmuje też komendy:
+    - komenda musi być skierowana w oba miejsca
+    - problem transakcji (ale mamy sagi i Store and Forward)
+    - możemy zacząć z 1 bazą (wspólną dla monolitu i nowego mikroserwisu)
+
+Synchronizacja - kroki:
+  - inicjalne zasilenie (bulk update)
+  - synchronizacja przy zapisie i odczyt ze starego modelu
+  - synchronizacja przy zapisie i odczyt z nowego modlu (zmiana kierunku synchronizacji)
+
+
+Pułapki:
+  - myślenie transakcjami (znajdź prawdziwe granice -- modularyzacja)
+  - wycinanie kilku rzeczy jednocześnie (ucz się krok po kroku)
+  - co zrobię z testami?
+
+
+Główny wniosek -> zaplanuj migrację mikroserwisu!
+  - co chcesz zyskać?
+  - dobrze wybierz start
+  - czy jest alternatywa?
+  - jak zmierzysz to, co chcieliśmy zyskać?
+  - małe kroki z informacją zwrotną, wyciągamy wnioski na bieżąco!
