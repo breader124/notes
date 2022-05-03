@@ -29,6 +29,21 @@ Scale cube is a scalability model consisting of 3 axises, each of them has its o
 
 **Microservice architecture** is an architectural style that functionally decomposes an application into a set of services. Each services has a focused, cohesive set of responsibilities.
 
+Benefits of the microservices architecture:
+- It enables CI and deployment of large, complex applications
+- Services are small and esaily maintainable
+- Services are independently deployable
+- Services are independently scalable
+- Microservice architecture enable teams to be autonomous
+- It allows easy experimenting and adoption of new technologies
+- It has better fault isolation
+
+Drawbacks of the microservices architecture:
+- Finding the right set of services is challenging, there's a risk of building *distributed monolith* when failed
+- Distributed systems are complex (in terms of keeping data consistency, intercommunication, queries etc.)
+- Deploying features that span multiple services requires careful coordination
+- Deciding when to adopt the microservice architecture is difficult, as stated earlier it's almost always better to start with monolithic application and then evolve
+
 ### Comparision of SOA and microservice architecture
 
 | | SOA | Microservices |
@@ -36,9 +51,3 @@ Scale cube is a scalability model consisting of 3 axises, each of them has its o
 | Communication | Smart pipes such as ESB including business logic | Dumb pipes based of e.g. REST or gRPC |
 | Data | Global database common for all of the services | Data model and database per service |
 | Typical service | Larger monolithic application | Small one |
-
----
-
-Benefits of the microservices architecture:
-
-Drawbacks of the microservices architecture:
