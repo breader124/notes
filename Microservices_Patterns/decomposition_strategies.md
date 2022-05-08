@@ -10,7 +10,7 @@ Architecture of a system can be described by 5 views:
 - logical view - classes, packages and relations between them
 - implementation view - output of a build system, in Java world it consists of WAR/JAR files
 - process view - components at runtime == processes and their communication (IPC)
-- deployment - how the processes are mapped to machines, this view consists of physical or virtial machines and their communication (networking)
+- deployment view - how the processes are mapped to machines, this view consists of physical or virtial machines and their communication (networking)
 - scenarios (+1 elem) - show how to elements in each particular view collaborate
 
 ## Overview of application architectural styles
@@ -49,6 +49,10 @@ Three step, iterative approach for defining architecture could look like:
 ### Identifying the system operations
 
 System operations can be defined as a result of many approaches. One of them is Event Storming, but other ones, such as two-step process also exists. Mentioned two-step process is based on, as expected, 2 steps. First of them is to actually create high-level domain model using nouns from user stories. Second one is to create operations using verbs from user stories and previously identified domain model.
+
+There are 2 types of system operations:
+- commands - system operations that create, update, and delete date
+- queries - system operations that read (query) data
 
 ### Identifying services
 
