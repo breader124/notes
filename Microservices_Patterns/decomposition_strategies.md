@@ -72,7 +72,7 @@ Process of translating business capabilities to services is subjective and is mo
 
 ---
 
-**Decomponse by subdomain** - Define services corresponding to DDD subdomains.
+**Decompose by subdomain** - Define services corresponding to DDD subdomains.
 
 Decomposition by DDD subdomain should give very similar results to decomposition by business capabilities. In fact, concept of subdomain and bounded context translates very well to the microservices world, because they both have very similar goals like enabling independent development and deployments.
 

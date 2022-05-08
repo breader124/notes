@@ -107,4 +107,95 @@ Biggest advantage of server-side discovery is that services don't have any disco
 
 ## Asynchronous messaging pattern
 
+**Messaging** - A client invokes a service using asynchronous messaging.
 
+### Overview of messaging
+
+**Message** consists of a headers and a body, there are 3 types of messages:
+- document - generic message that contains only data, the receiver decides how to interpret it
+- command - message that is equivalent of an RPC request, it specifies the operation to invoke and its parameters
+- event - message indicating that something notable has occurred in the sender, most commonly it is a domain event representing change of a domain model's state
+
+**Channel** can be of two types:
+- point-to-point - there is exactly one consumer reading from the channel, it's often used to send commands
+- publish-subscribe - message is delivered to all listening subscribers, this type of channel is ofter used in case of events
+
+How to implements:
+- async request/response - client sends command with *id* and *return address* as headers to request channel, service processes it and responds to reply channel pointed by *return address* with a *correlationId* header equal to received *id*
+- one-way notifications - just send a message, nothing more
+- publish-subscribe - messaging has a built-in support for this type of communication, service publishes messages to the channel attached to it and interested subscribers listens to mentioned channel
+- publish/async responses - async request/response + publish-subscribe, there are 2 channels, one similar to described earlier and a response channel, correlation of requests/responses is done by correalating id/correlationId
+
+Brokerless messaging:
+- advantages:
+	- lighter network traffic and better latency
+	- eliminates possibility of the message broker being a performance bottleneck
+	- features less operational complexity, because there's no message broker to maintain
+- drawbacks:
+	- services need to know about each other
+	- if offers reduced availability (same as in case of sync request/response)
+	- implementing mechanisms as guaranteed delivery is more challenging
+
+Broker-based messaging:
+- advantages:
+	- loose coupling - client doesn't need to know about subscribers
+	- message buffering - receiver doesn't need to available at a time of sending the message
+	- flexible communication - all the interaction styles described earlier are supported 
+	- explicit interprocess communication - there's no false sense of security based on the feeling that invoking local and remote service is very similar in case of brokerless approach to messaging
+- drawbacks:
+	- potential performance bootleneck - mitigated by very high performance of modern brokers
+	- potential SPOF - mitigated by HA design of modern brokers
+	- additional operational complexity
+
+Key factors when choosing broker:
+- supported programming languages
+- supported messaging standards (e.g. JMS, AMQP, STOMP etc.)
+- ordering
+- delivery guarantees
+- persistence
+- durability
+- scalability
+- latency
+- compteing consumers
+
+### Competing receivers and message ordering
+
+It is a common problem in messaging systems to ensure that messages related to particular resources are processed in order. Without that, e.g. when message are consumed by different instances out of order, some strange results might arise. To solve that problem, idea of *sharded* channels has been introduced, it is based on 3 steps:
+1. Standard channel consists of 2 or more shards behaving like a channel
+2. Message is routed to the specific channel based on its key (or result of some computations taking key as an arguments)
+3. Each shard it assigned to a single receiver. This is the way how messages published in some order will be consumed in exactly this order.
+
+### Handling duplicate messages
+
+Ideally broker preserving ordering should be used when redelivering the messages!
+
+There are two ways to handle message duplicates:
+- write idempotent message handlers - idempotent means that delivering the same message twice doesn't change the state after first computation
+- track messages and discard duplicates - save processed messages id in the same transaction that executed business logic, whenever in the future message with the same id is discovered, it can be just discarded
+
+### Transactional messaging
+
+**Transactional outbox** - Publish an event as part of a database transaction by saving it in an OUTBOX in the database.
+
+By using transactional outbox pattern, it's possible to make sure that message will be published at least once, because it is saved in the database in the same local, ACID transaction, in which domain object has been persisted.
+
+Publishing events saved in OUTBOX table can be accomplished in two ways:
+- polling publisher - message relay polls outbox table with fixed frequency trying to notice changes, whenever it spots the mentioned changes, it publishes messages
+- transactional log tailing - transaction log miner reads transaction log entries and converts each log entry corresponding to an inserted messages into a message and published it to the message broker, there are already solutions available in the market supporting this approach:
+	- Debezium
+	- LinkedIn Databus
+	- DynamoDB streams
+	- Eventuate Tram ( written by author of the book :D )
+
+**Polling publisher** - Publish messages by polling the outbox in the database.
+**Transaction log tailiing** - Publish changes made to the database by tailiing the transaction log.
+
+## Using asyn messaging to improve availability
+
+Availability of a system consisting of several service communicating with each other in sync way is a product of availability of each of those services. In order to ensure HA, it's better to design system to utilise messaging.
+
+### Eliminating sync interations
+
+1. Use async request/response: This option assumes usage of request and reply channels. Communication between services is organized around command and replies. It makes system extremely resilient, but on the other hand might not be the best option when first service exposes sync API e.g. to external world.
+2. Replicate data: Subscribe to events necessary to compute response to a request without calling any other services. Drawback of this approach is that storing large amounts of redundant data might not be efficient.
+3. Finish processing after returning response: Compute a response from resources holding by service, return it to the client and then finish processing async way publishing right commands/event to the channels. It sounds complex, but it is preferred approach in many cases, because it solves other problems as well.
