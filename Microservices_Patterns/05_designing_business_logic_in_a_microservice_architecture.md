@@ -28,3 +28,29 @@ Tactical DDD is a set of widely adopted building blocks that developers use to i
 - Factory - an object or method responsible for creation objects that are too complex to be created via constructor
 - Repository - an object that provides access to persistent entities and encapsulates mechanism for accessing DB
 - Service - an object implementing business logic that doesn't belong to any entity or value object (be careful, lots of them might be a sign of poor design!)
+
+## Designing a domain model using the DDD aggregate pattern
+
+**Invariants** - business rules that must be enforced all the time
+
+**Pattern: Aggregate** - Organize a domain model as a collection of aggregates, each of which is a graph of objects that can be trated as a unit
+
+Identifying aggregates is a **key activity** during the process of designing an application. They act as consistency guards constantly enforcing invariants. It's not allowed to modify only part of an aggregate, it must be retrieved as a whole, modified through the root and then saved as a whole. To solve problem of concurrent writes to the DB, optimistic locking can be utilized.
+
+### Aggregate rules
+
+1. Reference only aggregate root - Aggregate root can be the only part of an aggregate that can be referenced by classes outside of an aggregate.
+2. Inter-aggregate references must use primary keys - It's not allowed for aggregate to store reference to another aggregate in a form of an object. It's on the other hand allowed for aggregate to store ID of other aggregate.
+3. One transaction creates or updates one aggregate - Exactly one aggregate must be created or updated within single transaction. If more is needed, saga pattern or remodelling needs to be done.
+
+### Aggregate granularity
+
+It's the best practice to design small, self-contained aggregates handling as little business logic as possible. This way we'll be able to create more scalable applications and split it better into different microservices. 
+
+## Publishing domain event
+
+**Pattern: Domain event** - An aggregate publishes domain event when it's created or undergoes some other significant change.
+
+### What is a domain event?
+
+A domain event is a class with a name formed using a past-participle verb. It consists of metadata (such us eventId, timestamp) and domain related information. Metadata can be either part of a domain event object (e.g. defined in a superclass) or exist in an envelope object that wraps the event object. 

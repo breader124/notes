@@ -175,7 +175,7 @@ There are two ways to handle message duplicates:
 
 ### Transactional messaging
 
-**Transactional outbox** - Publish an event as part of a database transaction by saving it in an OUTBOX in the database.
+**Pattern: Transactional outbox** - Publish an event as part of a database transaction by saving it in an OUTBOX in the database.
 
 By using transactional outbox pattern, it's possible to make sure that message will be published at least once, because it is saved in the database in the same local, ACID transaction, in which domain object has been persisted.
 
@@ -187,8 +187,8 @@ Publishing events saved in OUTBOX table can be accomplished in two ways:
 	- DynamoDB streams
 	- Eventuate Tram ( written by author of the book :D )
 
-**Polling publisher** - Publish messages by polling the outbox in the database.
-**Transaction log tailiing** - Publish changes made to the database by tailiing the transaction log.
+**Pattern: Polling publisher** - Publish messages by polling the outbox in the database.
+**Pattern: Transaction log tailiing** - Publish changes made to the database by tailiing the transaction log.
 
 ## Using asyn messaging to improve availability
 

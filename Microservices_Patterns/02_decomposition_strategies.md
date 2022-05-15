@@ -32,8 +32,8 @@ Most important benefit of hexagonal architecture is that business logic is not d
 
 Difference between monolithic and microservice architecture is mostly visible on implementation and deployment view using words of 4+1 model.
 
-**Monolithic architecture** - Structure the application as a single executable/deployable component.
-**Microservice architecture** - Structure the application as a collection of loosely coupled, independently deployable services.
+**Pattern: Monolithic architecture** - Structure the application as a single executable/deployable component.
+**Pattern: Microservice architecture** - Structure the application as a collection of loosely coupled, independently deployable services.
 
 ### Services
 
@@ -64,7 +64,7 @@ There are two main, separate ways we can do it
 
 ---
 
-**Decompose by business capability** - Define services corresponding to business capabilities.
+**Pattern: Decompose by business capability** - Define services corresponding to business capabilities.
 
 Business capability of a company are identified by analyzing the organization's purpose, structure, and business processes.
 
@@ -72,7 +72,7 @@ Process of translating business capabilities to services is subjective and is mo
 
 ---
 
-**Decompose by subdomain** - Define services corresponding to DDD subdomains.
+**Pattern: Decompose by subdomain** - Define services corresponding to DDD subdomains.
 
 Decomposition by DDD subdomain should give very similar results to decomposition by business capabilities. In fact, concept of subdomain and bounded context translates very well to the microservices world, because they both have very similar goals like enabling independent development and deployments.
 

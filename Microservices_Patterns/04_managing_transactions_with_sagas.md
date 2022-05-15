@@ -10,7 +10,7 @@ Solution to problem described above could be to use distributed transaction util
 
 ## Using the Saga pattern to maintain data consistency
 
-**Saga** - Maintain data consistency accross services using a sequence of local transactions that are coordinated using asynchronous messaging.
+**Pattern: Saga** - Maintain data consistency accross services using a sequence of local transactions that are coordinated using asynchronous messaging.
 
 How Saga is different from distributed transactions:
 - it lacks isolation, effectively following ACD, rather than ACID
