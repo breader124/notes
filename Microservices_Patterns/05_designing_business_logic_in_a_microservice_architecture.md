@@ -53,4 +53,21 @@ It's the best practice to design small, self-contained aggregates handling as li
 
 ### What is a domain event?
 
-A domain event is a class with a name formed using a past-participle verb. It consists of metadata (such us eventId, timestamp) and domain related information. Metadata can be either part of a domain event object (e.g. defined in a superclass) or exist in an envelope object that wraps the event object. 
+A domain event is a class with a name formed using a past-participle verb. It consists of metadata (such us eventId, timestamp) and domain related information. Metadata can be either part of a domain event object (e.g. defined in a superclass) or exist in an envelope object that wraps the event object.
+
+### Event enrichment
+
+Sometimes it's a good idea to include more information in an domain event. Those information can be later used by consumers for executing their business logic without need to directly call emitting service for additional details. This way we save time to executing the call, but on the other hand, add complexity to events' structure. There's need to always keep the right balance.
+
+### Identifying domain events
+
+1. It might be obvious that domain event needs to be emitted after reading requirements. When some action triggers other action, it's a sympton of a domain event.
+2. Event storming.
+
+### Generating and publishing domain events
+
+1. Aggregate invoking messaging API directly - not advised, it assumes mixing business logic with infra code
+2. Returing generated events from aggregates' methods - advised for most of the cases
+3. Storing events in a aggregate's field, service can then access this field and publish events residing there - choose if you have strong arguments
+
+To make sure that events are published from the application service, there's need to use transactional outbox pattern.
