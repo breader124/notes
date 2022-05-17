@@ -66,3 +66,36 @@ Event store might be migrated through upcasting. It means that after retrievieng
 There are 2 main ways to achieve GDPR compliance:
 - encrypt events storing user's personal information with a key that will be removed when user wants his data to be erased
 - if personal data is used as an eventId, better solution might be to introduce *pseudooptimization*, it is based on introducing another unique value as a replacement for personal information and storing association between those two in separate DB, whenever user wants to be forgotten, we can remove the association and this way achieve GDPR compliance
+
+## Implementing an event store
+
+**Event store** is a hybrid of a database and a message broker. Database behaviour comes from the fact that it offers possibility to insert and retrieve items based on primary key. Broker behavious comes from the fact that it offers the possibility to subscribe to the stream of events.
+
+Ready implementations of event store:
+- Event Store
+- Lagom
+- Axom
+- Eventuate
+
+### Event store implementation based on Eventuate framework
+
+Eventuate event store consists of 3 tables:
+- events - besides ordinary fields, each event has an triggering event id stored to simplify implementation of deduplication
+- entities - created for the sake of optimistic locking implementation, tracks aggregates and their versions
+- snapshots - stores snapshots of entities
+
+Whenever event is appended to the event store, it is pushed to Kafka. Kafka has a topic for each aggregate type. Events emitted by particular aggregate will be always pushed with the same key, what will make it possible to process them in order as they'll be appended to the same partition.
+
+As described earlier, relay reading data from data store might use 2 techniques:
+- polling for new changes
+- transaction log tailing
+
+## Using sagas and event sourcing together
+
+Event sourcing plays well with choreography-based sagas. On the other hand, it's far more complex to implement orchestration-based saga with event sourcing. Problem with the 2nd type of saga is that event stores most often doesn't implement any sophisticated approach to isolation. In a single "transaction" they can only append events and save aggregate. The key here then is to identify whether event store we use utilizes RDBMS or NoSQL DB under the hood. If it's RDBMS, then we can cheat and use ACID transactions anyway. If it's NoSQL, then the problem is more complex, but also has a solution. We can first emit an event, then listen to this event and then it arrives, create saga. Then, there's need to handle deduplication properly, otherwise there might be more than one saga created!
+
+Problem with choreography-based sagas and event sourcing is that events get dual purpose, they are not only information that something happened, but they are also used to coordinate the process. Additionally, event in saga has to emitted also in case of e.g. violation of business rule, what might not make sense from domain perspective. And finally, in event sourcing, aggregates are supposed to create events, in case of a failure of aggregate creation, there is no being allowed to emit an event. Because of those problems, it's better to implement more complex orchestration-based sagas.
+
+While implementing orchestration saga participant, there's need to handle replies properly. Advised way of doing that is to generate pseudoevent in the aggregate like SagaReplyRequestedEvent, save it to the event store and emit. Then start listening to this event and whenever it arrives, use data stored inside to construct reply and send it to the saga reply channel.
+
+Saga's orchestrator might also be implemented using event sourcing. To persist saga we can emit events related to its lifecycle, e.g. SagaOrchestratorCreate, and to make sure that saga orchestrator reliably sends commands, we can save special event in the event store, let's say, SagaCommandEvent. Then we wait for this event to be emitted and we listen to it. Whenever it arrives, we send a command to the message broker. As it'll be sent with at-least-once delivery semantics, we need to make sure that it won't be processed more than one time. It's not hard to achieve, ID of a SagaCommandEvent can be used as command id. This value is unique, so after processing it one time, consumer will be able to detect its second appearance.
