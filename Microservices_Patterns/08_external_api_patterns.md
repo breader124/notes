@@ -66,3 +66,16 @@ There are 2 problems to consider if decision's been made to start from scratch:
 - correctly implementing HTTP proxying behaviour including headers handling
 
 It's generally speaking better idea to consider using ready framework for building API gateway such as Netflix Zuul or Spring Cloud Gateway.
+
+Structure of example API gateway:
+- main package - defines main program for the API gateway
+- one or more API packages - API package implements a set of API endpoints
+- proxy package - consists of proxy classes that are used by the API packages to invoke the services
+
+Besides an implementation of API gateway standard way, appealing option is also to use GraphQL. This way amount of code written purely for the composition purposes is reduced to minimum. API gateway written using GraphQL might consist of:
+- GraphQL schema - it defines server-side data model and the queries it supports
+- Resolver functions - they map elements of the schema to the various backend services
+- Proxy classes - the proxy classes invoke application services
+- Application services - they are responsible for fetching data from other backend services
+
+Because of flexibility that GraphQL ensures, it is always an option to consider. Especially in cases when there's need to support many different types of clients.
