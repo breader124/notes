@@ -44,4 +44,25 @@ It's considered good practice to firstly detach presentation layer from rest of 
 
 ### Extract business capabilities into services
 
+To extract one functionality to separate application, there's need to perform vertical slice through the monolith consisting of:
+- inbound adapters that implement API endpoints
+- domain logic
+- outbound adapters such as DB access logic
+- the monolith's database schema
 
+There are 2 main difficulties that most probably will be met when extracting the service:
+- splitting the domain model - solution'd be to replace object reference with primary key reference, that's the method used in case of DDD aggregates
+- refactoring the database - to minimize the scope of changes needed to introduce, it's good practice to replicate the data between old monolith's DB and new service's DB
+
+Technique to avoid a lot of changes in monolith's code after splitting domain model is to use slightly modified data replication (as in case of refactoring DB). Let's assume that we split God class A to A' and B, and then B is moved to the new service. Then:
+1. we route all state changing requests to the new service, which becomes source of truth and handles state changing operations
+2. we change migrated fields of A class to be read-only in A'
+3. we look for places, when previously changed read-only fields are being set
+4. we change each set operation invoked on read-only field to be the call to the new service
+5. to keep the state consistent between both services and feed read-only fields with correct data, we enable data replication between new DB and old DB
+
+## Designing how the service and the monolith collaborate
+
+**Pattern: Anti-corruption layer** - A software layer that translates between two different domain models in order to prevent concepts from one model polluting another.
+
+This chapter contained a lot of code and examples based on the context provided by the auther. To explain all the techniques, I'd need to copy paste this context here, so I won't do it. But before approaching migration from monolith to microservice-based application, it's strongly advised to revisit this chapter and remind all the useful techniques and their implementations.
