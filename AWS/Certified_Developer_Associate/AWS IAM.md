@@ -34,11 +34,21 @@ Policy can be attached directly to the user (inline policy) or inherited from gr
 
 Policy can be created using visual editor or just typed in as a JSON documents.
 
-### MFA
+### Password policy and MFA
 
-Good practices:
-- always use MFA for root account
-- utilise password rotation mechanism
+IAM allows to:
+- set password policy
+- allow IAM users to change their passwords
+- set password rolling policy
+- prevent password re-use
+
+MFA = password **you know** + security device **you own**
+With MFA, stolen or hacked password doesn't mean compromised account.
+
+MFA device options:
+- virtual MFA device
+- Unversal 2nd Factor (U2F) Security Key
+- hardware MFA device
 
 ### Other
 
