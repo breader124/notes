@@ -34,6 +34,11 @@ Policy can be attached directly to the user (inline policy) or inherited from gr
 
 Policy can be created using visual editor or just typed in as a JSON documents.
 
+[IAM policy simulator](https://policysim.aws.amazon.com/home/index.jsp?#) allows to:
+- test IAM permissions before committing them to production
+- validate that the policy works as expected
+- test policies already attached to existing users -> great for troubleshooting
+
 ### Password policy and MFA
 
 IAM allows to:
@@ -50,9 +55,30 @@ MFA device options:
 - Unversal 2nd Factor (U2F) Security Key
 - hardware MFA device
 
-### Other
+### How to access AWS?
+- AWS Management Console -- protected by password + MFA
+- AWS Command Line Interface -- protected by access keys, alternative to console
+- AWS Software Development Kit -- protected by access keys, to be used in the code
 
-[IAM policy simulator](https://policysim.aws.amazon.com/home/index.jsp?#) allows to:
-- test IAM permissions before committing them to production
-- validate that the policy works as expected
-- test policies already attached to existing users -> great for troubleshooting
+**Access keys are secret!**
+
+### IAM Roles
+With IAM roles it's possible to assign poermissions to AWS services to use other AWS services.
+
+IAM role can be created using console creation wizard.
+
+### IAM Security Tools
+There are 2 security tools:
+- IAM Credentials Report - works on account level, reports all account's users and status of their credentials
+- IAM Access Advisor - works on user level, shows service permissions granted to a user and when those services were last accesses
+
+### Good practices
+1. Don't use the root account
+2. One physical user = One AWS user
+3. Assign user to groups and assigne permissions to groups
+4. Create a strong password policy
+5. Use and enforce the use of MFA
+6. Create and use Roles for giving permissions to AWS services
+7. Use Access Keys for programmatic access (CLI/SDK)
+8. Audit permissions using IAM Credentials Report
+9. Never share IAM users and Access Keys!
